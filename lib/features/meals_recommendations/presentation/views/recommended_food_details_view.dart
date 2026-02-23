@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
-import 'package:moodly/features/meals_recommendations/data/models/recommended_food_item_model.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/macros_section.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/effects_section.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/meal_time_section.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/nutrients_section.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_card.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/recommended_food_item_model.dart';
+import '../widgets/macros_section.dart';
+import '../widgets/effects_section.dart';
+import '../widgets/meal_time_section.dart';
+import '../widgets/nutrients_section.dart';
+import '../widgets/recommended_food_card.dart';
 
 class RecommendedFoodDetailsView extends StatelessWidget {
   final RecommendedFoodItemModel recommendedFoodItemModel;
@@ -34,6 +34,7 @@ class RecommendedFoodDetailsView extends StatelessWidget {
               children: [
                 const SizedBox(height: 85),
                 RecommendedFoodCard(
+                  withpush: false,
                   recommendedFoodItemModel: recommendedFoodItemModel,
                 ),
                 EffectsSection(effects: recommendedFoodItemModel.effects),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/constants.dart';
-import '../../data/models/category_enum.dart';
 
+import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/custom_overlay_widget.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../../core/widgets/vertical_space.dart';
+import '../../data/models/category_enum.dart';
 import '../widgets/categories_section/categories_section.dart';
 import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
 import '../widgets/new_arrivals_section/new_arrivals_section.dart';

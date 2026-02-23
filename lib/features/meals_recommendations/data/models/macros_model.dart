@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'macros_model.g.dart'; 
 
 @JsonSerializable()

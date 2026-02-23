@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meals_recommendations/data/models/recommended_food_item_model.dart';
-import 'package:moodly/features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
+import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
+import '../../features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
 import '../../features/meals_recommendations/domain/enums/food_type.dart';
 import '../../features/meals_recommendations/domain/enums/mood_type.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/custom_details_header.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_styles.dart';
+import 'custom_details_header.dart';
 
 class EffectsSection extends StatelessWidget {
   final String effects;

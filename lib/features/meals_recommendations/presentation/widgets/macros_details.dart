@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_styles.dart';
+import '../../../../core/theming/app_styles.dart';
 
-class CaloriesDetails extends StatelessWidget {
+class MacrosDetails extends StatelessWidget {
   final String title;
   final num value;
   final Color color;
-  const CaloriesDetails({
+  const MacrosDetails({
     super.key,
     required this.title,
     required this.value,

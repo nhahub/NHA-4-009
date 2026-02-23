@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:moodly/features/meals_recommendations/data/models/macros_model.dart';
+import 'macros_model.dart';
 part 'recommended_food_item_model.g.dart';
 
 @JsonSerializable()

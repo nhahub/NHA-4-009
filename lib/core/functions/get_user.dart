@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:moodly/core/extensions/string_extensions.dart';
+import '../extensions/string_extensions.dart';
 
 import '../constants/constants.dart';
 import '../models/user_data_model.dart';
