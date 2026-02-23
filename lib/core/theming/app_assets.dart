@@ -49,11 +49,11 @@ class AppAssets {
   // Images
   static const String start = 'assets/images/start.png';
   static const String welcomeBackground = 'assets/images/welcome.png';
-  static const String veryBad = 'assets/images/v_bad.png';
-  static const String bad = 'assets/images/bad.png';
+  static const String angry = 'assets/images/angry.png';
+  static const String anxious = 'assets/images/anxious.png';
   static const String neutral = 'assets/images/neutral.png';
-  static const String good = 'assets/images/good.png';
-  static const String veryGood = 'assets/images/v_good.png';
+  static const String calm = 'assets/images/calm.png';
+  static const String happy = 'assets/images/happy.png';
   static const String brain = 'assets/images/brain.png';
   static const String cardBack = 'assets/images/card_back.png';
   static const String cardEffect = 'assets/images/card_effect.png';

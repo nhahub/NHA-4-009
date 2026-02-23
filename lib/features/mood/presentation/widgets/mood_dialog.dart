@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/functions/build_snack_bar.dart';
 import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../data/repos/mood_repo.dart';
@@ -22,10 +21,6 @@ class MoodDialog extends StatelessWidget {
         listener: (context, state) {
           if (state is MoodSavedState) {
             context.pop();
-            successSnackBar(
-              context: context,
-              message: "Mood saved successfully",
-            );
           } else if (state is MoodFailedState) {
             context.read<MoodCubit>().resetSelectedIndex();
             errorDialog(context: context, message: state.message);

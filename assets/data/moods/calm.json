@@ -1,0 +1,537 @@
+{
+  "calm": {
+    "meals": [
+      {
+        "id": "cl_meal_001",
+        "name": "Turkey and Roasted Sweet Potato",
+        "nutrients": ["tryptophan", "complex_carbs", "potassium"],
+        "effects": "Turkey contains tryptophan, a precursor to serotonin, promoting a sense of well-being and peace.",
+        "macros": {
+          "kcal": 385,
+          "carbohydrates": 42.0,
+          "proteins": 28.5,
+          "fats": 10.2
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/turkey_sweet_potato.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_002",
+        "name": "Baked Cod with Asparagus",
+        "nutrients": ["folate", "vitamin_b12", "magnesium"],
+        "effects": "Folate in asparagus helps regulate mood. Cod provides lean protein without taxing the digestive system.",
+        "macros": {
+          "kcal": 295,
+          "carbohydrates": 8.5,
+          "proteins": 32.0,
+          "fats": 14.8
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/baked_cod_asparagus.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_003",
+        "name": "Warm Pearl Barley Risotto",
+        "nutrients": ["fiber", "selenium", "magnesium"],
+        "effects": "Whole grains like barley provide a steady release of energy, preventing spikes and maintaining tranquility.",
+        "macros": {
+          "kcal": 340,
+          "carbohydrates": 54.2,
+          "proteins": 9.5,
+          "fats": 7.3
+        },
+        "tags": ["vegetarian"],
+        "image": "assets/images/meals/calm/barley_risotto.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_004",
+        "name": "Miso Soup with Silken Tofu",
+        "nutrients": ["probiotics", "isoflavones", "protein"],
+        "effects": "Fermented miso supports the gut-brain axis, which is essential for maintaining a relaxed mental state.",
+        "macros": {
+          "kcal": 160,
+          "carbohydrates": 12.0,
+          "proteins": 14.0,
+          "fats": 6.5
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/calm/miso_tofu_soup.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_005",
+        "name": "Stuffed Bell Peppers with Couscous",
+        "nutrients": ["vitamin_c", "fiber", "antioxidants"],
+        "effects": "Vitamin C helps lower cortisol levels (stress hormone), fostering a deeper state of calm.",
+        "macros": {
+          "kcal": 310,
+          "carbohydrates": 45.0,
+          "proteins": 10.0,
+          "fats": 8.0
+        },
+        "tags": ["vegetarian"],
+        "image": "assets/images/meals/calm/stuffed_peppers.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_006",
+        "name": "Creamy Oatmeal with Walnuts",
+        "nutrients": ["fiber", "omega3", "melatonin"],
+        "effects": "Oats increase serotonin levels. Walnuts provide plant-based omega-3s for brain health.",
+        "macros": {
+          "kcal": 325,
+          "carbohydrates": 38.0,
+          "proteins": 8.5,
+          "fats": 16.2
+        },
+        "tags": ["breakfast"],
+        "image": "assets/images/meals/calm/oatmeal_walnuts.webp",
+        "meal_time": ["breakfast"]
+      },
+      {
+        "id": "cl_meal_007",
+        "name": "Steamed Sea Bass with Ginger",
+        "nutrients": ["omega3", "zinc"],
+        "effects": "Ginger has a warming, soothing effect on the body, while omega-3s stabilize the nervous system.",
+        "macros": {
+          "kcal": 280,
+          "carbohydrates": 2.0,
+          "proteins": 34.0,
+          "fats": 12.0
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/steamed_sea_bass.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_008",
+        "name": "Pumpkin and Sage Pasta",
+        "nutrients": ["vitamin_a", "potassium", "complex_carbs"],
+        "effects": "Pumpkin is rich in potassium, which helps regulate blood pressure and muscle relaxation.",
+        "macros": {
+          "kcal": 410,
+          "carbohydrates": 62.0,
+          "proteins": 12.5,
+          "fats": 9.5
+        },
+        "tags": ["vegetarian"],
+        "image": "assets/images/meals/calm/pumpkin_pasta.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_009",
+        "name": "Chickpea and Spinach Curry",
+        "nutrients": ["iron", "magnesium", "plant_protein"],
+        "effects": "Magnesium in spinach relaxes muscles, while fiber in chickpeas keeps you satiated and steady.",
+        "macros": {
+          "kcal": 345,
+          "carbohydrates": 48.0,
+          "proteins": 15.0,
+          "fats": 10.5
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/calm/chickpea_spinach_curry.webp",
+        "meal_time": ["lunch", "dinner"]
+      },
+      {
+        "id": "cl_meal_010",
+        "name": "Lentil Shepherd's Pie",
+        "nutrients": ["fiber", "b_vitamins", "iron"],
+        "effects": "A comforting meal that stabilizes blood sugar and provides a sense of groundedness.",
+        "macros": {
+          "kcal": 380,
+          "carbohydrates": 52.0,
+          "proteins": 18.0,
+          "fats": 7.0
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/calm/lentil_pie.webp",
+        "meal_time": ["lunch", "dinner"]
+      }
+    ],
+    "snacks": [
+      {
+        "id": "cl_snack_001",
+        "name": "Pumpkin Seeds",
+        "nutrients": ["magnesium", "zinc"],
+        "effects": "One of the best sources of magnesium, which is nature's 'chill pill' for nerves.",
+        "macros": {
+          "kcal": 158,
+          "carbohydrates": 3.0,
+          "proteins": 8.5,
+          "fats": 13.9
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/calm/pumpkin_seeds.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_002",
+        "name": "Blueberries with Almond Yogurt",
+        "nutrients": ["antioxidants", "probiotics"],
+        "effects": "Antioxidants protect the brain from oxidative stress, supporting long-term calmness.",
+        "macros": {
+          "kcal": 145,
+          "carbohydrates": 18.0,
+          "proteins": 4.5,
+          "fats": 6.2
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/blueberries_yogurt.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_003",
+        "name": "Celery Sticks with Almond Butter",
+        "nutrients": ["apigenin", "healthy_fats"],
+        "effects": "Celery contains apigenin, a compound known for its sedative and anti-anxiety properties.",
+        "macros": {
+          "kcal": 190,
+          "carbohydrates": 10.0,
+          "proteins": 5.0,
+          "fats": 16.0
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/calm/celery_almond_butter.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_004",
+        "name": "Dried Apricots",
+        "nutrients": ["magnesium", "potassium"],
+        "effects": "Naturally sweet but fiber-rich, helping to maintain stable mood energy.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 31.0,
+          "proteins": 1.5,
+          "fats": 0.2
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/calm/dried_apricots.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_005",
+        "name": "Kiwi Fruit",
+        "nutrients": ["serotonin_precursors", "vitamin_c"],
+        "effects": "Kiwi consumption is linked to improved mood and better sleep quality.",
+        "macros": {
+          "kcal": 61,
+          "carbohydrates": 15.0,
+          "proteins": 1.1,
+          "fats": 0.5
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/calm/kiwi.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_006",
+        "name": "Hummus with Cucumber",
+        "nutrients": ["protein", "hydration"],
+        "effects": "A light, cooling snack that balances blood sugar levels without heaviness.",
+        "macros": {
+          "kcal": 135,
+          "carbohydrates": 14.0,
+          "proteins": 5.0,
+          "fats": 7.5
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/calm/hummus_cucumber.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_007",
+        "name": "Walnut Halves",
+        "nutrients": ["omega3", "polyphenols"],
+        "effects": "Supports cognitive health and reduces brain inflammation associated with stress.",
+        "macros": {
+          "kcal": 185,
+          "carbohydrates": 3.9,
+          "proteins": 4.3,
+          "fats": 18.5
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/calm/walnut_halves.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_008",
+        "name": "Edamame Beans",
+        "nutrients": ["isoflavones", "folate"],
+        "effects": "Contains amino acids that help in the synthesis of calming neurotransmitters.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 10.0,
+          "proteins": 11.0,
+          "fats": 5.0
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/edamame.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_009",
+        "name": "Cottage Cheese with Flaxseeds",
+        "nutrients": ["casein", "omega3"],
+        "effects": "Slow-digesting protein (casein) provides a steady supply of amino acids for long-term calm.",
+        "macros": {
+          "kcal": 165,
+          "carbohydrates": 6.0,
+          "proteins": 14.0,
+          "fats": 9.0
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/cottage_cheese_flax.webp",
+        "meal_time": ["snack"]
+      },
+      {
+        "id": "cl_snack_010",
+        "name": "Banana with Sunflower Butter",
+        "nutrients": ["potassium", "vitamin_b6"],
+        "effects": "B6 is crucial for producing GABA, the primary inhibitory (calming) neurotransmitter.",
+        "macros": {
+          "kcal": 210,
+          "carbohydrates": 30.0,
+          "proteins": 4.0,
+          "fats": 9.5
+        },
+        "tags": ["comfort"],
+        "image": "assets/images/meals/calm/banana_sunflower_butter.webp",
+        "meal_time": ["snack"]
+      }
+    ],
+    "drinks": [
+      {
+        "id": "cl_drink_001",
+        "name": "Lavender Infusion",
+        "nutrients": ["linalool"],
+        "effects": "Directly reduces nervous system activity and induces physical relaxation.",
+        "macros": {
+          "kcal": 0,
+          "carbohydrates": 0.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/calm/lavender_tea.webp",
+        "meal_time": ["drink", "night"]
+      },
+      {
+        "id": "cl_drink_002",
+        "name": "Lemon Balm Tea",
+        "nutrients": ["rosmarinic_acid"],
+        "effects": "Used for centuries to reduce stress and improve sleep quality.",
+        "macros": {
+          "kcal": 1,
+          "carbohydrates": 0.2,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/calm/lemon_balm.webp",
+        "meal_time": ["drink", "snack"]
+      },
+      {
+        "id": "cl_drink_003",
+        "name": "Warm Oat Milk with Cinnamon",
+        "nutrients": ["calcium", "b_vitamins"],
+        "effects": "The warmth and natural sweetness soothe the senses and encourage rest.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 18.0,
+          "proteins": 2.0,
+          "fats": 4.5
+        },
+        "tags": ["night"],
+        "image": "assets/images/meals/calm/oat_milk_cinnamon.webp",
+        "meal_time": ["drink", "night"]
+      },
+      {
+        "id": "cl_drink_004",
+        "name": "Valerian Root Tea",
+        "nutrients": ["valerenic_acid"],
+        "effects": "Acts as a mild sedative to help quiet a busy mind.",
+        "macros": {
+          "kcal": 1,
+          "carbohydrates": 0.1,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/calm/valerian_tea.webp",
+        "meal_time": ["drink", "night"]
+      },
+      {
+        "id": "cl_drink_005",
+        "name": "Cherry Juice",
+        "nutrients": ["melatonin", "anthocyanins"],
+        "effects": "Contains natural melatonin to help regulate the body's internal clock and peace.",
+        "macros": {
+          "kcal": 140,
+          "carbohydrates": 33.0,
+          "proteins": 1.0,
+          "fats": 0.0
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/cherry_juice.webp",
+        "meal_time": ["drink", "night"]
+      },
+      {
+        "id": "cl_drink_006",
+        "name": "Ashwagandha Latte",
+        "nutrients": ["withanolides"],
+        "effects": "An adaptogen that helps the body manage stress and stay balanced.",
+        "macros": {
+          "kcal": 85,
+          "carbohydrates": 10.0,
+          "proteins": 4.0,
+          "fats": 3.5
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/calm/ashwagandha_latte.webp",
+        "meal_time": ["drink", "snack"]
+      },
+      {
+        "id": "cl_drink_007",
+        "name": "Passionflower Tea",
+        "nutrients": ["flavonoids"],
+        "effects": "Boosts GABA levels in the brain, leading to lower anxiety and a calm mood.",
+        "macros": {
+          "kcal": 2,
+          "carbohydrates": 0.3,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/calm/passionflower_tea.webp",
+        "meal_time": ["drink", "snack"]
+      },
+      {
+        "id": "cl_drink_008",
+        "name": "Infused Water with Mint and Lime",
+        "nutrients": ["hydration", "menthol"],
+        "effects": "Refreshing and cooling, helping to lower physical tension through hydration.",
+        "macros": {
+          "kcal": 8,
+          "carbohydrates": 2.1,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
+        "tags": ["hydration"],
+        "image": "assets/images/meals/calm/mint_lime_water.webp",
+        "meal_time": ["drink", "snack"]
+      },
+      {
+        "id": "cl_drink_009",
+        "name": "Golden Chamomile Latte",
+        "nutrients": ["apigenin", "curcumin"],
+        "effects": "Combines chamomile with a hint of turmeric for anti-inflammatory relaxation.",
+        "macros": {
+          "kcal": 110,
+          "carbohydrates": 12.5,
+          "proteins": 6.0,
+          "fats": 4.5
+        },
+        "tags": ["night"],
+        "image": "assets/images/meals/calm/golden_chamomile.webp",
+        "meal_time": ["drink", "night"]
+      },
+      {
+        "id": "cl_drink_010",
+        "name": "Green Juice with Spinach and Pear",
+        "nutrients": ["magnesium", "vitamins"],
+        "effects": "Provides a gentle, non-stimulating nutrient boost for mental clarity and peace.",
+        "macros": {
+          "kcal": 130,
+          "carbohydrates": 30.0,
+          "proteins": 2.5,
+          "fats": 0.5
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/calm/green_juice_pear.webp",
+        "meal_time": ["breakfast", "drink"]
+      }
+    ],
+    "avoid": [
+      {
+        "id": "cl_avoid_001",
+        "name": "Double Espresso",
+        "nutrients": ["high_caffeine"],
+        "effects": "Triggers the 'fight or flight' response, destroying mental calmness.",
+        "macros": {
+          "kcal": 5,
+          "carbohydrates": 0.0,
+          "proteins": 0.5,
+          "fats": 0.0
+        },
+        "tags": ["drink", "stimulant"],
+        "image": "assets/images/meals/calm/double_espresso.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "cl_avoid_002",
+        "name": "Spicy Buffalo Wings",
+        "nutrients": ["capsaicin", "saturated_fats"],
+        "effects": "Can cause internal heat and discomfort, disrupting a tranquil state.",
+        "macros": {
+          "kcal": 450,
+          "carbohydrates": 15.0,
+          "proteins": 25.0,
+          "fats": 32.0
+        },
+        "tags": ["junk_food"],
+        "image": "assets/images/meals/calm/buffalo_wings.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "cl_avoid_003",
+        "name": "Artificial Candy",
+        "nutrients": ["refined_sugar", "dyes"],
+        "effects": "Causes rapid blood sugar spikes followed by crashes, leading to mental restlessness.",
+        "macros": {
+          "kcal": 210,
+          "carbohydrates": 52.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["snack", "sugar"],
+        "image": "assets/images/meals/calm/candy.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "cl_avoid_004",
+        "name": "Salty Potato Chips",
+        "nutrients": ["sodium", "trans_fats"],
+        "effects": "High sodium can increase blood pressure, countering the feeling of relaxation.",
+        "macros": {
+          "kcal": 280,
+          "carbohydrates": 30.0,
+          "proteins": 3.0,
+          "fats": 18.0
+        },
+        "tags": ["snack", "junk_food"],
+        "image": "assets/images/meals/calm/potato_chips.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "cl_avoid_005",
+        "name": "Sugary Carbonated Sodas",
+        "nutrients": ["high_fructose_corn_syrup"],
+        "effects": "The combination of high sugar and bubbles can lead to bloating and jittery energy.",
+        "macros": {
+          "kcal": 150,
+          "carbohydrates": 39.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["drink", "sugar"],
+        "image": "assets/images/meals/calm/soda.webp",
+        "meal_time": ["avoid"]
+      }
+    ]
+  }
+}

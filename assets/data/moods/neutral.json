@@ -3,285 +3,535 @@
     "meals": [
       {
         "id": "nt_meal_001",
-        "name": "Grilled Chicken with Steamed Vegetables",
-        "type": "meal",
-        "nutrients": ["protein", "vitamins"],
-        "effects": ["balanced_energy"],
-        "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/chicken-1238243_640.jpg"
+        "name": "Mediterranean Quinoa Bowl",
+        "nutrients": ["fiber", "protein", "healthy_fats"],
+        "effects": "Provides sustained energy and maintains blood sugar stability for daily tasks.",
+        "macros": {
+          "kcal": 385,
+          "carbohydrates": 45.2,
+          "proteins": 12.8,
+          "fats": 16.5
+        },
+        "tags": ["vegetarian", "balanced"],
+        "image": "assets/images/meals/neutral/mediterranean_quinoa_bowl.webp",
+        "meal_time": ["lunch"]
       },
       {
         "id": "nt_meal_002",
-        "name": "Quinoa Salad with Avocado and Veggies",
-        "type": "meal",
-        "nutrients": ["protein", "fiber", "healthy_fats"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/05/07/08/56/quinoa-2294413_640.jpg"
+        "name": "Turkey and Avocado Wrap",
+        "nutrients": ["lean_protein", "vitamin_b6"],
+        "effects": "Supports neurotransmitter synthesis to keep a steady, focused mindset.",
+        "macros": {
+          "kcal": 420,
+          "carbohydrates": 32.0,
+          "proteins": 28.5,
+          "fats": 18.2
+        },
+        "tags": ["high_protein"],
+        "image": "assets/images/meals/neutral/turkey_avocado_wrap.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "nt_meal_003",
-        "name": "Lentil Soup",
-        "type": "meal",
-        "nutrients": ["fiber", "iron", "magnesium"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/08/06/02/08/lentil-soup-2588891_640.jpg"
+        "name": "Baked Cod with Sweet Potato",
+        "nutrients": ["omega3", "complex_carbs", "vitamin_a"],
+        "effects": "Excellent for cognitive maintenance and steady metabolic rate.",
+        "macros": {
+          "kcal": 390,
+          "carbohydrates": 38.4,
+          "proteins": 32.1,
+          "fats": 8.5
+        },
+        "tags": ["healthy", "balanced"],
+        "image": "assets/images/meals/neutral/baked_cod_sweet_potato.webp",
+        "meal_time": ["dinner"]
       },
       {
         "id": "nt_meal_004",
-        "name": "Whole Wheat Pasta with Vegetables",
-        "type": "meal",
-        "nutrients": ["complex_carbs", "vitamins"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegetarian"],
-        "image": "https://cdn.pixabay.com/photo/2015/05/29/22/17/pasta-788274_640.jpg"
+        "name": "Beef and Broccoli Stir-Fry",
+        "nutrients": ["iron", "zinc", "protein"],
+        "effects": "Boosts oxygen transport and mental clarity for a productive day.",
+        "macros": {
+          "kcal": 455,
+          "carbohydrates": 22.8,
+          "proteins": 35.6,
+          "fats": 20.4
+        },
+        "tags": ["high_protein"],
+        "image": "assets/images/meals/neutral/beef_broccoli_stirfry.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "nt_meal_005",
-        "name": "Spinach and Tofu Bowl",
-        "type": "meal",
-        "nutrients": ["protein", "iron", "magnesium"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/02/18/24/tofu-2369646_640.jpg"
+        "name": "Shakshuka with Whole Grain Bread",
+        "nutrients": ["choline", "lycopene", "fiber"],
+        "effects": "Choline in eggs supports brain health and memory during routine work.",
+        "macros": {
+          "kcal": 310,
+          "carbohydrates": 28.5,
+          "proteins": 15.2,
+          "fats": 14.8
+        },
+        "tags": ["vegetarian", "breakfast"],
+        "image": "assets/images/meals/neutral/shakshuka_whole_grain.webp",
+        "meal_time": ["breakfast", "lunch"]
       },
       {
         "id": "nt_meal_006",
-        "name": "Oatmeal with Berries and Nuts",
-        "type": "meal",
-        "nutrients": ["fiber", "antioxidants", "healthy_fats"],
-        "effects": ["balanced_energy"],
-        "tags": ["breakfast"],
-        "image": "https://cdn.pixabay.com/photo/2016/11/29/09/08/oatmeal-1868727_640.jpg"
+        "name": "Lentil Pasta with Marinara",
+        "nutrients": ["plant_protein", "iron", "fiber"],
+        "effects": "Slow-release energy that keeps the body satisfied without heavy drowsiness.",
+        "macros": {
+          "kcal": 375,
+          "carbohydrates": 52.3,
+          "proteins": 21.0,
+          "fats": 5.4
+        },
+        "tags": ["vegan", "high_fiber"],
+        "image": "assets/images/meals/neutral/lentil_pasta_marinara.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "nt_meal_007",
-        "name": "Brown Rice Sushi Rolls",
-        "type": "meal",
-        "nutrients": ["complex_carbs", "protein"],
-        "effects": ["balanced_energy"],
-        "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238249_640.jpg"
+        "name": "Grilled Chicken Caesar Salad",
+        "nutrients": ["protein", "calcium"],
+        "effects": "A light yet fulfilling meal that prevents post-lunch energy slumps.",
+        "macros": {
+          "kcal": 340,
+          "carbohydrates": 12.5,
+          "proteins": 38.2,
+          "fats": 15.8
+        },
+        "tags": ["healthy", "low_carb"],
+        "image": "assets/images/meals/neutral/chicken_caesar_salad.webp",
+        "meal_time": ["lunch"]
       },
       {
         "id": "nt_meal_008",
-        "name": "Vegetable Stir Fry with Tofu",
-        "type": "meal",
-        "nutrients": ["protein", "fiber"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/stir-fry-2385253_640.jpg"
+        "name": "Tuna Poke Bowl",
+        "nutrients": ["omega3", "iodine", "protein"],
+        "effects": "Supports thyroid function and keeps the metabolism at a healthy baseline.",
+        "macros": {
+          "kcal": 425,
+          "carbohydrates": 48.0,
+          "proteins": 29.4,
+          "fats": 11.2
+        },
+        "tags": ["healthy", "seafood"],
+        "image": "assets/images/meals/neutral/tuna_poke_bowl.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "nt_meal_009",
-        "name": "Avocado Toast with Eggs",
-        "type": "meal",
-        "nutrients": ["healthy_fats", "protein"],
-        "effects": ["balanced_energy"],
-        "tags": ["breakfast"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/avocado-toast-1238257_640.jpg"
+        "name": "Buckwheat Porridge with Berries",
+        "nutrients": ["magnesium", "antioxidants"],
+        "effects": "Low glycemic index ensures steady glucose supply to the brain.",
+        "macros": {
+          "kcal": 295,
+          "carbohydrates": 54.1,
+          "proteins": 9.3,
+          "fats": 3.8
+        },
+        "tags": ["breakfast", "vegan"],
+        "image": "assets/images/meals/neutral/buckwheat_porridge.webp",
+        "meal_time": ["breakfast"]
       },
       {
         "id": "nt_meal_010",
-        "name": "Vegetable Soup",
-        "type": "meal",
-        "nutrients": ["fiber", "vitamins"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2015/07/28/21/56/soup-865915_640.jpg"
+        "name": "Roasted Chickpea and Veggie Plate",
+        "nutrients": ["fiber", "folate", "vitamins"],
+        "effects": "Maintains gut health which is essential for consistent day-to-day mood.",
+        "macros": {
+          "kcal": 320,
+          "carbohydrates": 44.6,
+          "proteins": 14.5,
+          "fats": 9.7
+        },
+        "tags": ["vegan", "balanced"],
+        "image": "assets/images/meals/neutral/roasted_chickpea_veggies.webp",
+        "meal_time": ["dinner"]
       }
     ],
     "snacks": [
       {
         "id": "nt_snack_001",
-        "name": "Banana with Peanut Butter",
-        "type": "snack",
-        "nutrients": ["magnesium", "vitamin_b6"],
-        "effects": ["balanced_energy"],
-        "tags": ["quick"],
-        "image": "https://cdn.pixabay.com/photo/2018/01/15/07/51/banana-3087090_640.jpg"
+        "name": "Almonds and Walnuts",
+        "nutrients": ["vitamin_e", "healthy_fats"],
+        "effects": "Brain-shielding nutrients for steady cognitive performance.",
+        "macros": {
+          "kcal": 165,
+          "carbohydrates": 6.0,
+          "proteins": 6.0,
+          "fats": 14.0
+        },
+        "tags": ["quick", "brain_food"],
+        "image": "assets/images/meals/neutral/almonds_walnuts.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_002",
-        "name": "Mixed Nuts",
-        "type": "snack",
-        "nutrients": ["magnesium", "healthy_fats"],
-        "effects": ["balanced_energy"],
-        "tags": ["quick"],
-        "image": "https://cdn.pixabay.com/photo/2015/04/08/13/13/nuts-712665_640.jpg"
+        "name": "Hummus and Celery Sticks",
+        "nutrients": ["fiber", "protein"],
+        "effects": "Light crunch provides sensory satisfaction while keeping energy level flat.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 14.0,
+          "proteins": 4.5,
+          "fats": 6.2
+        },
+        "tags": ["vegan", "low_cal"],
+        "image": "assets/images/meals/neutral/hummus_celery.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_003",
-        "name": "Oat Energy Balls",
-        "type": "snack",
-        "nutrients": ["fiber", "complex_carbs"],
-        "effects": ["balanced_energy"],
-        "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/oat-balls-2385252_640.jpg"
+        "name": "Hard Boiled Egg",
+        "nutrients": ["protein", "b12"],
+        "effects": "Small protein boost to bridge the gap between main meals.",
+        "macros": {
+          "kcal": 78,
+          "carbohydrates": 0.6,
+          "proteins": 6.3,
+          "fats": 5.3
+        },
+        "tags": ["quick", "protein"],
+        "image": "assets/images/meals/neutral/boiled_egg.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_004",
-        "name": "Apple Slices with Almond Butter",
-        "type": "snack",
-        "nutrients": ["fiber", "healthy_fats"],
-        "effects": ["balanced_energy"],
-        "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2015/03/26/09/40/apple-690230_640.jpg"
+        "name": "Pear Slices with Cheese",
+        "nutrients": ["calcium", "fiber"],
+        "effects": "Perfect balance of sweet and savory to maintain satisfaction.",
+        "macros": {
+          "kcal": 155,
+          "carbohydrates": 15.2,
+          "proteins": 7.1,
+          "fats": 8.4
+        },
+        "tags": ["vegetarian"],
+        "image": "assets/images/meals/neutral/pear_cheese.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_005",
-        "name": "Trail Mix",
-        "type": "snack",
-        "nutrients": ["protein", "magnesium"],
-        "effects": ["balanced_energy"],
-        "tags": ["quick"],
-        "image": "https://cdn.pixabay.com/photo/2016/11/29/09/08/trail-mix-1868729_640.jpg"
+        "name": "Pumpkin Seeds",
+        "nutrients": ["zinc", "magnesium"],
+        "effects": "Trace minerals support immunity and basic nervous system health.",
+        "macros": {
+          "kcal": 151,
+          "carbohydrates": 5.0,
+          "proteins": 7.0,
+          "fats": 13.0
+        },
+        "tags": ["vegan", "superfood"],
+        "image": "assets/images/meals/neutral/pumpkin_seeds.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_006",
-        "name": "Carrot Sticks with Hummus",
-        "type": "snack",
-        "nutrients": ["fiber", "magnesium"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/30/20/29/vegetables-2454341_640.jpg"
+        "name": "Cottage Cheese with Berries",
+        "nutrients": ["casein_protein", "antioxidants"],
+        "effects": "Slow-digesting protein provides a steady stream of amino acids.",
+        "macros": {
+          "kcal": 140,
+          "carbohydrates": 12.0,
+          "proteins": 14.0,
+          "fats": 2.5
+        },
+        "tags": ["healthy", "protein"],
+        "image": "assets/images/meals/neutral/cottage_cheese_berries.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_007",
-        "name": "Cucumber Slices with Tahini",
-        "type": "snack",
-        "nutrients": ["healthy_fats", "magnesium"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/cucumber-1238255_640.jpg"
+        "name": "Rice Cakes with Almond Butter",
+        "nutrients": ["complex_carbs", "healthy_fats"],
+        "effects": "Simple, clean energy without any digestive heaviness.",
+        "macros": {
+          "kcal": 185,
+          "carbohydrates": 18.0,
+          "proteins": 4.2,
+          "fats": 11.5
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/neutral/rice_cakes_almond_butter.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_008",
-        "name": "Greek Yogurt with Honey",
-        "type": "snack",
-        "nutrients": ["protein", "probiotics"],
-        "effects": ["balanced_energy"],
-        "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/07/16/10/43/yogurt-2508918_640.jpg"
+        "name": "Edamame",
+        "nutrients": ["isoflavones", "protein"],
+        "effects": "Supports hormonal balance and provides a satisfying texture.",
+        "macros": {
+          "kcal": 122,
+          "carbohydrates": 9.9,
+          "proteins": 11.0,
+          "fats": 5.2
+        },
+        "tags": ["vegan", "healthy"],
+        "image": "assets/images/meals/neutral/edamame.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_009",
-        "name": "Rice Cakes with Avocado",
-        "type": "snack",
-        "nutrients": ["healthy_fats", "fiber"],
-        "effects": ["balanced_energy"],
-        "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/02/01/11/28/avocado-2035650_640.jpg"
+        "name": "Yogurt Bark",
+        "nutrients": ["probiotics", "protein"],
+        "effects": "Maintains gut flora which regulates background mood stability.",
+        "macros": {
+          "kcal": 130,
+          "carbohydrates": 14.5,
+          "proteins": 8.0,
+          "fats": 3.0
+        },
+        "tags": ["healthy", "cold"],
+        "image": "assets/images/meals/neutral/yogurt_bark.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "nt_snack_010",
-        "name": "Dark Chocolate",
-        "type": "snack",
-        "nutrients": ["magnesium", "antioxidants"],
-        "effects": ["balanced_energy"],
-        "tags": ["comfort"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/21/14/28/chocolate-1998223_640.jpg"
+        "name": "Whole Grain Crackers with Tuna",
+        "nutrients": ["protein", "b-vitamins"],
+        "effects": "Essential for maintaining alertness during the mid-afternoon.",
+        "macros": {
+          "kcal": 170,
+          "carbohydrates": 12.0,
+          "proteins": 15.0,
+          "fats": 4.5
+        },
+        "tags": ["quick", "protein"],
+        "image": "assets/images/meals/neutral/crackers_tuna.webp",
+        "meal_time": ["snack"]
       }
     ],
     "drinks": [
       {
         "id": "nt_drink_001",
-        "name": "Green Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants", "l_theanine"],
-        "effects": ["balanced_energy"],
-        "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/green-tea-1238247_640.jpg"
+        "name": "Infused Cucumber Water",
+        "nutrients": ["hydration", "silica"],
+        "effects": "Optimal hydration keeps the brain functioning at a normal baseline.",
+        "macros": {
+          "kcal": 2,
+          "carbohydrates": 0.5,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
+        "tags": ["hydration"],
+        "image": "assets/images/meals/neutral/cucumber_water.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_002",
-        "name": "Chamomile Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants"],
-        "effects": ["balanced_energy"],
-        "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/chamomile-1329546_640.jpg"
+        "name": "Matcha Latte (Low Sugar)",
+        "nutrients": ["l_theanine", "antioxidants"],
+        "effects": "Provides 'calm alertness'—ideal for maintaining a neutral focus.",
+        "macros": {
+          "kcal": 85,
+          "carbohydrates": 10.2,
+          "proteins": 4.5,
+          "fats": 3.1
+        },
+        "tags": ["focus"],
+        "image": "assets/images/meals/neutral/matcha_latte.webp",
+        "meal_time": ["drink", "breakfast"]
       },
       {
         "id": "nt_drink_003",
-        "name": "Peppermint Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants"],
-        "effects": ["balanced_energy"],
+        "name": "Rooibos Tea",
+        "nutrients": ["minerals", "caffeine_free"],
+        "effects": "Naturally caffeine-free, it hydrates without causing spikes in energy.",
+        "macros": {
+          "kcal": 1,
+          "carbohydrates": 0.2,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
         "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/peppermint-1238244_640.jpg"
+        "image": "assets/images/meals/neutral/rooibos_tea.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_004",
-        "name": "Berry Smoothie",
-        "type": "drink",
-        "nutrients": ["antioxidants", "vitamins"],
-        "effects": ["balanced_energy"],
+        "name": "Green Juice (Kale & Apple)",
+        "nutrients": ["chlorophyll", "vitamins"],
+        "effects": "Micro-nutrient dense drink to maintain overall body homeostasis.",
+        "macros": {
+          "kcal": 95,
+          "carbohydrates": 22.0,
+          "proteins": 2.1,
+          "fats": 0.3
+        },
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/berry-smoothie-1238251_640.jpg"
+        "image": "assets/images/meals/neutral/green_juice.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "nt_drink_005",
-        "name": "Coconut Water",
-        "type": "drink",
-        "nutrients": ["electrolytes"],
-        "effects": ["hydration", "balanced_energy"],
-        "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/20/00/30/coconut-water-1994552_640.jpg"
+        "name": "Warm Lemon Ginger Water",
+        "nutrients": ["vitamin_c", "gingerol"],
+        "effects": "Supports digestion and keeps the immune system steady.",
+        "macros": {
+          "kcal": 10,
+          "carbohydrates": 2.5,
+          "proteins": 0.2,
+          "fats": 0.1
+        },
+        "tags": ["warm"],
+        "image": "assets/images/meals/neutral/lemon_ginger_water.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_006",
-        "name": "Lemon Water",
-        "type": "drink",
-        "nutrients": ["vitamin_c"],
-        "effects": ["balanced_energy"],
-        "tags": ["hydration"],
-        "image": "https://cdn.pixabay.com/photo/2016/01/19/17/28/lemon-water-1142142_640.jpg"
+        "name": "Oat Milk",
+        "nutrients": ["beta_glucan", "calcium"],
+        "effects": "A comforting, neutral-tasting drink that provides gentle energy.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 16.0,
+          "proteins": 3.0,
+          "fats": 5.0
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/neutral/oat_milk.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_007",
-        "name": "Milk with Honey",
-        "type": "drink",
-        "nutrients": ["tryptophan", "calcium"],
-        "effects": ["balanced_energy"],
-        "tags": ["night"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/milk-1238245_640.jpg"
+        "name": "Blueberry Hibiscus Iced Tea",
+        "nutrients": ["anthocyanins"],
+        "effects": "Antioxidants help manage normal oxidative stress during the day.",
+        "macros": {
+          "kcal": 15,
+          "carbohydrates": 3.8,
+          "proteins": 0.2,
+          "fats": 0.0
+        },
+        "tags": ["refreshing"],
+        "image": "assets/images/meals/neutral/blueberry_hibiscus_tea.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_008",
-        "name": "Herbal Relaxing Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants"],
-        "effects": ["balanced_energy"],
-        "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/herbal-tea-1329553_640.jpg"
+        "name": "Almond Milk Chai",
+        "nutrients": ["spices", "magnesium"],
+        "effects": "Gentle warming spices support circulation without overstimulation.",
+        "macros": {
+          "kcal": 65,
+          "carbohydrates": 8.4,
+          "proteins": 1.5,
+          "fats": 2.8
+        },
+        "tags": ["warm"],
+        "image": "assets/images/meals/neutral/almond_chai.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_009",
-        "name": "Chamomile Lemon Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants"],
-        "effects": ["balanced_energy"],
-        "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/lemon-chamomile-1329548_640.jpg"
+        "name": "Sparkling Water with Lime",
+        "nutrients": ["minerals"],
+        "effects": "Zero-calorie refreshing drink to maintain hydration levels.",
+        "macros": {
+          "kcal": 1,
+          "carbohydrates": 0.3,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["hydration"],
+        "image": "assets/images/meals/neutral/sparkling_water_lime.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "nt_drink_010",
-        "name": "Warm Turmeric Milk",
-        "type": "drink",
-        "nutrients": ["antioxidants", "calcium"],
-        "effects": ["balanced_energy"],
-        "tags": ["night"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/turmeric-milk-2385250_640.jpg"
+        "name": "Soy Milk",
+        "nutrients": ["complete_protein", "isoflavones"],
+        "effects": "Provides all essential amino acids for steady body maintenance.",
+        "macros": {
+          "kcal": 110,
+          "carbohydrates": 9.0,
+          "proteins": 8.0,
+          "fats": 4.5
+        },
+        "tags": ["vegan", "protein"],
+        "image": "assets/images/meals/neutral/soy_milk.webp",
+        "meal_time": ["drink"]
       }
     ],
     "avoid": [
-      "Caffeine",
-      "Alcohol",
-      "Fast Food",
-      "Sugary Snacks",
-      "Energy Drinks"
+      {
+        "id": "nt_avoid_001",
+        "name": "Excessive Caffeine",
+        "nutrients": ["caffeine"],
+        "effects": "Disrupts the neutral baseline by causing jitters and later crashes.",
+        "macros": {
+          "kcal": 2,
+          "carbohydrates": 0.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["stimulant"],
+        "image": "assets/images/meals/neutral/excess_caffeine.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "nt_avoid_002",
+        "name": "High-Sugar Donuts",
+        "nutrients": ["refined_sugar", "trans_fats"],
+        "effects": "Causes rapid insulin spikes followed by fatigue, ruining a steady mood.",
+        "macros": {
+          "kcal": 350,
+          "carbohydrates": 45.0,
+          "proteins": 3.0,
+          "fats": 18.0
+        },
+        "tags": ["junk_food"],
+        "image": "assets/images/meals/neutral/donuts.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "nt_avoid_003",
+        "name": "Ultra-Processed Deli Meats",
+        "nutrients": ["sodium", "nitrates"],
+        "effects": "High salt content can cause bloating and mental fog.",
+        "macros": {
+          "kcal": 180,
+          "carbohydrates": 2.0,
+          "proteins": 12.0,
+          "fats": 14.0
+        },
+        "tags": ["processed"],
+        "image": "assets/images/meals/neutral/processed_meats.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "nt_avoid_004",
+        "name": "Artificial Sweeteners",
+        "nutrients": ["chemicals"],
+        "effects": "May interfere with gut microbiome, potentially affecting long-term mood.",
+        "macros": {
+          "kcal": 0,
+          "carbohydrates": 0.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["additive"],
+        "image": "assets/images/meals/neutral/artificial_sweeteners.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "nt_avoid_005",
+        "name": "Heavy Deep-Fried Sides",
+        "nutrients": ["saturated_fats"],
+        "effects": "Digestion of heavy fats takes massive energy, causing daytime lethargy.",
+        "macros": {
+          "kcal": 400,
+          "carbohydrates": 48.0,
+          "proteins": 4.0,
+          "fats": 22.0
+        },
+        "tags": ["fried"],
+        "image": "assets/images/meals/neutral/fried_sides.webp",
+        "meal_time": ["avoid"]
+      }
     ]
   }
 }

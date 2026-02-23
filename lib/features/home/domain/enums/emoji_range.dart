@@ -6,15 +6,15 @@ extension EmojiRangeExtension on EmojiRange {
   String get emoji {
     switch (this) {
       case EmojiRange.veryBad:
-        return AppAssets.veryBad;
+        return AppAssets.angry;
       case EmojiRange.bad:
-        return AppAssets.bad;
+        return AppAssets.anxious;
       case EmojiRange.neutral:
         return AppAssets.neutral;
       case EmojiRange.good:
-        return AppAssets.good;
+        return AppAssets.calm;
       case EmojiRange.veryGood:
-        return AppAssets.veryGood;
+        return AppAssets.happy;
     }
   }
 }

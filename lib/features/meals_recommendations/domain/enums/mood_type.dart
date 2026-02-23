@@ -1,36 +1,32 @@
-enum MoodType { angry, happy, depressed, anxious, lowEnergy, neutral }
+enum MoodType { angry, anxious, neutral, calm, happy }
 
 String moodTypeToString(MoodType mood) {
   switch (mood) {
     case MoodType.angry:
-      return 'angry';
+      return 'Angry';
+    case MoodType.anxious:
+      return 'Anxious';
+    case MoodType.neutral:
+      return 'Neutral';
+    case MoodType.calm:
+      return 'Calm';
     case MoodType.happy:
       return 'happy';
-    case MoodType.depressed:
-      return 'depressed';
-    case MoodType.anxious:
-      return 'anxious';
-    case MoodType.lowEnergy:
-      return 'low_energy';
-    case MoodType.neutral:
-      return 'neutral';
   }
 }
 
 MoodType moodTypeFromString(String value) {
   switch (value) {
-    case 'angry':
+    case 'Angry':
       return MoodType.angry;
-    case 'happy':
-      return MoodType.happy;
-    case 'depressed':
-      return MoodType.depressed;
-    case 'anxious':
+    case 'Anxious':
       return MoodType.anxious;
-    case 'low_energy':
-      return MoodType.lowEnergy;
-    case 'neutral':
+    case 'Neutral':
       return MoodType.neutral;
+    case 'Calm':
+      return MoodType.calm;
+    case 'Happy':
+      return MoodType.happy;
     default:
       throw Exception('Unknown mood type: $value');
   }

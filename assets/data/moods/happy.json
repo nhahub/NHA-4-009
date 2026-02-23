@@ -3,285 +3,535 @@
     "meals": [
       {
         "id": "hp_meal_001",
-        "name": "Rainbow Buddha Bowl",
-        "type": "meal",
-        "nutrients": ["vitamins", "fiber", "antioxidants"],
-        "effects": ["energy_boost", "vibrant_mood"],
-        "tags": ["vegan", "colorful"],
-        "image": "https://cdn.pixabay.com/photo/2017/10/09/19/29/eat-2834549_640.jpg"
+        "name": "Grilled Turkey with Sweet Potato",
+        "nutrients": ["tryptophan", "complex_carbs", "vitamin_b6"],
+        "effects": "Tryptophan is a precursor to serotonin. Boosts mood and promotes a sense of well-being.",
+        "macros": {
+          "kcal": 425,
+          "carbohydrates": 38.5,
+          "proteins": 41.2,
+          "fats": 12.4
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/grilled_turkey_with_sweet_potato.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_002",
-        "name": "Grilled Shrimp Tacos with Mango Salsa",
-        "type": "meal",
-        "nutrients": ["protein", "vitamin_c", "zinc"],
-        "effects": ["dopamine_boost", "refreshing"],
-        "tags": ["seafood", "light"],
-        "image": "https://cdn.pixabay.com/photo/2014/11/05/15/57/tacos-518032_640.jpg"
+        "name": "Mediterranean Quinoa Bowl",
+        "nutrients": ["folate", "magnesium", "fiber"],
+        "effects": "Folate supports dopamine production. Maintains high energy and positive mood.",
+        "macros": {
+          "kcal": 345,
+          "carbohydrates": 45.2,
+          "proteins": 12.8,
+          "fats": 14.5
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/happy/mediterranean_quinoa_bowl.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_003",
-        "name": "Mediterranean Mezze Platter",
-        "type": "meal",
-        "nutrients": ["healthy_fats", "protein"],
-        "effects": ["social_mood", "satisfaction"],
-        "tags": ["vegetarian", "sharing"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/20/11/17/food-2422709_640.jpg"
+        "name": "Baked Cod with Asparagus",
+        "nutrients": ["vitamin_b12", "omega3", "folate"],
+        "effects": "B12 and Folate are essential for brain health. Prevents mood dips and sustains happiness.",
+        "macros": {
+          "kcal": 310,
+          "carbohydrates": 12.4,
+          "proteins": 36.8,
+          "fats": 10.2
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/baked_cod_with_asparagus.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_004",
-        "name": "Turkey and Cranberry Sandwich",
-        "type": "meal",
-        "nutrients": ["tryptophan", "complex_carbs"],
-        "effects": ["serotonin_boost", "sustained_energy"],
-        "tags": ["lunch"],
-        "image": "https://cdn.pixabay.com/photo/2016/09/13/11/53/sandwich-1667015_640.jpg"
+        "name": "Chickpea Curry with Rice",
+        "nutrients": ["fiber", "protein", "iron"],
+        "effects": "Complex carbs provide steady glucose to the brain. Keeps spirits high for longer periods.",
+        "macros": {
+          "kcal": 415,
+          "carbohydrates": 62.4,
+          "proteins": 15.6,
+          "fats": 9.3
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/happy/chickpea_curry_with_rice.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_005",
-        "name": "Strawberry Spinach Salad with Walnuts",
-        "type": "meal",
-        "nutrients": ["folate", "omega3"],
-        "effects": ["mood_enhancement"],
-        "tags": ["healthy", "fruit_infused"],
-        "image": "https://cdn.pixabay.com/photo/2017/09/16/19/21/salad-2756467_640.jpg"
+        "name": "Grilled Steak with Broccoli",
+        "nutrients": ["iron", "zinc", "protein"],
+        "effects": "Iron and Zinc are vital for cognitive function. Supports a vibrant and energetic mood.",
+        "macros": {
+          "kcal": 480,
+          "carbohydrates": 15.2,
+          "proteins": 42.5,
+          "fats": 25.8
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/grilled_steak_with_broccoli.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_006",
-        "name": "Grilled Salmon with Asparagus",
-        "type": "meal",
-        "nutrients": ["omega3", "vitamin_d"],
-        "effects": ["brain_health", "long_term_joy"],
-        "tags": ["omega_rich"],
-        "image": "https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_640.jpg"
+        "name": "Tuna Salad with Olive Oil",
+        "nutrients": ["omega3", "vitamin_d", "protein"],
+        "effects": "Vitamin D is linked to mood elevation. Promotes overall emotional resilience.",
+        "macros": {
+          "kcal": 320,
+          "carbohydrates": 8.5,
+          "proteins": 28.4,
+          "fats": 19.1
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/tuna_salad_with_olive_oil.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_007",
-        "name": "Chickpea Curry with Turmeric Rice",
-        "type": "meal",
-        "nutrients": ["fiber", "curcumin"],
-        "effects": ["anti_inflammatory", "comfort"],
-        "tags": ["vegan", "warm"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/curry-2385250_640.jpg"
+        "name": "Oatmeal with Blueberries and Seeds",
+        "nutrients": ["antioxidants", "fiber", "magnesium"],
+        "effects": "Antioxidants reduce oxidative stress in the brain. Starts the day with a positive mindset.",
+        "macros": {
+          "kcal": 310,
+          "carbohydrates": 48.7,
+          "proteins": 10.2,
+          "fats": 9.5
+        },
+        "tags": ["breakfast"],
+        "image": "assets/images/meals/happy/oatmeal_with_blueberries.webp",
+        "meal_time": ["breakfast"]
       },
       {
         "id": "hp_meal_008",
-        "name": "Chicken Pesto Pasta with Cherry Tomatoes",
-        "type": "meal",
-        "nutrients": ["protein", "healthy_fats"],
-        "effects": ["satisfaction", "energy"],
-        "tags": ["italian", "tasty"],
-        "image": "https://cdn.pixabay.com/photo/2015/05/29/22/17/pasta-788274_640.jpg"
+        "name": "Lentil Pasta with Roasted Tomatoes",
+        "nutrients": ["protein", "lycopene", "complex_carbs"],
+        "effects": "Lycopene protects brain cells. Supports a stable and joyful emotional state.",
+        "macros": {
+          "kcal": 385,
+          "carbohydrates": 54.2,
+          "proteins": 22.1,
+          "fats": 8.4
+        },
+        "tags": ["vegetarian"],
+        "image": "assets/images/meals/happy/lentil_pasta_with_tomatoes.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_009",
-        "name": "Greek Salad with Grilled Halloumi",
-        "type": "meal",
-        "nutrients": ["calcium", "healthy_fats"],
-        "effects": ["freshness", "light_mood"],
-        "tags": ["vegetarian", "fresh"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/salad-1238241_640.jpg"
+        "name": "Chicken and Avocado Wrap",
+        "nutrients": ["healthy_fats", "protein", "potassium"],
+        "effects": "Healthy fats improve nutrient absorption for brain health. Enhances satisfaction.",
+        "macros": {
+          "kcal": 460,
+          "carbohydrates": 34.6,
+          "proteins": 32.8,
+          "fats": 21.4
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/chicken_and_avocado_wrap.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "hp_meal_010",
-        "name": "Roast Beef with Sweet Potato Fries",
-        "type": "meal",
-        "nutrients": ["iron", "vitamin_a"],
-        "effects": ["strength", "sustained_mood"],
-        "tags": ["hearty", "healthy_sides"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/beef-1238243_640.jpg"
+        "name": "Tofu Bowl with Sesame and Kale",
+        "nutrients": ["plant_protein", "calcium", "magnesium"],
+        "effects": "Calcium and magnesium work together to relax muscles and brighten mood.",
+        "macros": {
+          "kcal": 315,
+          "carbohydrates": 22.4,
+          "proteins": 18.7,
+          "fats": 16.9
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/happy/tofu_bowl_with_kale.webp",
+        "meal_time": ["lunch", "dinner"]
       }
     ],
     "snacks": [
       {
         "id": "hp_snack_001",
-        "name": "Fresh Berry Medley",
-        "type": "snack",
-        "nutrients": ["antioxidants", "vitamin_c"],
-        "effects": ["natural_sugar_hit", "refreshing"],
-        "tags": ["fruit", "light"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/15/08/04/strawberries-1330459_640.jpg"
+        "name": "Dark Chocolate Square",
+        "nutrients": ["flavonoids", "phenylethylamine"],
+        "effects": "Releases endorphins and improves blood flow to the brain. Pure bliss in a bite.",
+        "macros": {
+          "kcal": 155,
+          "carbohydrates": 12.1,
+          "proteins": 2.2,
+          "fats": 11.8
+        },
+        "tags": ["comfort"],
+        "image": "assets/images/meals/happy/dark_chocolate_square.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_002",
-        "name": "Popcorn with Sea Salt",
-        "type": "snack",
-        "nutrients": ["fiber", "whole_grains"],
-        "effects": ["fun_snacking", "light_energy"],
-        "tags": ["low_cal"],
-        "image": "https://cdn.pixabay.com/photo/2015/05/07/15/08/popcorn-756602_640.jpg"
+        "name": "Walnuts",
+        "nutrients": ["omega3", "antioxidants"],
+        "effects": "Supports brain cell growth and mood regulation. Great for mental clarity.",
+        "macros": {
+          "kcal": 185,
+          "carbohydrates": 3.9,
+          "proteins": 4.3,
+          "fats": 18.5
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/happy/walnuts.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_003",
-        "name": "Yogurt Parfait with Granola",
-        "type": "snack",
-        "nutrients": ["probiotics", "protein"],
-        "effects": ["gut_health", "joyful_texture"],
-        "tags": ["breakfast", "sweet"],
-        "image": "https://cdn.pixabay.com/photo/2016/11/22/18/52/yogurt-1850011_640.jpg"
+        "name": "Greek Yogurt with Berries",
+        "nutrients": ["probiotics", "vitamins"],
+        "effects": "Healthy gut bacteria produce 90% of your serotonin. Boosts overall joy.",
+        "macros": {
+          "kcal": 145,
+          "carbohydrates": 14.8,
+          "proteins": 12.4,
+          "fats": 3.8
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/greek_yogurt_berries.webp",
+        "meal_time": ["snack", "breakfast"]
       },
       {
         "id": "hp_snack_004",
-        "name": "Pineapple Slices",
-        "type": "snack",
-        "nutrients": ["bromelain", "vitamin_c"],
-        "effects": ["tropical_vibes", "digestive_ease"],
-        "tags": ["vegan", "sweet"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/pineapple-1238253_640.jpg"
+        "name": "Sliced Bananas with toast",
+        "nutrients": ["tyrosine", "potassium"],
+        "effects": "Tyrosine boosts dopamine production. Helps maintain a cheerful attitude.",
+        "macros": {
+          "kcal": 210,
+          "carbohydrates": 28.4,
+          "proteins": 5.2,
+          "fats": 10.6
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/happy/bananas_toast.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_005",
-        "name": "Cashews and Dried Apricots",
-        "type": "snack",
-        "nutrients": ["magnesium", "iron"],
-        "effects": ["steady_joy", "brain_power"],
-        "tags": ["quick", "energy"],
-        "image": "https://cdn.pixabay.com/photo/2017/03/27/14/01/cashew-2178915_640.jpg"
+        "name": "Roasted Chickpeas",
+        "nutrients": ["fiber", "zinc"],
+        "effects": "Crunchy texture and zinc help lower anxiety. Supports a steady happy mood.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 18.2,
+          "proteins": 6.1,
+          "fats": 3.2
+        },
+        "tags": ["vegan"],
+        "image": "assets/images/meals/happy/roasted_chickpeas.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_006",
-        "name": "Rice Cakes with Peanut Butter",
-        "type": "snack",
-        "nutrients": ["protein", "healthy_fats"],
-        "effects": ["satisfaction"],
-        "tags": ["quick", "crunchy"],
-        "image": "https://cdn.pixabay.com/photo/2018/04/13/11/17/rice-cakes-3316270_640.jpg"
+        "name": "Pumpkin Seeds",
+        "nutrients": ["magnesium", "tryptophan"],
+        "effects": "Magnesium relaxes the mind while tryptophan elevates mood naturally.",
+        "macros": {
+          "kcal": 158,
+          "carbohydrates": 4.2,
+          "proteins": 8.5,
+          "fats": 13.1
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/happy/pumpkin_seeds.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_007",
-        "name": "Watermelon Cubes",
-        "type": "snack",
-        "nutrients": ["hydration", "lycopene"],
-        "effects": ["cooling", "bright_mood"],
-        "tags": ["fruit", "summer"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/15/21/11/watermelon-2406830_640.jpg"
+        "name": "Cottage Cheese with Pineapple",
+        "nutrients": ["protein", "vitamin_c"],
+        "effects": "Refreshing and high in protein. Keeps you feeling satisfied and energetic.",
+        "macros": {
+          "kcal": 160,
+          "carbohydrates": 15.5,
+          "proteins": 14.2,
+          "fats": 4.1
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/cottage_cheese_pineapple.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_008",
-        "name": "Pistachios",
-        "type": "snack",
-        "nutrients": ["vitamin_b6", "antioxidants"],
-        "effects": ["mood_balance"],
-        "tags": ["nuts", "healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/08/31/15/23/pistachios-2701099_640.jpg"
+        "name": "Dried Apricots",
+        "nutrients": ["iron", "vitamin_a"],
+        "effects": "Quick iron boost prevents fatigue-related mood drops. Natural sweetness.",
+        "macros": {
+          "kcal": 104,
+          "carbohydrates": 26.2,
+          "proteins": 1.4,
+          "fats": 0.2
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/happy/dried_apricots.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_009",
-        "name": "Apple Slices with Honey",
-        "type": "snack",
-        "nutrients": ["fiber", "natural_sugars"],
-        "effects": ["energy_lift"],
-        "tags": ["sweet", "natural"],
-        "image": "https://cdn.pixabay.com/photo/2015/03/26/09/40/apple-690230_640.jpg"
+        "name": "Hard Boiled Egg",
+        "nutrients": ["choline", "vitamin_d"],
+        "effects": "Choline is vital for mood and memory. A small but powerful mood booster.",
+        "macros": {
+          "kcal": 78,
+          "carbohydrates": 0.6,
+          "proteins": 6.3,
+          "fats": 5.3
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/hard_boiled_egg.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "hp_snack_010",
-        "name": "Frozen Grapes",
-        "type": "snack",
-        "nutrients": ["antioxidants"],
-        "effects": ["fun_texture", "refreshing"],
-        "tags": ["fruit", "frozen"],
-        "image": "https://cdn.pixabay.com/photo/2017/11/11/11/33/grapes-2938927_640.jpg"
+        "name": "Cashews",
+        "nutrients": ["zinc", "iron", "magnesium"],
+        "effects": "Known for having mood-lifting properties similar to a light antidepressant.",
+        "macros": {
+          "kcal": 157,
+          "carbohydrates": 8.6,
+          "proteins": 5.2,
+          "fats": 12.4
+        },
+        "tags": ["quick"],
+        "image": "assets/images/meals/happy/cashews.webp",
+        "meal_time": ["snack"]
       }
     ],
     "drinks": [
       {
         "id": "hp_drink_001",
         "name": "Fresh Orange Juice",
-        "type": "drink",
         "nutrients": ["vitamin_c", "folate"],
-        "effects": ["instant_refreshment", "brightness"],
-        "tags": ["morning", "citrus"],
-        "image": "https://cdn.pixabay.com/photo/2016/01/15/17/05/orange-juice-1142054_640.jpg"
+        "effects": "Vitamin C lowers cortisol. Freshness brightens the morning instantly.",
+        "macros": {
+          "kcal": 112,
+          "carbohydrates": 25.8,
+          "proteins": 1.7,
+          "fats": 0.2
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/orange_juice.webp",
+        "meal_time": ["breakfast", "drink"]
       },
       {
         "id": "hp_drink_002",
-        "name": "Iced Hibiscus Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants"],
-        "effects": ["cooling", "joyful_color"],
-        "tags": ["herbal", "cold"],
-        "image": "https://cdn.pixabay.com/photo/2016/07/28/11/50/beverage-1547702_640.jpg"
+        "name": "Green Tea with Mint",
+        "nutrients": ["l_theanine", "antioxidants"],
+        "effects": "Promotes 'relaxed alertness'. Keeps you happy and focused.",
+        "macros": {
+          "kcal": 4,
+          "carbohydrates": 0.8,
+          "proteins": 0.2,
+          "fats": 0.0
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/happy/green_tea_mint.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "hp_drink_003",
-        "name": "Sparkling Water with Mint & Lime",
-        "type": "drink",
-        "nutrients": ["hydration"],
-        "effects": ["sparkly_mood", "zero_guilt"],
-        "tags": ["refreshing", "bubbly"],
-        "image": "https://cdn.pixabay.com/photo/2016/07/31/13/23/mojito-1559039_640.jpg"
+        "name": "Banana Smoothie",
+        "nutrients": ["potassium", "vitamin_b6"],
+        "effects": "B6 aids serotonin synthesis. A delicious way to sustain happiness.",
+        "macros": {
+          "kcal": 195,
+          "carbohydrates": 42.1,
+          "proteins": 4.3,
+          "fats": 2.1
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/banana_smoothie.webp",
+        "meal_time": ["breakfast", "drink"]
       },
       {
         "id": "hp_drink_004",
-        "name": "Strawberry Banana Smoothie",
-        "type": "drink",
-        "nutrients": ["potassium", "vitamins"],
-        "effects": ["creamy_joy", "filling"],
-        "tags": ["smoothie", "fruit"],
-        "image": "https://cdn.pixabay.com/photo/2018/01/15/07/51/smoothie-3087090_640.jpg"
+        "name": "Hot Cacao with Almond Milk",
+        "nutrients": ["magnesium", "flavonoids"],
+        "effects": "Pure cacao triggers 'feel-good' chemicals. Great for a cozy happy feeling.",
+        "macros": {
+          "kcal": 140,
+          "carbohydrates": 14.2,
+          "proteins": 3.8,
+          "fats": 8.4
+        },
+        "tags": ["comfort"],
+        "image": "assets/images/meals/happy/hot_cacao.webp",
+        "meal_time": ["drink", "night"]
       },
       {
         "id": "hp_drink_005",
-        "name": "Ginger Lemonade",
-        "type": "drink",
-        "nutrients": ["vitamin_c", "gingerol"],
-        "effects": ["invigorating", "digestive_boost"],
-        "tags": ["refreshing", "zesty"],
-        "image": "https://cdn.pixabay.com/photo/2016/01/19/17/28/lemonade-1142142_640.jpg"
+        "name": "Infused Water with Strawberries",
+        "nutrients": ["antioxidants", "hydration"],
+        "effects": "Hydration is key to brain function. Fruit aroma boosts mood.",
+        "macros": {
+          "kcal": 8,
+          "carbohydrates": 1.8,
+          "proteins": 0.2,
+          "fats": 0.1
+        },
+        "tags": ["hydration"],
+        "image": "assets/images/meals/happy/strawberry_water.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "hp_drink_006",
-        "name": "Mango Lassi",
-        "type": "drink",
-        "nutrients": ["probiotics", "vitamin_a"],
-        "effects": ["rich_pleasure", "gut_happy"],
-        "tags": ["sweet", "traditional"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/mango-lassi-2385250_640.jpg"
+        "name": "Matcha Latte",
+        "nutrients": ["l_theanine", "catechins"],
+        "effects": "Calm energy without the crash. Enhances long-term mental well-being.",
+        "macros": {
+          "kcal": 120,
+          "carbohydrates": 12.5,
+          "proteins": 6.8,
+          "fats": 4.2
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/matcha_latte.webp",
+        "meal_time": ["drink", "breakfast"]
       },
       {
         "id": "hp_drink_007",
-        "name": "Coconut Water with Pineapple",
-        "type": "drink",
-        "nutrients": ["electrolytes", "vitamin_c"],
-        "effects": ["tropical_refreshment"],
-        "tags": ["hydration", "exotic"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/20/00/30/coconut-1994552_640.jpg"
+        "name": "Golden Turmeric Latte",
+        "nutrients": ["curcumin", "antioxidants"],
+        "effects": "Curcumin has potent antidepressant properties. Boosts overall vitality.",
+        "macros": {
+          "kcal": 135,
+          "carbohydrates": 10.8,
+          "proteins": 7.4,
+          "fats": 7.9
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/turmeric_latte.webp",
+        "meal_time": ["drink", "night"]
       },
       {
         "id": "hp_drink_008",
-        "name": "Green Apple Juice",
-        "type": "drink",
-        "nutrients": ["antioxidants", "fiber"],
-        "effects": ["sharp_awakening", "crisp_mood"],
-        "tags": ["fresh", "morning"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/21/14/28/juice-1998223_640.jpg"
+        "name": "Kefir Drink",
+        "nutrients": ["probiotics", "tryptophan"],
+        "effects": "Fermented goodness supports the gut-brain axis for better mood.",
+        "macros": {
+          "kcal": 105,
+          "carbohydrates": 12.0,
+          "proteins": 9.0,
+          "fats": 2.5
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/kefir.webp",
+        "meal_time": ["drink", "breakfast"]
       },
       {
         "id": "hp_drink_009",
-        "name": "Pomegranate Spritzer",
-        "type": "drink",
-        "nutrients": ["polyphenols"],
-        "effects": ["energy_boost", "vibrant"],
-        "tags": ["cold", "tart"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/15/08/04/juice-1330459_640.jpg"
+        "name": "Lemon and Ginger Tea",
+        "nutrients": ["antioxidants"],
+        "effects": "Cleansing and refreshing. Helps keep the mind light and positive.",
+        "macros": {
+          "kcal": 5,
+          "carbohydrates": 1.2,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
+        "tags": ["herbal"],
+        "image": "assets/images/meals/happy/lemon_ginger_tea.webp",
+        "meal_time": ["drink"]
       },
       {
         "id": "hp_drink_010",
-        "name": "Peach Iced Tea",
-        "type": "drink",
-        "nutrients": ["antioxidants"],
-        "effects": ["summery_vibe", "relaxation"],
-        "tags": ["sweet", "cold"],
-        "image": "https://cdn.pixabay.com/photo/2016/07/28/11/50/tea-1547702_640.jpg"
+        "name": "Pomegranate Juice",
+        "nutrients": ["polyphenols", "vitamin_k"],
+        "effects": "High antioxidant power supports memory and positive emotional health.",
+        "macros": {
+          "kcal": 134,
+          "carbohydrates": 32.7,
+          "proteins": 0.4,
+          "fats": 0.0
+        },
+        "tags": ["healthy"],
+        "image": "assets/images/meals/happy/pomegranate_juice.webp",
+        "meal_time": ["drink"]
       }
     ],
     "avoid": [
-      "Heavy Deep-Fried Foods",
-      "High-Fructose Corn Syrup",
-      "Excessive Alcohol",
-      "Highly Processed Energy Bars",
-      "Large Portions of Red Meat"
+      {
+        "id": "hp_avoid_001",
+        "name": "Excessive Sugar",
+        "nutrients": ["refined_sugar"],
+        "effects": "Causes a sugar crash, leading to low energy and mood dips.",
+        "macros": {
+          "kcal": 200,
+          "carbohydrates": 50.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["snack"],
+        "image": "assets/images/meals/happy/excessive_sugar.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "hp_avoid_002",
+        "name": "Deep Fried Foods",
+        "nutrients": ["trans_fats"],
+        "effects": "Can cause brain inflammation and long-term mood decline.",
+        "macros": {
+          "kcal": 450,
+          "carbohydrates": 40.0,
+          "proteins": 5.0,
+          "fats": 30.0
+        },
+        "tags": ["fast_food"],
+        "image": "assets/images/meals/happy/fried_foods.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "hp_avoid_003",
+        "name": "Artificial Sweeteners",
+        "nutrients": ["chemicals"],
+        "effects": "May disrupt serotonin production and cause headaches.",
+        "macros": {
+          "kcal": 0,
+          "carbohydrates": 0.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["additive"],
+        "image": "assets/images/meals/happy/artificial_sweeteners.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "hp_avoid_004",
+        "name": "Processed Meats",
+        "nutrients": ["nitrates", "sodium"],
+        "effects": "High salt and additives can lead to energy slumps.",
+        "macros": {
+          "kcal": 300,
+          "carbohydrates": 2.0,
+          "proteins": 15.0,
+          "fats": 25.0
+        },
+        "tags": ["processed"],
+        "image": "assets/images/meals/happy/processed_meats.webp",
+        "meal_time": ["avoid"]
+      },
+      {
+        "id": "hp_avoid_005",
+        "name": "Heavy Alcohol",
+        "nutrients": ["ethanol"],
+        "effects": "A natural depressant that lowers serotonin levels over time.",
+        "macros": {
+          "kcal": 210,
+          "carbohydrates": 10.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["drink"],
+        "image": "assets/images/meals/happy/alcohol_heavy.webp",
+        "meal_time": ["avoid"]
+      }
     ]
   }
 }

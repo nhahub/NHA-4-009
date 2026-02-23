@@ -76,6 +76,10 @@ flutter:
     - assets/images/
     - assets/data/moods/
     - assets/images/meals/angry/
+    - assets/images/meals/happy/
+    - assets/images/meals/anxious/
+    - assets/images/meals/calm/
+    - assets/images/meals/neutral/
     - assets/mock_images/
     - .env
 
