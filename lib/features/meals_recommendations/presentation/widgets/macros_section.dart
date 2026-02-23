@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meals_recommendations/data/models/macros_model.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/calories_details.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/custom_details_header.dart';
+import '../../data/models/macros_model.dart';
+import 'macros_details.dart';
+import 'custom_details_header.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -39,7 +39,7 @@ class MacrosSection extends StatelessWidget {
               spacing: 8,
               children: macroItems
                   .map(
-                    (item) => CaloriesDetails(
+                    (item) => MacrosDetails(
                       title: item["title"] as String,
                       value: item["value"] as double,
                       color: item["color"] as Color,

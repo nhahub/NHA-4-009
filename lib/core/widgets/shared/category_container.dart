@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/string_extensions.dart';
+import '../../extensions/string_extensions.dart';
 
 import '../../helpers/alpha_from_percent.dart';
 import '../../theming/app_colors.dart';
 import '../../theming/app_styles.dart';
 
-class TagContainer extends StatelessWidget {
+class CategoryContainer extends StatelessWidget {
   final String categoryTitle;
   final Color? color;
-  const TagContainer({super.key, required this.categoryTitle, this.color});
+  const CategoryContainer({super.key, required this.categoryTitle, this.color});
 
   @override
   Widget build(BuildContext context) {

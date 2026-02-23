@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/shared/category_container.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/helpers/alpha_from_percent.dart';
+import 'package:moodly/core/theming/app_assets.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/shared/category_container.dart';
 import '../../../../core/constants/constants.dart';
 import 'recommended_food_card_data_container.dart';
 
 import '../../data/models/recommended_food_item_model.dart';
 
 class RecommendedFoodCard extends StatelessWidget {
+  final bool withpush;
   final RecommendedFoodItemModel recommendedFoodItemModel;
 
   const RecommendedFoodCard({
     super.key,
     required this.recommendedFoodItemModel,
+    this.withpush = true,
   });
 
   @override
@@ -28,9 +36,39 @@ class RecommendedFoodCard extends StatelessWidget {
             padding: const EdgeInsets.only(
               left: kAppSectionSpacing,
               top: kAppSectionSpacing,
+              right: kAppSectionSpacing,
             ),
-            child: TagContainer(
-              categoryTitle: recommendedFoodItemModel.tags.first,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CategoryContainer(
+                  categoryTitle: recommendedFoodItemModel.tags.first,
+                ),
+                withpush
+                    ? InkWell(
+                        onTap: () {
+                          context.push(
+                            Routes.recommendedFoodDetailsView,
+                            args: recommendedFoodItemModel,
+                          );
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.buttonBlack.withAlpha(
+                            alphaFromPercentage(50),
+                          ),
+                          radius: 15,
+                          child: SvgPicture.asset(
+                            AppAssets.arrowRightIosIcon,
+                            width: 15,
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ],
             ),
           ),
           Positioned(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/get_random_color.dart';
-import 'package:moodly/core/widgets/shared/category_container.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/custom_details_header.dart';
+import '../../../../core/helpers/get_random_color.dart';
+import '../../../../core/widgets/shared/category_container.dart';
+import 'custom_details_header.dart';
 
 class MealTimeSection extends StatelessWidget {
   final List<String> mealTime;
@@ -18,7 +18,7 @@ class MealTimeSection extends StatelessWidget {
           spacing: 8,
           children: mealTime
               .map(
-                (nutrient) => TagContainer(
+                (nutrient) => CategoryContainer(
                   categoryTitle: nutrient,
                   color: getRandomColor(index: mealTime.indexOf(nutrient)),
                 ),
