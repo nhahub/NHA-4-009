@@ -46,11 +46,15 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
                     foodType: foodType,
                     moodType: MoodType.angry,
                   );
-                  _scrollController.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeOut,
-                  );
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (_scrollController.hasClients) {
+                      _scrollController.animateTo(
+                        0,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOut,
+                      );
+                    }
+                  });
                 },
               ),
               const SizedBox(height: 10),
