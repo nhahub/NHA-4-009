@@ -45,6 +45,9 @@ class AppAssets {
   static const String rewardIcon = 'assets/svgs/reward.svg';
   static const String increaseIcon = 'assets/svgs/increase.svg';
   static const String targetIcon = 'assets/svgs/target.svg';
+  static const String officeBag = 'assets/svgs/office_bag.svg';
+  static const String language = 'assets/svgs/language.svg';
+  static const String location = 'assets/svgs/location.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

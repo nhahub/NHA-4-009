@@ -20,8 +20,8 @@ class ContactButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
       icon: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6),
-        child: Icon(icon, size: 25, color: Colors.white),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Icon(icon, size: 22, color: Colors.white),
       ),
     );
   }

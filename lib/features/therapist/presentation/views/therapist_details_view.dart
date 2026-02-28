@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_info_section.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
-import '../../../home/data/models/sessions_for_you_model.dart';
+import '../../../home/data/models/therapist_model.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../widgets/therapist_about_section.dart';
 import '../widgets/therapist_contact_section.dart';
@@ -10,35 +11,44 @@ import '../widgets/therapist_image.dart';
 import '../widgets/therapist_rating_section.dart';
 
 class TherapistDetailsView extends StatelessWidget {
-  final SessionsForYouModel sessionsForYouModel;
+  final TherapistModel therapistModel;
 
-  const TherapistDetailsView({super.key, required this.sessionsForYouModel});
+  const TherapistDetailsView({super.key, required this.therapistModel});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: const BackButtonAppbar(title: "Therapist Details"),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TherapistImage(image: sessionsForYouModel.image),
-            const SizedBox(height: 20),
-            TherapistHeader(
-              name: sessionsForYouModel.name,
-              speciality: sessionsForYouModel.speciality,
-            ),
-            const SizedBox(height: 4),
-            TherapistRatingSection(
-              rating: sessionsForYouModel.rating.rating,
-              ratingCount: sessionsForYouModel.rating.ratingCount,
-            ),
-            const Divider(color: AppColors.lightGrey, height: 30),
-            TherapistAboutSection(about: sessionsForYouModel.about),
-            const SizedBox(height: 16),
-            const TherapistContactSection(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kAppHorizontalPadding,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 105),
+              TherapistImage(therapistModel: therapistModel),
+              const SizedBox(height: 20),
+              TherapistHeader(
+                name: therapistModel.name,
+                speciality: therapistModel.speciality,
+              ),
+              const SizedBox(height: 4),
+              TherapistRatingSection(
+                rating: therapistModel.rating.rating,
+                ratingCount: therapistModel.rating.ratingCount,
+              ),
+              const Divider(color: AppColors.lightGrey, height: 30),
+              TherapistInfoSection(therapistModel: therapistModel),
+              const SizedBox(height: 16),
+              TherapistAboutSection(about: therapistModel.about),
+              const SizedBox(height: 16),
+              TherapistContactSection(therapistModel: therapistModel),
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );

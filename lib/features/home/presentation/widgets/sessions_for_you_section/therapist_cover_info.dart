@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/sessions_for_you_model.dart';
+import '../../../data/models/therapist_model.dart';
 import 'discount_container.dart';
 import 'rating_container.dart';
 
 class TherapistCoverInfo extends StatelessWidget {
   const TherapistCoverInfo({super.key, required this.sessionsForYouModel});
 
-  final SessionsForYouModel sessionsForYouModel;
+  final TherapistModel sessionsForYouModel;
 
   @override
   Widget build(BuildContext context) {

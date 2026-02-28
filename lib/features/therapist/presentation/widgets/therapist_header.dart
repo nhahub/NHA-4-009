@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theming/app_colors.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_speciality.dart';
 import '../../../../core/theming/app_styles.dart';
 
 class TherapistHeader extends StatelessWidget {
@@ -19,10 +19,7 @@ class TherapistHeader extends StatelessWidget {
       children: [
         Text(name, style: AppStyles.extraBold20),
         const SizedBox(height: 4),
-        Text(
-          speciality,
-          style: AppStyles.bold14.copyWith(color: AppColors.bodyGray),
-        ),
+        TherapistSpeciality(speciality: speciality),
       ],
     );
   }

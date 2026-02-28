@@ -14,7 +14,7 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
-import '../../features/home/data/models/sessions_for_you_model.dart';
+import '../../features/home/data/models/therapist_model.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/all_available_sessions_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
@@ -180,11 +180,11 @@ class AppRouter {
         );
 
       case Routes.therapistDetailsView:
-        final SessionsForYouModel sessionsForYouModel =
-            settings.arguments as SessionsForYouModel;
+        final TherapistModel sessionsForYouModel =
+            settings.arguments as TherapistModel;
         return MaterialPageRoute(
           builder: (context) =>
-              TherapistDetailsView(sessionsForYouModel: sessionsForYouModel),
+              TherapistDetailsView(therapistModel: sessionsForYouModel),
         );
 
       case Routes.chatDoctorView:

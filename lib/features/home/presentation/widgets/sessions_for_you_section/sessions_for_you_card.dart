@@ -4,12 +4,12 @@ import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
-import '../../../data/models/sessions_for_you_model.dart';
+import '../../../data/models/therapist_model.dart';
 import 'therapist_cover_info.dart';
 import 'therapist_details.dart';
 
 class SessionsForYouCard extends StatelessWidget {
-  final SessionsForYouModel sessionsForYouModel;
+  final TherapistModel sessionsForYouModel;
   const SessionsForYouCard({super.key, required this.sessionsForYouModel});
 
   @override
