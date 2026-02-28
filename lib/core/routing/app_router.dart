@@ -14,13 +14,13 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
+import '../../features/home/data/models/sessions_for_you_model.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/all_available_sessions_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/home/presentation/views/chat_doctor_view.dart';
 import '../../features/home/presentation/views/live_view.dart';
 import '../../features/home/presentation/views/recommendations_view.dart';
-import '../../features/home/presentation/views/therapist_details_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
@@ -43,6 +43,8 @@ import '../../features/profile/data/repos/settings_repo.dart';
 import '../../features/profile/presentation/views/privacy_policy_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
+import '../../features/therapist/presentation/views/therapist_details_view.dart';
+import '../../features/therapist/presentation/views/therapist_ratings_view.dart';
 import '../services/app_launch_decider.dart';
 import '../services/get_it_service.dart';
 import '../views/video_view.dart';
@@ -178,8 +180,11 @@ class AppRouter {
         );
 
       case Routes.therapistDetailsView:
+        final SessionsForYouModel sessionsForYouModel =
+            settings.arguments as SessionsForYouModel;
         return MaterialPageRoute(
-          builder: (context) => const TherapistDetailsView(),
+          builder: (context) =>
+              TherapistDetailsView(sessionsForYouModel: sessionsForYouModel),
         );
 
       case Routes.chatDoctorView:
@@ -187,6 +192,11 @@ class AppRouter {
 
       case Routes.liveView:
         return MaterialPageRoute(builder: (context) => const LiveView());
+
+      case Routes.therapistRatingsView:
+        return MaterialPageRoute(
+          builder: (context) => const TherapistRatingsView(),
+        );
 
       case Routes.recommendationsView:
         return MaterialPageRoute(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../theming/app_colors.dart';
 
 Color getRandomContainerColor({required int index}) {
   final colors = [

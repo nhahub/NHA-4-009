@@ -22,6 +22,7 @@ class Routes {
   static const String therapistDetailsView = '/therapistDetailsView';
   static const String chatDoctorView = '/chatDoctorView';
   static const String liveView = '/liveView';
+  static const String therapistRatingsView = '/therapistRatingsView';
   static const String recommendationsView = '/recommendationsView';
   static const String waterTrackingView = '/waterTrackingView';
   static const String recommendedFoodView = '/recommendedFoodView';

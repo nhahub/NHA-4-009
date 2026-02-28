@@ -16,7 +16,7 @@ class SessionsForYouCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.therapistDetailsView);
+        context.push(Routes.therapistDetailsView, args: sessionsForYouModel);
       },
       child: Container(
         width: 284.52,
@@ -29,9 +29,9 @@ class SessionsForYouCard extends StatelessWidget {
           ),
         ),
         child: Column(
+          spacing: 4,
           children: [
             TherapistCoverInfo(sessionsForYouModel: sessionsForYouModel),
-            const SizedBox(height: 4),
             TherapistDetails(sessionsForYouModel: sessionsForYouModel),
           ],
         ),

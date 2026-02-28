@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../core/helpers/alpha_from_percent.dart';
-import '../../../../core/theming/app_assets.dart';
+
+import '../../../../core/constants/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/shared/category_container.dart';
-import '../../../../core/constants/constants.dart';
-import 'recommended_food_card_data_container.dart';
-
 import '../../data/models/recommended_food_item_model.dart';
+import 'recommended_food_card_data_container.dart';
 
 class RecommendedFoodCard extends StatelessWidget {
   final bool withpush;
