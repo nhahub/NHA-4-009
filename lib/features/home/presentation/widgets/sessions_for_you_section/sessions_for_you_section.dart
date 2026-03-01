@@ -10,11 +10,8 @@ class SessionsForYouSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [
-        SessionsForYouHeader(),
-        SizedBox(height: kAppSectionSpacing),
-        SessionsForYouListView(),
-      ],
+      spacing: kAppSectionSpacing,
+      children: [SessionsForYouHeader(), SessionsForYouListView()],
     );
   }
 }

@@ -4,12 +4,12 @@ import '../../../../../core/constants/constants.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/sessions_for_you_model.dart';
+import '../../../data/models/therapist_model.dart';
 import 'contact_widget.dart';
 
 class TherapistDetails extends StatelessWidget {
   const TherapistDetails({super.key, required this.sessionsForYouModel});
-  final SessionsForYouModel sessionsForYouModel;
+  final TherapistModel sessionsForYouModel;
 
   @override
   Widget build(BuildContext context) {

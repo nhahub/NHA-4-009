@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../../../mood/data/services/mood_local_service.dart';
+
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
+import '../../../mood/data/services/mood_local_service.dart';
 import '../../domain/enums/food_type.dart';
 import '../../domain/enums/mood_type.dart';
 import '../local_service/recommended_food_local_service.dart';

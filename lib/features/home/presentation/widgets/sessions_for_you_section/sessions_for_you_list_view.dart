@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/widgets/horizontal_padding_list.dart';
-import '../../../data/models/sessions_for_you_model.dart';
+import '../../../data/models/therapist_model.dart';
 import 'sessions_for_you_card.dart';
 
 class SessionsForYouListView extends StatelessWidget {
@@ -11,11 +11,9 @@ class SessionsForYouListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return HorizontalPaddingList(
       height: 382,
-      itemCount: sessionsForYouData.length,
+      itemCount: therapistsData.length,
       itemBuilder: (context, index) {
-        return SessionsForYouCard(
-          sessionsForYouModel: sessionsForYouData[index],
-        );
+        return SessionsForYouCard(sessionsForYouModel: therapistsData[index]);
       },
     );
   }
