@@ -8,14 +8,26 @@ import '../../../../../core/widgets/app_text_button.dart';
 import '../../../data/models/payment_types_model.dart';
 
 class ChoosePaymentType extends StatefulWidget {
-  const ChoosePaymentType({super.key});
+  const ChoosePaymentType({super.key, required this.onChanged});
+  final ValueChanged<double> onChanged;
 
   @override
   State<ChoosePaymentType> createState() => _ChoosePaymentTypeState();
 }
 
 class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
-  int selectedIndex = -1;
+  int selectedIndex = 0; // Default selection
+
+  @override
+  void initState() {
+    super.initState();
+    // Notify initial value
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (paymentTypes.isNotEmpty) {
+        widget.onChanged(paymentTypes[selectedIndex].price);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +61,7 @@ class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
                 setState(() {
                   selectedIndex = index;
                 });
+                widget.onChanged(type.price);
               },
               child: Container(
                 padding: const EdgeInsets.all(16),

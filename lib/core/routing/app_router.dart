@@ -11,12 +11,13 @@ import '../../features/home/presentation/views/home_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
+import '../../features/payment/presentation/views/add_card_view.dart';
 import 'routes.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter() {
     return GoRouter(
-      initialLocation: Routes.forgotPasswordView,
+      initialLocation: Routes.premiumView,
       routes: [
         GoRoute(
           path: Routes.splashView,
@@ -48,7 +49,10 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.subscribeView,
-          builder: (context, state) => const SubscribeView(),
+          builder: (context, state) {
+            final price = state.extra as double? ?? 100.0;
+            return SubscribeView(price: price);
+          },
         ),
         GoRoute(
           path: Routes.homeView,
@@ -65,6 +69,10 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.privacyPolicyView,
           builder: (context, state) => const PrivacyPolicyView(),
+        ),
+        GoRoute(
+          path: Routes.addCardView,
+          builder: (context, state) => const AddCardView(),
         ),
       ],
     );
