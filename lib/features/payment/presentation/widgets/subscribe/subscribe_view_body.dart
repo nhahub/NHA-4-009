@@ -151,13 +151,23 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                   width: double.infinity,
                   child: AppTextButton(
                     onPressed: () {
+                      if (selectedMethodIndex == 3 && currentCard == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please select or add a card first"),
+                          ),
+                        );
+                        return;
+                      }
+
                       context.read<PaymentCubit>().initiatePayment(
                         context: context,
                         amount: widget.price,
                         firstName:
                             currentCard?.holderName.split(" ").first ?? "User",
-                        lastName:
-                            currentCard?.holderName.split(" ").last ?? "Name",
+                        lastName: currentCard?.holderName.contains(" ") == true
+                            ? currentCard!.holderName.split(" ").last
+                            : "Name",
                         email: "user@example.com",
                         phoneNumber: "+201234567890",
                       );

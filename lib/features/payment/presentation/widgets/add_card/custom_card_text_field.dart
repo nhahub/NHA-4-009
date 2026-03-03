@@ -7,6 +7,7 @@ class CustomCardTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final bool obscureText;
   final Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   const CustomCardTextField({
     super.key,
@@ -16,6 +17,7 @@ class CustomCardTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.onChanged,
+    this.validator,
   });
 
   @override
@@ -26,7 +28,15 @@ class CustomCardTextField extends StatelessWidget {
         color: const Color(0xffF9F9F9),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: TextField(
+      child: TextFormField(
+        validator:
+            validator ??
+            (value) {
+              if (value == null || value.isEmpty) {
+                return "Please enter $label";
+              }
+              return null;
+            },
         controller: controller,
         keyboardType: keyboardType,
         obscureText: obscureText,
