@@ -4,7 +4,7 @@ import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/vertical_padding_list.dart.dart';
 import '../../data/models/therapist_model.dart';
 import '../widgets/sessions_for_you_section/sessions_for_you_card.dart';
-import '../widgets/shared/back_button_appbar.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
 class AllAvailableSessionsView extends StatelessWidget {
   const AllAvailableSessionsView({super.key});

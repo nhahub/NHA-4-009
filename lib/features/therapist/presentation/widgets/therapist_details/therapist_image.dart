@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/data/models/therapist_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/discount_container.dart';
+import 'package:moodly/features/therapist/data/models/therapist_model.dart';
+import 'package:moodly/features/therapist/presentation/widgets/sessions_for_you_section/discount_container.dart';
 
 class TherapistImage extends StatelessWidget {
   final TherapistModel therapistModel;

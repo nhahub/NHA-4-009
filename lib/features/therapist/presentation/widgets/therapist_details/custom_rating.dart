@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moodly/core/functions/get_user.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../manager/rating_cubit/rating_cubit.dart';
 
 class CustomRating extends StatelessWidget {
   const CustomRating({
@@ -34,7 +35,12 @@ class CustomRating extends StatelessWidget {
         },
         onRatingUpdate: (value) {
           if (isEditable) {
-            context.read<RatingCubit>().setUserRating(userRating: value);
+            context.read<TherapistRatingCubit>().addRating(
+              therapistId: "",
+              userId: getUser()!.userId,
+              rating: value.toInt(),
+              review: "",
+            );
           }
         },
       ),

@@ -6,7 +6,7 @@ import '../../../../../meals_recommendations/presentation/widgets/recommended_fo
 import '../../meditations_for_you_section/meditations_for_you_section.dart';
 import '../../message_of_the_day_section/message_of_the_day_section.dart';
 import '../../mood_progress_section/mood_progress_section.dart';
-import '../../sessions_for_you_section/sessions_for_you_section.dart';
+import '../../../../../therapist/presentation/widgets/sessions_for_you_section/sessions_for_you_section.dart';
 import 'daily_stats_section.dart';
 
 class HomeViewBody extends StatelessWidget {

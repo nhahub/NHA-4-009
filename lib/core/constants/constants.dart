@@ -25,6 +25,7 @@ const int kMaxCups = 8;
 const String kQuestionnaireAnswersTable = "questionnaire_answers";
 const String kMoodTable = "moods";
 const String kMessagesTable = "messages";
+const String kTherapistRatingsTable = "therapist_ratings";
 
 // Premium
 const bool kIsPremium = true;

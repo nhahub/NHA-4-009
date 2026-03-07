@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/therapist/data/repos/chat_repo.dart';
+import 'package:moodly/features/therapist/data/repos/therapist_rating_repo.dart';
 import 'package:moodly/features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -15,9 +17,9 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
-import '../../features/home/data/models/therapist_model.dart';
+import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import '../../features/home/presentation/views/all_available_sessions_view.dart';
+import '../../features/therapist/presentation/views/all_available_sessions_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/live_view.dart';
@@ -203,7 +205,12 @@ class AppRouter {
 
       case Routes.therapistRatingsView:
         return MaterialPageRoute(
-          builder: (context) => const TherapistRatingsView(),
+          builder: (context) => BlocProvider(
+            create: (context) => TherapistRatingCubit(
+              therapistRatingRepo: getIt.get<TherapistRatingRepo>(),
+            ),
+            child: const TherapistRatingsView(therapistId: 'dfd'),
+          ),
         );
 
       case Routes.recommendationsView:
