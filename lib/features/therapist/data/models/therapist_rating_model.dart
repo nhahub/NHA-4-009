@@ -5,19 +5,14 @@ part 'therapist_rating_model.g.dart';
 @JsonSerializable()
 class TherapistRatingModel {
   final String id;
-
   @JsonKey(name: 'therapist_id')
   final String therapistId;
-
   @JsonKey(name: 'user_id')
   final String userId;
-
   final int rating;
   final String review;
-
   final String? userName;
   final String? userAvatar;
-
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
 

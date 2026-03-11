@@ -17,7 +17,7 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
   TherapistRatingCubit({required this.therapistRatingRepo})
     : super(TherapistRatingInitial());
 
-  void loadRatings(String therapistId) async {
+  void getRatings({required String therapistId}) async {
     emit(TherapistRatingLoading());
 
     final result = await therapistRatingRepo.getRatings(

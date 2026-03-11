@@ -11,7 +11,7 @@ class TherapistRatingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<TherapistRatingCubit>().loadRatings(therapistId);
+    context.read<TherapistRatingCubit>().getRatings(therapistId);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Ratings & Reviews")),
