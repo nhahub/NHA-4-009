@@ -11,4 +11,5 @@ class Routes {
   static const String subscribeView = '/subscribeView';
   static const String homeView = '/homeView';
   static const String meditationsView = '/meditationsView';
+  static const String profileView = '/profileView';
 }

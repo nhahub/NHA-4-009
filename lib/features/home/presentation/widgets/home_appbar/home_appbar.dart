@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/custom_circle_button.dart';
@@ -18,6 +20,11 @@ class HomeAppbar extends StatelessWidget {
         const SizedBox(width: 20),
         isPremium ? const PremiumContainer() : FreeContainer(),
         const Spacer(),
+        CustomCircleButton(
+          icon: AppAssets.userCircleIcon,
+          onTap: () => context.push(Routes.profileView),
+        ),
+        const SizedBox(width: 10),
         CustomCircleButton(icon: AppAssets.slidersHorizontalIcon, onTap: () {}),
       ],
     );

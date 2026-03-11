@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import '../../features/splash/splash_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
+import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/app/privacy_policy_view.dart';
 import '../../features/app/terms_and_conditions_view.dart';
 import '../../features/auth/presentation/views/forgot_password_view.dart';
@@ -16,7 +17,7 @@ import 'routes.dart';
 abstract class AppRouter {
   static GoRouter createRouter() {
     return GoRouter(
-      initialLocation: Routes.forgotPasswordView,
+      initialLocation: Routes.profileView,
       routes: [
         GoRoute(
           path: Routes.splashView,
@@ -57,6 +58,10 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.meditationsView,
           builder: (context, state) => const MeditationsView(),
+        ),
+        GoRoute(
+          path: Routes.profileView,
+          builder: (context, state) => const ProfileScreen(),
         ),
         GoRoute(
           path: Routes.termsAndConditionsView,
