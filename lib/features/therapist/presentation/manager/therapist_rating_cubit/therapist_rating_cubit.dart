@@ -7,7 +7,6 @@ import 'package:uuid/uuid.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/therapist_rating_model.dart';
 import '../../../data/repos/therapist_rating_repo.dart';
-
 part 'therapist_rating_state.dart';
 
 class TherapistRatingCubit extends Cubit<TherapistRatingState> {
