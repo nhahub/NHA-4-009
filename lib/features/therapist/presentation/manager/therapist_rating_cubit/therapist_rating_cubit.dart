@@ -36,8 +36,11 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
           emit(
             GetTherapistRatingsLoadedState(
               ratings: ratings,
-              average: null,
-              totalCount: null,
+              average: ratings.isNotEmpty
+                  ? ratings.map((e) => e.rating).reduce((a, b) => a + b) /
+                        ratings.length
+                  : 0,
+              totalCount: ratings.length,
               userRating: 0,
             ),
           );
@@ -66,8 +69,11 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
             emit(
               GetTherapistRatingsLoadedState(
                 ratings: ratings,
-                average: null,
-                totalCount: null,
+                average: ratings.isNotEmpty
+                    ? ratings.map((e) => e.rating).reduce((a, b) => a + b) /
+                          ratings.length
+                    : 0,
+                totalCount: ratings.length,
                 userRating: currentUserRating ?? 0,
               ),
             );

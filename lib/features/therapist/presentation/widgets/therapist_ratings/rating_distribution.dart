@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/helpers/alpha_from_percent.dart';
+import 'package:moodly/core/theming/app_assets.dart';
+import 'package:moodly/core/theming/app_colors.dart';
+import 'package:moodly/core/theming/app_styles.dart';
 import '../../../data/models/therapist_rating_model.dart';
 
 class RatingDistribution extends StatelessWidget {
@@ -18,23 +23,31 @@ class RatingDistribution extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(5, (index) {
+      children: List.generate(6, (index) {
         final star = 5 - index;
 
         return Row(
           children: [
             Text("$star"),
-            const Icon(Icons.star, size: 16, color: Colors.amber),
+            const SizedBox(width: 4),
+            SvgPicture.asset(AppAssets.starIcon, width: 12),
             const SizedBox(width: 8),
             Expanded(
               child: LinearProgressIndicator(
                 value: percent(star),
-                minHeight: 8,
+                minHeight: 4,
+                backgroundColor: AppColors.lightGrey.withAlpha(
+                  alphaFromPercentage(20),
+                ),
+                color: AppColors.lightGrey,
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
             const SizedBox(width: 8),
-            Text(count(star).toString()),
+            Text(
+              "${(percent(star) * 100).toStringAsFixed(0)}%",
+              style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
+            ),
           ],
         );
       }),

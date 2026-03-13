@@ -35,7 +35,7 @@ class TherapistRatingsViewBody extends StatelessWidget {
               child: ListView.separated(
                 itemCount: ratings.length,
                 separatorBuilder: (context, index) {
-                  return const Divider(height: 50, color: AppColors.lightGrey);
+                  return const Divider(height: 40, color: AppColors.lightGrey);
                 },
                 itemBuilder: (context, index) {
                   return RatingCard(rating: ratings[index]);

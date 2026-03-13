@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/theming/app_colors.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_details/custom_rating.dart';
+import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_rating_model.dart';
 import 'rating_distribution.dart';
 
@@ -16,23 +19,43 @@ class RatingSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
       children: [
-        Column(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              average.toStringAsFixed(1),
-              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              spacing: 8,
+              children: [
+                Text(average.toStringAsFixed(1), style: AppStyles.extraBold40),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "Out Of 5",
+                    style: AppStyles.extraBold14.copyWith(
+                      color: AppColors.lightGrey,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const Icon(Icons.star, color: Colors.amber),
-            Text("$count reviews"),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                CustomRating(
+                  isEditable: false,
+                  itemSize: 20,
+                  userRating: average,
+                ),
+                const SizedBox(height: 6),
+                Text("$count reviews"),
+              ],
+            ),
           ],
         ),
-        const SizedBox(width: 20),
-        Expanded(
-          child: RatingDistribution(ratings: ratings),
-        ),
+        const SizedBox(height: 5),
+        RatingDistribution(ratings: ratings),
       ],
     );
   }

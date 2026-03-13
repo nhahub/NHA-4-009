@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/functions/get_user.dart';
 import 'package:moodly/core/theming/app_colors.dart';
 import 'package:moodly/core/widgets/user_avatar.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_details/custom_rating.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_rating_model.dart';
-import 'rating_stars.dart';
 import 'package:intl/intl.dart';
 
 class RatingCard extends StatelessWidget {
@@ -19,21 +18,24 @@ class RatingCard extends StatelessWidget {
       children: [
         UserAvatar(
           isAnonymous: rating.userName == 'Anonymous',
-          name: getUser()?.name ?? "",
+          name: rating.userName,
           fontSize: 20,
           radius: 20,
         ),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
-            spacing: 2,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(rating.userName, style: AppStyles.extraBold16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RatingStars(rating: rating.rating.toInt()),
+                  CustomRating(
+                    isEditable: false,
+                    itemSize: 15,
+                    userRating: rating.rating.toDouble(),
+                  ),
                   Text(
                     DateFormat('MMM d, yyyy').format(rating.createdAt),
                     style: AppStyles.medium14.copyWith(
@@ -42,6 +44,7 @@ class RatingCard extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 6),
               Text(rating.review, style: AppStyles.regular14),
             ],
           ),
