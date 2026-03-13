@@ -80,6 +80,7 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
   Future<void> addRating({
     required String therapistId,
     required String review,
+    bool displayAnonymously = false,
   }) async {
     if (state is! GetTherapistRatingsLoadedState) return;
 
@@ -93,8 +94,8 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
       id: uuid.v4(),
       therapistId: therapistId,
       userId: getUser()!.userId,
-      userName: getUser()!.name ?? '',
-      userAvatar: getUser()!.image,
+      userName: displayAnonymously ? 'Anonymous' : getUser()!.name ?? '',
+      userAvatar: displayAnonymously ? null : getUser()!.image,
       rating: rating.toInt(),
       review: review,
       createdAt: DateTime.now(),
@@ -112,66 +113,9 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
       },
       (_) {
         if (!isClosed) {
-          emit(
-            GetTherapistRatingsLoadedState(
-              ratings: currentState.ratings,
-              average: currentState.average,
-              totalCount: currentState.totalCount,
-              userRating: rating,
-            ),
-          );
+          emit(AddTherapistRatingsAddedState());
+          getRatings(therapistId: therapistId);
         }
-      },
-    );
-  }
-
-  Future<void> loadRatingsWithSummary(String therapistId) async {
-    emit(AddTherapistRatingsLoadingState());
-
-    final ratingsResult = await therapistRatingRepo.getRatings(
-      therapistId: therapistId,
-    );
-
-    final summaryResult = await therapistRatingRepo.getRatingSummary(
-      therapistId,
-    );
-
-    ratingsResult.fold(
-      (failure) {
-        if (!isClosed) {
-          emit(AddTherapistRatingsFailureState(error: failure.message));
-        }
-      },
-      (ratings) {
-        summaryResult.fold(
-          (failure) {
-            if (!isClosed) {
-              emit(
-                GetTherapistRatingsLoadedState(
-                  ratings: ratings,
-                  average: null,
-                  totalCount: null,
-                  userRating: 0,
-                ),
-              );
-            }
-          },
-          (summary) {
-            final avg = (summary['average'] ?? 0.0) as double;
-            final count = (summary['count'] ?? 0) as int;
-
-            if (!isClosed) {
-              emit(
-                GetTherapistRatingsLoadedState(
-                  ratings: ratings,
-                  average: avg,
-                  totalCount: count,
-                  userRating: 0,
-                ),
-              );
-            }
-          },
-        );
       },
     );
   }

@@ -5,6 +5,7 @@ import 'package:moodly/core/widgets/app_text_button.dart';
 import 'package:moodly/core/widgets/app_text_form_field.dart';
 import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/display_anonymously_widget.dart';
 
 class AddReviewFormWidget extends StatefulWidget {
   final String therapistId;
@@ -18,7 +19,7 @@ class AddReviewFormWidget extends StatefulWidget {
 class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController reviewController = TextEditingController();
-
+  int selectedAnonymousIndex = 0;
   @override
   void dispose() {
     reviewController.dispose();
@@ -42,6 +43,14 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
             },
           ),
           const SizedBox(height: 30),
+          DisplayAnonymouslyWidget(
+            onSelectionChanged: (int index) {
+              setState(() {
+                selectedAnonymousIndex = index;
+              });
+            },
+          ),
+          const SizedBox(height: 60),
           BlocBuilder<TherapistRatingCubit, TherapistRatingState>(
             buildWhen: (previous, current) =>
                 current is AddTherapistRatingsLoadingState,
@@ -71,6 +80,7 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
   void validateThenSubmitReview(BuildContext context) {
     if (formKey.currentState!.validate()) {
       context.read<TherapistRatingCubit>().addRating(
+        displayAnonymously: selectedAnonymousIndex == 1,
         therapistId: widget.therapistId,
         review: reviewController.text,
       );

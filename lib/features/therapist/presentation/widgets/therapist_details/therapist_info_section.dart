@@ -15,17 +15,17 @@ class TherapistInfoSection extends StatelessWidget {
         alignment: WrapAlignment.center,
         children: [
           InfoCard(
-            infoIcon: AppAssets.officeBag,
+            infoIcon: AppAssets.officeBagIcon,
             infoValue: "${therapistModel.yearsOfExperience} Years",
             infoTitle: "Experience",
           ),
           InfoCard(
-            infoIcon: AppAssets.language,
+            infoIcon: AppAssets.languageIcon,
             infoValue: therapistModel.language,
             infoTitle: "Language",
           ),
           InfoCard(
-            infoIcon: AppAssets.location,
+            infoIcon: AppAssets.locationIcon,
             infoValue: therapistModel.location,
             infoTitle: "Location",
           ),

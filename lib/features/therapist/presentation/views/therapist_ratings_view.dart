@@ -40,7 +40,7 @@ class TherapistRatingsView extends StatelessWidget {
               );
 
             default:
-              return const SizedBox();
+              return const SizedBox.shrink();
           }
         },
       ),

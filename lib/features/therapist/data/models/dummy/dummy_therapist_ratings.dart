@@ -3,7 +3,7 @@ import 'package:moodly/core/theming/app_assets.dart';
 
 class DummyTherapistRatings {
   static List<TherapistRatingModel> dummyRatings = List.generate(
-    3,
+    5,
     (index) => TherapistRatingModel(
       id: "rating_$index",
       therapistId: "therapist_${index % 3}",

@@ -27,7 +27,7 @@ class CustomRating extends StatelessWidget {
         minRating: 1,
         unratedColor: const Color(0xffffecb0),
         direction: Axis.horizontal,
-        allowHalfRating: true,
+        allowHalfRating: false,
         itemCount: 5,
         itemSize: itemSize,
         itemPadding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 0),

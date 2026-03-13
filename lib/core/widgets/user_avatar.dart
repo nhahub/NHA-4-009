@@ -1,25 +1,40 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/functions/get_user.dart';
+import 'package:moodly/core/theming/app_assets.dart';
 
 import '../theming/app_colors.dart';
 
 class UserAvatar extends StatelessWidget {
   final String name;
-  final int savedColor;
   final String? imageUrl;
   final double? radius;
   final double? fontSize;
+  final bool isAnonymous;
   const UserAvatar({
     super.key,
     required this.name,
-    required this.savedColor,
     this.imageUrl,
     this.radius = 45,
     this.fontSize = 35,
+    this.isAnonymous = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (isAnonymous) {
+      return CircleAvatar(
+        backgroundColor: AppColors.getColorFromId(id: getUser()!.userId),
+        radius: radius,
+        child: SvgPicture.asset(
+          AppAssets.anonymousIcon,
+          width: radius!,
+          height: radius!,
+          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+        ),
+      );
+    }
     if (imageUrl != null) {
       return CircleAvatar(
         backgroundColor: AppColors.lightGrey,
@@ -39,7 +54,7 @@ class UserAvatar extends StatelessWidget {
 
     return CircleAvatar(
       radius: radius,
-      backgroundColor: AppColors.getRandomColor(),
+      backgroundColor: AppColors.getColorFromId(id: getUser()!.userId),
       child: Text(
         initial,
         style: TextStyle(

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -25,8 +23,8 @@ class AppColors {
     const Color(0xffff9600),
     const Color(0xffce82ff),
   ];
-  static Color getRandomColor() {
-    final Random random = Random();
-    return profileAvatarColors[random.nextInt(profileAvatarColors.length)];
+  static Color getColorFromId({required String id}) {
+    final index = id.hashCode % profileAvatarColors.length;
+    return profileAvatarColors[index];
   }
 }

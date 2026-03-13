@@ -18,8 +18,8 @@ class RatingCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         UserAvatar(
+          isAnonymous: rating.userName == 'Anonymous',
           name: getUser()?.name ?? "",
-          savedColor: 1,
           fontSize: 20,
           radius: 20,
         ),

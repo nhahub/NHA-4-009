@@ -6,8 +6,7 @@ import 'package:moodly/core/functions/confirm_dialog.dart';
 import 'package:moodly/core/functions/error_dialog.dart';
 import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
 import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/custom_rating.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/add_review_form_widget.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/add_therapist_rating_view_body.dart';
 
 class AddTherapistRatingView extends StatelessWidget {
   final String therapistId;
@@ -22,7 +21,7 @@ class AddTherapistRatingView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
         child: BlocListener<TherapistRatingCubit, TherapistRatingState>(
           listener: (context, state) {
-            if (state is GetTherapistRatingsLoadedState) {
+            if (state is AddTherapistRatingsAddedState) {
               confirmDialog(
                 context: context,
                 title: "Done!",
@@ -34,25 +33,9 @@ class AddTherapistRatingView extends StatelessWidget {
               );
             } else if (state is AddTherapistRatingsFailureState) {
               errorDialog(context: context, message: state.error);
-            } else {
-              const SizedBox.shrink();
             }
           },
-          child: Column(
-            children: [
-              CustomRating(
-                isEditable: true,
-                itemSize: 35,
-                onRatingUpdate: (rating) {
-                  context.read<TherapistRatingCubit>().updateUserRating(
-                    rating: rating,
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              AddReviewFormWidget(therapistId: therapistId),
-            ],
-          ),
+          child: AddTherapistRatingViewBody(therapistId: therapistId),
         ),
       ),
     );

@@ -4,14 +4,12 @@ sealed class TherapistRatingState extends Equatable {
   const TherapistRatingState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class GetTherapistRatingsLoading extends TherapistRatingState {}
 
-class AddTherapistRatingsAddedState extends TherapistRatingState {
-  
-}
+class AddTherapistRatingsAddedState extends TherapistRatingState {}
 
 class GetTherapistRatingsLoadedState extends TherapistRatingState {
   final List<TherapistRatingModel> ratings;
@@ -26,6 +24,9 @@ class GetTherapistRatingsLoadedState extends TherapistRatingState {
     required this.userRating,
   });
 
+  @override
+  List<Object?> get props => [ratings, average, totalCount, userRating];
+  
   GetTherapistRatingsLoadedState copyWith({
     List<TherapistRatingModel>? ratings,
     double? average,

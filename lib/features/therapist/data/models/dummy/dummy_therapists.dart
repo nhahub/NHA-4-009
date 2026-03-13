@@ -5,7 +5,7 @@ import '../therapist_rating_summary.dart';
 
 class DummyTherapists {
   static List<TherapistModel> dummyTherapists = List.generate(
-    3,
+    5,
     (index) => TherapistModel(
       id: "therapist_$index",
       image: AppAssets.dummyImage,
