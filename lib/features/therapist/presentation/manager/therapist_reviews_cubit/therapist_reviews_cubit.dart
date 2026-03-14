@@ -1,8 +1,7 @@
-import 'dart:async';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/functions/get_user.dart';
-import 'package:uuid/uuid.dart';
+import 'package:equatable/equatable.dart';
+import 'package:moodly/features/therapist/domain/functions/create_review_model.dart';
+import 'package:moodly/features/therapist/domain/functions/review_utils.dart';
 import '../../../data/models/therapist_review_model.dart';
 import '../../../data/repos/therapist_reviews_repo.dart';
 part 'therapist_reviews_state.dart';
@@ -15,27 +14,21 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
   Future<void> getReviews({required String therapistId}) async {
     emit(GetTherapistReviewsLoadingState());
-
     final result = await therapistRatingRepo.getReviews(
       therapistId: therapistId,
     );
 
     result.fold(
-      (failure) {
-        emit(GetTherapistReviewsFailureState(errorMessage: failure.message));
-      },
+      (failure) =>
+          emit(GetTherapistReviewsFailureState(errorMessage: failure.message)),
       (reviews) {
-        final hasUserRated = _checkIfUserRated(reviews);
         emit(
           GetTherapistReviewsSuccessState(
             therapistReviewModel: reviews,
-            average: reviews.isNotEmpty
-                ? reviews.map((e) => e.rating).reduce((a, b) => a + b) /
-                      reviews.length
-                : 0,
+            average: calculateAverageRating(reviews),
             totalCount: reviews.length,
             userRating: 0,
-            hasUserRated: hasUserRated,
+            hasUserRated: hasUserRated(reviews),
           ),
         );
       },
@@ -48,32 +41,21 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     bool displayAnonymously = false,
   }) async {
     if (state is! GetTherapistReviewsSuccessState) return;
-
     final currentState = state as GetTherapistReviewsSuccessState;
 
-    final num rating = currentState.userRating;
-
     emit(AddTherapistReviewLoadingState());
-    const uuid = Uuid();
-    final TherapistReviewModel therapistRatingModel = TherapistReviewModel(
-      id: uuid.v4(),
+
+    final newReview = createTherapistReview(
       therapistId: therapistId,
-      userId: getUser()!.userId,
-      userName: displayAnonymously ? 'Anonymous' : getUser()!.name ?? '',
-      userAvatar: displayAnonymously ? null : getUser()!.image,
-      rating: rating.toInt(),
-      review: review,
-      createdAt: DateTime.now(),
+      reviewText: review,
+      rating: currentState.userRating.toInt(),
+      displayAnonymously: displayAnonymously,
     );
 
-    final result = await therapistRatingRepo.addReview(
-      rating: therapistRatingModel,
-    );
-
+    final result = await therapistRatingRepo.addReview(rating: newReview);
     result.fold(
-      (failure) {
-        emit(AddTherapistReviewFailureState(errorMessage: failure.message));
-      },
+      (failure) =>
+          emit(AddTherapistReviewFailureState(errorMessage: failure.message)),
       (_) {
         emit(AddTherapistReviewSuccessState());
         getReviews(therapistId: therapistId);
@@ -82,42 +64,34 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
   }
 
   Future<void> updateReview({
-    required String id,
-    required String therapistId,
-    required String userId,
+    required TherapistReviewModel reviewModel,
     required String review,
-    required DateTime createdAt,
-
     bool displayAnonymously = false,
   }) async {
     if (state is! GetTherapistReviewsSuccessState) return;
-
     final currentState = state as GetTherapistReviewsSuccessState;
-
-    final num rating = currentState.userRating;
 
     emit(UpdateTherapistReviewLoadingState());
 
-    final result = await therapistRatingRepo.updateReview(
-      therapistReviewModel: TherapistReviewModel(
-        id: id,
-        therapistId: therapistId,
-        userId: userId,
-        rating: rating.toInt(),
-        review: review,
-        userName: displayAnonymously ? 'Anonymous' : getUser()!.name ?? '',
-        userAvatar: displayAnonymously ? null : getUser()!.image,
-        createdAt: createdAt,
-      ),
+    final updatedReview = createTherapistReview(
+      id: reviewModel.id,
+      therapistId: reviewModel.therapistId,
+      reviewText: review,
+      rating: currentState.userRating.toInt(),
+      displayAnonymously: displayAnonymously,
+      createdAt: reviewModel.createdAt,
     );
 
+    final result = await therapistRatingRepo.updateReview(
+      therapistReviewModel: updatedReview,
+    );
     result.fold(
-      (failure) {
-        emit(UpdateTherapistReviewFailureState(errorMessage: failure.message));
-      },
+      (failure) => emit(
+        UpdateTherapistReviewFailureState(errorMessage: failure.message),
+      ),
       (_) {
         emit(UpdateTherapistReviewSuccessState());
-        getReviews(therapistId: therapistId);
+        getReviews(therapistId: reviewModel.therapistId);
       },
     );
   }
@@ -129,13 +103,12 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     if (state is! GetTherapistReviewsSuccessState) return;
 
     emit(DeleteTherapistReviewLoadingState());
-
     final result = await therapistRatingRepo.deleteReview(ratingId: ratingId);
 
     result.fold(
-      (failure) {
-        emit(DeleteTherapistReviewFailureState(errorMessage: failure.message));
-      },
+      (failure) => emit(
+        DeleteTherapistReviewFailureState(errorMessage: failure.message),
+      ),
       (_) {
         emit(DeleteTherapistReviewSuccessState());
         getReviews(therapistId: therapistId);
@@ -148,13 +121,5 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
       final currentState = state as GetTherapistReviewsSuccessState;
       emit(currentState.copyWith(userRating: rating));
     }
-  }
-
-  bool _checkIfUserRated(List<TherapistReviewModel> reviews) {
-    final userId = getUser()?.userId;
-
-    if (userId == null) return false;
-
-    return reviews.any((review) => review.userId == userId);
   }
 }

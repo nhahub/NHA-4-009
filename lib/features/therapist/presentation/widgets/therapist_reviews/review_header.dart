@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_review_model.dart';
-import '../helpers/is_review_owner.dart';
+import '../../../domain/functions/is_review_owner.dart';
 import '../therapist_details/custom_rating.dart';
 import 'therapist_review_actions.dart';
 

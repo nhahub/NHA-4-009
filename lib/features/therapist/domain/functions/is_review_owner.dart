@@ -1,5 +1,5 @@
-import '../../../../../core/functions/get_user.dart';
-import '../../../data/models/therapist_review_model.dart';
+import '../../../../core/functions/get_user.dart';
+import '../../data/models/therapist_review_model.dart';
 
 bool isReviewOwner(TherapistReviewModel review) {
   final currentUserId = getUser()?.userId;

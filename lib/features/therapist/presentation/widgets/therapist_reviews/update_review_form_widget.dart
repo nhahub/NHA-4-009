@@ -70,7 +70,9 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
           const SizedBox(height: 60),
           BlocBuilder<TherapistReviewsCubit, TherapistReviewsState>(
             buildWhen: (previous, current) =>
-                current is UpdateTherapistReviewLoadingState,
+                current is UpdateTherapistReviewLoadingState ||
+                current is UpdateTherapistReviewFailureState ||
+                current is UpdateTherapistReviewSuccessState,
             builder: (context, state) {
               return IgnorePointer(
                 ignoring: state is UpdateTherapistReviewLoadingState,
@@ -98,11 +100,8 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
     if (formKey.currentState!.validate()) {
       context.read<TherapistReviewsCubit>().updateReview(
         displayAnonymously: selectedAnonymousIndex == 1,
-        id: widget.oldTherapistReviewModel.id,
-        therapistId: widget.oldTherapistReviewModel.therapistId,
-        userId: widget.oldTherapistReviewModel.userId,
+        reviewModel: widget.oldTherapistReviewModel,
         review: reviewController.text,
-        createdAt: widget.oldTherapistReviewModel.createdAt,
       );
     }
   }
