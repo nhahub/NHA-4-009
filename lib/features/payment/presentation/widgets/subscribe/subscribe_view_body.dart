@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/payment/presentation/helpers/execute_paymob_payment.dart';
+import 'package:moodly/features/payment/presentation/helpers/execute_stripe_payment.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
@@ -75,13 +77,13 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
 
     return BlocConsumer<PaymentCubit, PaymentState>(
       listener: (context, state) {
-        if (state is PaymentSuccess) {
+        if (state is PaymentSuccessState) {
           showDialog(
             context: context,
             barrierDismissible: false,
             builder: (context) => const PaymentSuccessDialog(),
           );
-        } else if (state is PaymentFailure) {
+        } else if (state is PaymentFailureState) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
@@ -142,7 +144,7 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
               ),
             ),
 
-            if (state is PaymentLoading)
+            if (state is PaymentLoadingState)
               const Center(
                 child: CustomCircularProgressIndicator(
                   color: AppColors.lightGreen,
@@ -165,18 +167,32 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                         );
                         return;
                       }
-
-                      context.read<PaymentCubit>().initiatePayment(
-                        context: context,
-                        amount: widget.price,
-                        firstName:
-                            currentCard?.holderName.split(" ").first ?? "User",
-                        lastName: currentCard?.holderName.contains(" ") == true
-                            ? currentCard!.holderName.split(" ").last
-                            : "Name",
-                        email: "user@example.com",
-                        phoneNumber: "+201234567890",
-                      );
+                      switch (selectedMethodIndex) {
+                        case 0:
+                          executePaymobPayment(
+                            context,
+                            currentCard,
+                            price: widget.price,
+                          );
+                          break;
+                        case 1:
+                          // executePayPalPayment(
+                          //   context: context,
+                          //   mockPayment: PaymentTransactionModel(
+                          //     amount: widget.price,
+                          //     description: description,
+                          //     itemList: ,
+                          //   ),
+                          // );
+                          break;
+                        case 2:
+                          executeStripePayment(
+                            context: context,
+                            amount: widget.price.toString(),
+                          );
+                          break;
+                        default:
+                      }
                     },
                     buttonText: "Continue",
                   ),

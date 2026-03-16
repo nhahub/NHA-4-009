@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_paymob/flutter_paymob.dart';
-import 'package:moodly/core/constants/app_keys.dart';
+import 'package:moodly/features/payment/data/services/paymob_service.dart';
+import 'package:moodly/features/payment/data/services/stripe_service.dart';
 import 'core/helpers/app_bloc_observer.dart';
 import 'core/routing/deep_link_service.dart';
 import 'core/services/cache_helper.dart';
@@ -17,12 +17,8 @@ void main() async {
   await CacheHelper.init();
   await setupGetIt();
   await SupabaseInitializer.init();
-  await FlutterPaymob.instance.initialize(
-    apiKey: AppKeys.paymobApiKey,
-    integrationID: int.parse(AppKeys.integrationIdCard),
-    walletIntegrationId: int.parse(AppKeys.integrationIdWallet),
-    iFrameID: int.parse(AppKeys.iFrameIdCard),
-  );
+  await StripeService.init();
+  await PaymobService.init();
   Bloc.observer = AppBlocObserver();
 
   runApp(

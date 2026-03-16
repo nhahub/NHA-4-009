@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
 import '../../features/meditations/presentation/views/video_view.dart';
+import '../../features/payment/data/repos/payment_repo.dart';
 import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 
@@ -277,7 +279,13 @@ class AppRouter {
         );
 
       case Routes.subscribeView:
-        return MaterialPageRoute(builder: (context) => const SubscribeView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                PaymentCubit(paymentRepo: getIt.get<PaymentRepo>()),
+            child: const SubscribeView(),
+          ),
+        );
 
       case Routes.termsAndConditionsView:
         return MaterialPageRoute(

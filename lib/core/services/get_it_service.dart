@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/payment/data/repos/checkout_repo.dart';
+import 'package:moodly/features/payment/data/repos/payment_repo.dart';
 import 'package:moodly/features/payment/data/services/stripe_service.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -13,8 +13,9 @@ import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_service.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
-import '../../features/payment/data/repos/checkout_repo_imp.dart';
+import '../../features/payment/data/repos/payment_repo_imp.dart';
 import '../../features/payment/data/services/api_service.dart';
+import '../../features/payment/data/services/paymob_service.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
@@ -31,14 +32,16 @@ Future<void> setupGetIt() async {
   // ApiService
   getIt.registerLazySingleton<ApiService>(() => ApiService(Dio()));
 
-  // StripeService
+  // Stripe Service
   getIt.registerLazySingleton<StripeService>(
     () => StripeService(apiService: getIt()),
   );
+  // Paymob Service
+  getIt.registerLazySingleton<PaymobService>(() => PaymobService());
 
   // CheckoutRepo
-  getIt.registerLazySingleton<CheckoutRepo>(
-    () => CheckoutRepoImp(stripeService: getIt()),
+  getIt.registerLazySingleton<PaymentRepo>(
+    () => PaymentRepoImp(stripeService: getIt(), paymobService: getIt()),
   );
   // Supabase CRUD Service
   getIt.registerLazySingleton<SupabaseCRUDService>(() => SupabaseCRUDService());

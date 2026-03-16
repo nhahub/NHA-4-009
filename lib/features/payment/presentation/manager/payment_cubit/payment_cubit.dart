@@ -1,38 +1,50 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_paymob/flutter_paymob.dart';
-
+import 'package:flutter_paymob/billing_data.dart';
+import 'package:moodly/core/errors/failure.dart';
+import '../../../data/models/stripe/payment_intent_input_model.dart';
+import '../../../data/repos/payment_repo.dart';
 import 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
-  PaymentCubit() : super(PaymentInitial());
+  final PaymentRepo paymentRepo;
 
-  Future<void> initiatePayment({
+  PaymentCubit({required this.paymentRepo}) : super(PaymentInitialState());
+
+  Future<void> initiatePaymobPayment({
     required BuildContext context,
     required double amount,
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String phoneNumber,
+    required BillingData billingData,
   }) async {
-    emit(PaymentLoading());
+    emit(PaymentLoadingState());
 
-    try {
-      // Trigger payment using payWithCard for version 1.0.8
-      FlutterPaymob.instance.payWithCard(
-        context: context,
-        currency: "EGP",
-        amount: amount,
-        onPayment: (response) {
-          if (response.success) {
-            emit(const PaymentSuccess("Payment Successful"));
-          } else {
-            emit(PaymentFailure(response.message ?? "Payment Failed"));
-          }
-        },
-      );
-    } catch (e) {
-      emit(PaymentFailure(e.toString()));
-    }
+    final result = await paymentRepo.payWithPaymob(
+      context: context,
+      amount: amount,
+      billingData: billingData,
+    );
+
+    result.fold(
+      (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
+      (_) =>
+          emit(const PaymentSuccessState(paymentToken: "Payment Successful")),
+    );
+  }
+
+  Future<void> makePayment({
+    required PaymentIntentInputModel paymentIntentInputModel,
+  }) async {
+    emit(PaymentLoadingState());
+
+    Either<Failure, void> response = await paymentRepo.makePayment(
+      paymentIntentInputModel: paymentIntentInputModel,
+    );
+
+    return response.fold(
+      (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
+      (success) =>
+          emit(const PaymentSuccessState(paymentToken: "Payment Successful")),
+    );
   }
 }

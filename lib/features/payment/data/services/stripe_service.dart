@@ -14,14 +14,14 @@ class StripeService {
   StripeService({required this.apiService});
 
   static Future<void> init() async {
-    Stripe.publishableKey = AppKeys.stripePublishableKey;
+    Stripe.publishableKey = ApiKeys.stripePublishableKey;
   }
 
   Future<PaymentIntentModel> createPaymentIntent({
     required PaymentIntentInputModel paymentIntentInputModel,
   }) {
     return apiService.createPaymentIntent(
-      authorizationHeader: "Bearer ${AppKeys.stripeSecretKey}",
+      authorizationHeader: "Bearer ${ApiKeys.stripeSecretKey}",
       contentType: "application/x-www-form-urlencoded",
       amount: "${paymentIntentInputModel.amount}00",
       currency: paymentIntentInputModel.currency,
@@ -33,7 +33,7 @@ class StripeService {
     required CreateCustomerInputModel createCustomerInputModel,
   }) {
     return apiService.createCustomer(
-      authorizationHeader: "Bearer ${AppKeys.stripeSecretKey}",
+      authorizationHeader: "Bearer ${ApiKeys.stripeSecretKey}",
       contentType: "application/x-www-form-urlencoded",
       name: createCustomerInputModel.name,
       email: createCustomerInputModel.email,
@@ -44,7 +44,7 @@ class StripeService {
     required String customerId,
   }) {
     return apiService.createEphemeralKey(
-      authorizationHeader: "Bearer ${AppKeys.stripeSecretKey}",
+      authorizationHeader: "Bearer ${ApiKeys.stripeSecretKey}",
       contentType: "application/x-www-form-urlencoded",
       stripeVersion: "2026-01-28.clover",
       customerId: customerId,
