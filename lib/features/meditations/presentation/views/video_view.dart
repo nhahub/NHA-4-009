@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+
 import '../../data/models/meditation_session.dart';
 import '../widgets/video/about_session_card.dart';
 import '../widgets/video/audio_progress_bar.dart';
