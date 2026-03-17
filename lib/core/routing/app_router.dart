@@ -279,11 +279,12 @@ class AppRouter {
         );
 
       case Routes.subscribeView:
+        final double price = settings.arguments as double;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 PaymentCubit(paymentRepo: getIt.get<PaymentRepo>()),
-            child: const SubscribeView(),
+            child: SubscribeView(price: price),
           ),
         );
 

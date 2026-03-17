@@ -1,36 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/theming/app_assets.dart';
-import '../../../../core/theming/app_styles.dart';
+import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
 import '../widgets/subscribe/subscribe_view_body.dart';
 
 class SubscribeView extends StatelessWidget {
-  const SubscribeView({super.key, this.price = 100.0});
   final double price;
+
+  const SubscribeView({super.key, required this.price});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: SvgPicture.asset(
-            AppAssets.arrowLeftIosIcon,
-            colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
-          ),
-          onPressed: () => context.pop(),
-        ),
-        title: const Text("Payment", style: AppStyles.extraBold20),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.qr_code_scanner, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
+      appBar: BackButtonAppbar(
+        title: "Payment",
+        endIcon: Icons.qr_code_scanner,
+        onEndTap: () {},
       ),
       body: SubscribeViewBody(price: price),
     );

@@ -4,10 +4,10 @@ import 'package:flutter_paymob/billing_data.dart';
 import 'package:moodly/features/payment/data/models/card_model.dart';
 import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
 
-void executePaymobPayment(
-  BuildContext context,
-  CardModel? currentCard, {
+void executePaymobPayment({
+  required BuildContext context,
   required double price,
+  required CardModel? currentCard,
 }) {
   context.read<PaymentCubit>().initiatePaymobPayment(
     context: context,

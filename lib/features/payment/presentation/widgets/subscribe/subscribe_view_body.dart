@@ -169,13 +169,6 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                       }
                       switch (selectedMethodIndex) {
                         case 0:
-                          executePaymobPayment(
-                            context,
-                            currentCard,
-                            price: widget.price,
-                          );
-                          break;
-                        case 1:
                           // executePayPalPayment(
                           //   context: context,
                           //   mockPayment: PaymentTransactionModel(
@@ -184,11 +177,19 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                           //     itemList: ,
                           //   ),
                           // );
+
                           break;
-                        case 2:
+                        case 1:
                           executeStripePayment(
                             context: context,
                             amount: widget.price.toString(),
+                          );
+                          break;
+                        case 2:
+                          executePaymobPayment(
+                            context: context,
+                            currentCard: currentCard,
+                            price: widget.price,
                           );
                           break;
                         default:

@@ -9,7 +9,7 @@ import '../../data/models/paybal/payment_transaction_model.dart';
 
 void executePayPalPayment({
   required BuildContext context,
-  required PaymentTransactionModel mockPayment,
+  required PaymentTransactionModel paymentTransactionModel,
 }) {
   Navigator.of(context).push(
     MaterialPageRoute(
@@ -19,9 +19,9 @@ void executePayPalPayment({
         secretKey: ApiKeys.paypalSecretKey,
         transactions: [
           {
-            "amount": mockPayment.amount.toJson(),
-            "description": mockPayment.description,
-            "item_list": mockPayment.itemList.toJson(),
+            "amount": paymentTransactionModel.amount.toJson(),
+            "description": paymentTransactionModel.description,
+            "item_list": paymentTransactionModel.itemList.toJson(),
           },
         ],
         note: "Contact us for any questions on your order.",
