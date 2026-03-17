@@ -10,6 +10,7 @@ class SubscribeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xffF9F9F9),
       appBar: BackButtonAppbar(
         title: "Payment",

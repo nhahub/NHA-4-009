@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paymob/billing_data.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:moodly/core/helpers/logger.dart';
 import 'package:moodly/features/payment/data/services/paymob_service.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
@@ -31,6 +32,7 @@ class PaymentRepoImp extends PaymentRepo {
       final String msg = e.error.message ?? "Payment failed. Please try again.";
       return left(ApiErrorModel(message: msg));
     } catch (e) {
+      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

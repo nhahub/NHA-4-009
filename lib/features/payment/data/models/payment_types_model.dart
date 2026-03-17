@@ -11,6 +11,6 @@ class PaymentTypesModel {
 }
 
 const List<PaymentTypesModel> paymentTypes = [
-  PaymentTypesModel(price: 29.99, duration: "month"),
+  PaymentTypesModel(price: 50.99, duration: "month"),
   PaymentTypesModel(price: 287.90, duration: "year", discount: "20%"),
 ];

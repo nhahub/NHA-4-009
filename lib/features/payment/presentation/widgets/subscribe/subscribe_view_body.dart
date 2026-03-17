@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/functions/error_dialog.dart';
 import 'package:moodly/features/payment/presentation/helpers/execute_paymob_payment.dart';
 import 'package:moodly/features/payment/presentation/helpers/execute_stripe_payment.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -84,9 +85,7 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
             builder: (context) => const PaymentSuccessDialog(),
           );
         } else if (state is PaymentFailureState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          errorDialog(context: context, message: state.errorMessage);
         }
       },
       builder: (context, state) {
@@ -171,9 +170,9 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                         case 0:
                           // executePayPalPayment(
                           //   context: context,
-                          //   mockPayment: PaymentTransactionModel(
-                          //     amount: widget.price,
-                          //     description: description,
+                          //   paymentTransactionModel: PaymentTransactionModel(
+                          //     amount: AmountModel(total: total, currency: currency, details: details),
+                          //     description: "Subscribe",
                           //     itemList: ,
                           //   ),
                           // );
@@ -182,7 +181,7 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                         case 1:
                           executeStripePayment(
                             context: context,
-                            amount: widget.price.toString(),
+                            price: widget.price,
                           );
                           break;
                         case 2:
