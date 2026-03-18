@@ -13,8 +13,6 @@ class SubscriptionModel {
   @JsonKey(name: 'end_date')
   final DateTime endDate;
   final String status;
-  @JsonKey(name: 'transaction_id')
-  final String? transactionId;
 
   SubscriptionModel({
     required this.id,
@@ -23,7 +21,6 @@ class SubscriptionModel {
     required this.startDate,
     required this.endDate,
     required this.status,
-    this.transactionId,
   });
 
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) =>

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/payment/presentation/helpers/paypal_transaction_builder.dart';
 import '../../../../core/functions/build_snack_bar.dart';
 import '../../data/models/card_model.dart';
-import '../../data/models/paybal/payment_transaction_model.dart';
-import '../../data/models/payment_transaction_mock.dart';
 import 'execute_paymob_payment.dart';
 import 'execute_paypal_payment.dart';
 import 'execute_stripe_payment.dart';
@@ -25,20 +24,18 @@ class PaymentHandler {
 
     switch (selectedMethodIndex) {
       case 0:
-        final mock = PaymentTransactionMock.mockPaymentTransactionModel;
-
         executePayPalPayment(
           context: context,
-          paymentTransactionModel: PaymentTransactionModel(
-            amount: mock.amount,
-            description: "Subscribe",
-            itemList: mock.itemList,
+          paymentTransactionModel: buildPaypalTransaction(
+            price: price,
+            type: type,
           ),
+          type: type,
         );
         break;
 
       case 1:
-        executeStripePayment(context: context, price: price);
+        executeStripePayment(context: context, price: price, type: type);
         break;
 
       case 2:

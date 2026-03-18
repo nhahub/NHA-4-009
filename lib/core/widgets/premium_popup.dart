@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../features/payment/data/models/payment_types_model.dart';
 import '../constants/constants.dart';
 import '../extensions/context_extensions.dart';
 import '../helpers/alpha_from_percent.dart';
@@ -11,11 +12,11 @@ import '../theming/app_styles.dart';
 import 'app_text_button.dart';
 
 class PremiumPopup extends StatelessWidget {
-  final double price = 29.99;
   const PremiumPopup({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final PaymentTypesModel paymentType = paymentTypes[0];
     return Container(
       padding: const EdgeInsets.all(kAppSectionSpacing),
       margin: const EdgeInsets.symmetric(horizontal: kAppSectionSpacing * 2),
@@ -91,10 +92,10 @@ class PremiumPopup extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              Text("$price USD", style: AppStyles.extraBold21),
+              Text("${paymentType.price} USD", style: AppStyles.extraBold21),
               const SizedBox(width: 5),
               Text(
-                "/ month",
+                "/ ${paymentType.duration}",
                 style: AppStyles.extraBold15.copyWith(
                   color: AppColors.bodyGray,
                 ),
@@ -106,7 +107,10 @@ class PremiumPopup extends StatelessWidget {
             width: double.infinity,
             child: AppTextButton(
               onPressed: () {
-                context.push(Routes.subscribeView);
+                context.push(
+                  Routes.subscribeView,
+                  args: {"price": paymentType.price, "type": paymentType.type},
+                );
               },
               buttonText: "Subscribe",
             ),

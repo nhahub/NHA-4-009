@@ -6,6 +6,7 @@ import '../manager/payment_cubit/payment_cubit.dart';
 void executeStripePayment({
   required BuildContext context,
   required double price,
+  required String type,
 }) {
   int amount = (price * 100).round();
   context.read<PaymentCubit>().makePaymentWithStripe(
@@ -14,5 +15,6 @@ void executeStripePayment({
       currency: 'USD',
       customerId: "cus_UAAmigSz69OFAr",
     ),
+    type: type,
   );
 }

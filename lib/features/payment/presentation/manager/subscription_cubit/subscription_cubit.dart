@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/payment/data/models/subscription_model.dart';
-import 'package:moodly/features/payment/data/repos/subscription_repo.dart';
+import '../../../data/models/subscription_model.dart';
+import '../../../data/repos/subscription_repo.dart';
 import '../../../../../core/errors/failure.dart';
 part 'subscription_state.dart';
 
@@ -15,10 +15,8 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   Future<void> loadSubscription() async {
     emit(SubscriptionLoadingState());
 
-    final String? cachedStatus = subscriptionRepo.getCachedStatus();
-    if (cachedStatus != null) {
-      emit(SubscriptionSuccessState(isPremium: cachedStatus == 'active'));
-    }
+    final bool isActive = subscriptionRepo.isSubscriptionActive();
+    emit(SubscriptionSuccessState(isPremium: isActive));
 
     final Either<Failure, SubscriptionModel?> result = await subscriptionRepo
         .getUserActiveSubscription();
@@ -28,8 +26,13 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
         emit(SubscriptionFailureState(message: failure.message));
       },
       (subscription) {
-        final status = subscription?.status ?? 'inactive';
-        emit(SubscriptionSuccessState(isPremium: status == 'active'));
+        subscriptionRepo.cacheSubscription(
+          status: subscription?.status ?? 'inactive',
+          endDate: subscription?.endDate ?? DateTime.now(),
+        );
+        emit(
+          SubscriptionSuccessState(isPremium: subscription?.status == 'active'),
+        );
       },
     );
   }

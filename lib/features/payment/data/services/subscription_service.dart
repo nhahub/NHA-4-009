@@ -1,6 +1,6 @@
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/features/payment/data/models/subscription_model.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/functions/get_user.dart';
+import '../models/subscription_model.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../core/services/supabase_crud_service.dart';
@@ -10,9 +10,8 @@ class SubscriptionService {
 
   SubscriptionService({required this.supabaseCRUDService});
 
-  Future<String> createSubscription({
+  Future<SubscriptionModel> createSubscription({
     required String type, // monthly / yearly
-    required String transactionId,
   }) async {
     final startDate = DateTime.now();
     final endDate = type == 'monthly'
@@ -27,16 +26,19 @@ class SubscriptionService {
       startDate: startDate,
       endDate: endDate,
       status: 'active',
-      transactionId: transactionId,
     );
 
-    final String status = await supabaseCRUDService.addDataAndReturnField(
-      field: 'status',
-      table: kSubscriptionsTable,
-      data: subscription.toJson(),
+    final Map<String, dynamic> data = await supabaseCRUDService
+        .addDataAndReturnRow(
+          table: kSubscriptionsTable,
+          data: subscription.toJson(),
+        );
+
+    final SubscriptionModel subscriptionModel = SubscriptionModel.fromJson(
+      data,
     );
 
-    return status;
+    return subscriptionModel;
   }
 
   Future<SubscriptionModel?> getUserActiveSubscription() async {

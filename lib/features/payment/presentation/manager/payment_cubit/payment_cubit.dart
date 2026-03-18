@@ -36,10 +36,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     result.fold(
       (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
       (success) {
-        subscriptionRepo.createSubscription(
-          type: type,
-          transactionId: success.transactionID!,
-        );
+        subscriptionRepo.createSubscription(type: type);
         emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
       },
     );
@@ -47,6 +44,7 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   Future<void> makePaymentWithStripe({
     required PaymentIntentInputModel paymentIntentInputModel,
+    required String type,
   }) async {
     emit(PaymentLoadingState());
 
@@ -56,8 +54,10 @@ class PaymentCubit extends Cubit<PaymentState> {
 
     return response.fold(
       (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
-      (success) =>
-          emit(const PaymentSuccessState(paymentToken: "Payment Successful")),
+      (success) {
+        subscriptionRepo.createSubscription(type: type);
+        emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
+      },
     );
   }
 
