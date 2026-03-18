@@ -12,7 +12,6 @@ class SubscriptionService {
 
   Future<String> createSubscription({
     required String type, // monthly / yearly
-    required String transactionId,
   }) async {
     final startDate = DateTime.now();
     final endDate = type == 'monthly'
@@ -27,7 +26,6 @@ class SubscriptionService {
       startDate: startDate,
       endDate: endDate,
       status: 'active',
-      transactionId: transactionId,
     );
 
     final String status = await supabaseCRUDService.addDataAndReturnField(

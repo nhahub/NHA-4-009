@@ -13,12 +13,10 @@ class SubscriptionRepo {
 
   Future<Either<Failure, String>> createSubscription({
     required String type,
-    required String transactionId,
   }) async {
     try {
       final String status = await subscriptionService.createSubscription(
         type: type,
-        transactionId: transactionId,
       );
 
       await addCachedStatus(status: status);

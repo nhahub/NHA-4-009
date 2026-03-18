@@ -35,11 +35,12 @@ class PaymentHandler {
             description: "Subscribe",
             itemList: mock.itemList,
           ),
+          type: type,
         );
         break;
 
       case 1:
-        executeStripePayment(context: context, price: price);
+        executeStripePayment(context: context, price: price, type: type);
         break;
 
       case 2:
