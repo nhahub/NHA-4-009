@@ -63,10 +63,14 @@ class SubscriptionRepo {
     final status = CacheHelper.getString(key: kSubscriptionStatus);
     final endDateString = CacheHelper.getString(key: kSubscriptionEndDate);
 
-    if (status != 'active' || endDateString == null) return false;
+    if (endDateString == null) return false;
 
     final endDate = DateTime.parse(endDateString);
+    if (DateTime.now().isAfter(endDate)) {
+      cacheSubscription(status: 'inactive', endDate: endDate);
+      return false;
+    }
 
-    return DateTime.now().isBefore(endDate);
+    return status == 'active';
   }
 }
