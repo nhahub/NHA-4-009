@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:moodly/core/functions/confirm_dialog.dart';
 import 'package:moodly/core/services/get_it_service.dart';
 import 'package:moodly/features/payment/data/repos/subscription_repo.dart';
 
 import '../../../../core/constants/app_keys.dart';
 import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/helpers/logger.dart';
 import '../../../../core/routing/routes.dart';
 import '../../data/models/paybal/payment_transaction_model.dart';
 
@@ -29,27 +29,21 @@ void executePayPalPayment({
         ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
-          Logger.log("onSuccess: $params");
           final SubscriptionRepo subscriptionRepo = getIt
               .get<SubscriptionRepo>();
           await subscriptionRepo.createSubscription(type: type);
-          // ignore: use_build_context_synchronously
-          Navigator.of(context).pushNamedAndRemoveUntil(Routes.thankYouView, (
-            route,
-          ) {
-            if (route.settings.name == "/") {
-              return true;
-            } else {
-              return false;
-            }
-          });
+          confirmDialog(
+            // ignore: use_build_context_synchronously
+            context: context,
+            title: "Payment Successful",
+            message: "Your payment was successful. Thank you for your support!",
+            onConfirm: () => context.pushAndRemoveUntil(Routes.mainView),
+          );
         },
         onError: (error) {
-          Logger.log("onError: $error");
           context.pop();
         },
         onCancel: () {
-          Logger.log('cancelled:');
           context.pop();
         },
       ),
