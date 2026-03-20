@@ -11,7 +11,7 @@ class MoodRangeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MoodRangeCubit, MoodTimeRange>(
+    return BlocBuilder<MoodRangeCubit, MoodPeriod>(
       builder: (context, selectedRange) {
         return Container(
           padding: const EdgeInsets.all(4),
@@ -22,25 +22,23 @@ class MoodRangeSelector extends StatelessWidget {
           child: Row(
             children: [
               RangeButton(
-                title: MoodTimeRange.weekly.title,
-                isSelected: selectedRange == MoodTimeRange.weekly,
+                title: MoodPeriod.week.title,
+                isSelected: selectedRange == MoodPeriod.week,
+                onTap: () =>
+                    context.read<MoodRangeCubit>().changeRange(MoodPeriod.week),
+              ),
+              RangeButton(
+                title: MoodPeriod.month.title,
+                isSelected: selectedRange == MoodPeriod.month,
                 onTap: () => context.read<MoodRangeCubit>().changeRange(
-                  MoodTimeRange.weekly,
+                  MoodPeriod.month,
                 ),
               ),
               RangeButton(
-                title: MoodTimeRange.monthly.title,
-                isSelected: selectedRange == MoodTimeRange.monthly,
-                onTap: () => context.read<MoodRangeCubit>().changeRange(
-                  MoodTimeRange.monthly,
-                ),
-              ),
-              RangeButton(
-                title: MoodTimeRange.yearly.title,
-                isSelected: selectedRange == MoodTimeRange.yearly,
-                onTap: () => context.read<MoodRangeCubit>().changeRange(
-                  MoodTimeRange.yearly,
-                ),
+                title: MoodPeriod.year.title,
+                isSelected: selectedRange == MoodPeriod.year,
+                onTap: () =>
+                    context.read<MoodRangeCubit>().changeRange(MoodPeriod.year),
               ),
             ],
           ),

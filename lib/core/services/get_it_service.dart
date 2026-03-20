@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:moodly/features/payment/data/services/subscription_local_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../features/home/data/repos/mood_progress_repo.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/data/services/cards_local_service.dart';
@@ -33,6 +35,7 @@ import 'supabase_crud_service.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
+  final SupabaseClient supabase = Supabase.instance.client;
   // ApiService
   getIt.registerLazySingleton<ApiService>(() => ApiService(Dio()));
 
@@ -146,6 +149,11 @@ Future<void> setupGetIt() async {
   // Therapist Rating Service
   getIt.registerLazySingleton<TherapistRepo>(
     () => TherapistRepo(therapistService: getIt()),
+  );
+
+  // Mood Repo
+  getIt.registerLazySingleton<MoodProgressRepo>(
+    () => MoodProgressRepo(supabase: supabase),
   );
 
   // Chat Repo

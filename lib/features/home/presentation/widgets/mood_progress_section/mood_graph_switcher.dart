@@ -12,14 +12,14 @@ class MoodGraphSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MoodRangeCubit, MoodTimeRange>(
+    return BlocBuilder<MoodRangeCubit, MoodPeriod>(
       builder: (context, range) {
         switch (range) {
-          case MoodTimeRange.weekly:
+          case MoodPeriod.week:
             return const WeeklyMoodGraph();
-          case MoodTimeRange.monthly:
+          case MoodPeriod.month:
             return const MonthlyMoodGraph();
-          case MoodTimeRange.yearly:
+          case MoodPeriod.year:
             return const YearlyMoodGraph();
         }
       },
