@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/mood_chart.dart';
+import '../../../../../../core/theming/app_styles.dart';
+import '../../../../../mood/data/models/mood_chart.dart';
 import 'graph_column.dart';
 import 'grid_painter.dart';
 
 class CustomMoodProgressGraph extends StatelessWidget {
   final List<MoodChart> moodData;
   final double barWidth;
+  final bool isLoading;
 
   const CustomMoodProgressGraph({
     super.key,
     required this.moodData,
     required this.barWidth,
+    this.isLoading = false,
   });
 
   static const double maxY = 4;
@@ -54,6 +56,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
                       child: GraphColumn(
                         barWidth: barWidth,
                         barHeight: barHeight,
+                        isLoading: isLoading,
                       ),
                     ),
 
@@ -61,7 +64,9 @@ class CustomMoodProgressGraph extends StatelessWidget {
                     Positioned(
                       left: left + (barWidth / 2) - 12, // center emoji
                       bottom: bottom + barHeight + 4,
-                      child: Image.asset(mood.emoji, width: 24, height: 24),
+                      child: mood.value == 0
+                          ? const SizedBox.shrink()
+                          : Image.asset(mood.emoji, width: 24, height: 24),
                     ),
 
                     /// Day title

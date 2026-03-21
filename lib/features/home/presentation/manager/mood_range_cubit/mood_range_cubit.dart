@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/enums/mood_time_range.dart';
 
-class MoodRangeCubit extends Cubit<MoodTimeRange> {
-  MoodRangeCubit() : super(MoodTimeRange.weekly);
+class MoodRangeCubit extends Cubit<MoodPeriod> {
+  MoodRangeCubit() : super(MoodPeriod.week);
 
-  void changeRange(MoodTimeRange range) {
+  void changeRange(MoodPeriod range) {
     emit(range);
   }
 }

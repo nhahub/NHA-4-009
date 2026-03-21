@@ -1,17 +1,13 @@
-enum MoodTimeRange {
-  weekly,
-  monthly,
-  yearly,
-}
+enum MoodPeriod { week, month, year }
 
-extension MoodTimeRangeExtension on MoodTimeRange {
+extension MoodPeriodExtension on MoodPeriod {
   String get title {
     switch (this) {
-      case MoodTimeRange.weekly:
+      case MoodPeriod.week:
         return "Weekly";
-      case MoodTimeRange.monthly:
+      case MoodPeriod.month:
         return "Monthly";
-      case MoodTimeRange.yearly:
+      case MoodPeriod.year:
         return "Yearly";
     }
   }

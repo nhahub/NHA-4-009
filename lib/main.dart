@@ -16,8 +16,8 @@ void main() async {
   await dotenv.load(fileName: ".env");
   await DeepLinkService.init();
   await CacheHelper.init();
-  await setupGetIt();
   await SupabaseInitializer.init();
+  await setupGetIt();
   await StripeService.init();
   await PaymobService.init();
   Bloc.observer = AppBlocObserver();
