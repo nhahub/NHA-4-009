@@ -43,6 +43,7 @@ import '../../features/profile/presentation/views/privacy_policy_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/therapist/data/models/therapist_review_model.dart';
+import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
@@ -51,7 +52,7 @@ import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart
 import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../../features/therapist/presentation/views/all_therapists_view.dart';
-import '../../features/therapist/presentation/views/booking_checkout_view.dart';
+import '../../features/therapist/presentation/views/booking_session_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
 import '../../features/therapist/presentation/views/therapist_live_view.dart';
@@ -267,18 +268,21 @@ class AppRouter {
       case Routes.subscribeView:
         final args = settings.arguments as Map<String, dynamic>;
         final double price = args['price'] as double;
-        final String type = args['type'] as String;
+        final String? type = args['type'] as String?;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => PaymentCubit(
               paymentRepo: getIt.get<PaymentRepo>(),
               subscriptionRepo: getIt.get<SubscriptionRepo>(),
+              bookingRepo: getIt.get<BookingRepo>(),
+              price: price,
+              type: type,
             )..loadSavedCards(),
-            child: SubscribeView(price: price, type: type),
+            child: const SubscribeView(),
           ),
         );
 
-      case Routes.bookingCheckoutView:
+      case Routes.bookingSessionView:
         final args = settings.arguments as Map<String, dynamic>;
         final TherapistModel therapistModel =
             args['therapist'] as TherapistModel;
@@ -287,7 +291,7 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) =>
                 BookingCubit(therapist: therapistModel)..selectType(type),
-            child: BookingCheckoutView(therapist: therapistModel),
+            child: BookingSessionView(therapist: therapistModel),
           ),
         );
 

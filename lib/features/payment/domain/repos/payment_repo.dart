@@ -10,7 +10,7 @@ import '../../data/models/stripe/payment_intent_input_model.dart';
 import '../../data/models/stripe/stripe_customer_model/stripe_customer_model.dart';
 
 abstract class PaymentRepo {
-  Future<Either<Failure, void>> makePayment({
+  Future<Either<Failure, void>> payWithStripe({
     required PaymentIntentInputModel paymentIntentInputModel,
   });
 

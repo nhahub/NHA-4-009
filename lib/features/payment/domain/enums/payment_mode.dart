@@ -1,0 +1,1 @@
+enum PaymentMode { accountSubscription, therapistSession }

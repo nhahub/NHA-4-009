@@ -30,7 +30,7 @@ class PaymentRepoImp extends PaymentRepo {
   });
 
   @override
-  Future<Either<Failure, void>> makePayment({
+  Future<Either<Failure, void>> payWithStripe({
     required PaymentIntentInputModel paymentIntentInputModel,
   }) async {
     try {

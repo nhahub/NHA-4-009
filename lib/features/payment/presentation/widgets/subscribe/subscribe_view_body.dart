@@ -12,10 +12,7 @@ import 'subscribe_button.dart';
 import 'subscribe_content.dart';
 
 class SubscribeViewBody extends StatelessWidget {
-  final double price;
-  final String type;
-
-  const SubscribeViewBody({super.key, required this.price, required this.type});
+  const SubscribeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +21,11 @@ class SubscribeViewBody extends StatelessWidget {
       builder: (context, state) {
         return Stack(
           children: [
-            SubscribeContent(price: price, state: state),
+            SubscribeContent(state: state),
 
             if (state is PaymentLoadingState) const LoadingOverlay(),
 
-            SubscribeButton(price: price, state: state, type: type),
+            SubscribeButton(state: state),
           ],
         );
       },

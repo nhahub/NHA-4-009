@@ -6,7 +6,6 @@ import '../../data/models/paybal/payment_transaction_model.dart';
 
 PaymentTransactionModel buildPaypalTransaction({
   required double price,
-  required String type,
 }) {
   return PaymentTransactionModel(
     amount: AmountModel(
@@ -18,7 +17,7 @@ PaymentTransactionModel buildPaypalTransaction({
         shippingDiscount: 0,
       ),
     ),
-    description: "Subscription ($type)",
+    description: "Subscription",
     itemList: ItemListModel(
       items: [
         ItemModel(

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
-
+import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
 import '../../../../core/constants/app_keys.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/confirm_dialog.dart';
 import '../../../../core/routing/routes.dart';
-import '../../../../core/services/get_it_service.dart';
 import '../../data/models/paybal/payment_transaction_model.dart';
-import '../../data/repos/subscription_repo.dart';
 
 void executePayPalPayment({
   required BuildContext context,
   required PaymentTransactionModel paymentTransactionModel,
-  required String type,
+  required PaymentCubit cubit,
 }) {
   Navigator.of(context).push(
     MaterialPageRoute(
@@ -29,9 +27,7 @@ void executePayPalPayment({
         ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
-          final SubscriptionRepo subscriptionRepo = getIt
-              .get<SubscriptionRepo>();
-          await subscriptionRepo.createSubscription(type: type);
+          await cubit.handlePostPayment();
           confirmDialog(
             // ignore: use_build_context_synchronously
             context: context,

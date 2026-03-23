@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
 import '../../../../core/functions/build_snack_bar.dart';
 import '../../data/models/card_model.dart';
+import '../../data/models/paybal/payment_transaction_model.dart';
 import 'execute_paymob_payment.dart';
 import 'execute_paypal_payment.dart';
 import 'execute_stripe_payment.dart';
-import 'paypal_transaction_builder.dart';
 
 class PaymentHandler {
   static void handle({
     required BuildContext context,
-    required double price,
-    required String type,
     required int selectedMethodIndex,
     required CardModel? currentCard,
-  }) {
+    required PaymentCubit cubit,
+  }) async {
     if (selectedMethodIndex == 3 && currentCard == null) {
       warningSnackBar(
         context: context,
@@ -25,27 +24,22 @@ class PaymentHandler {
 
     switch (selectedMethodIndex) {
       case 0:
-        executePayPalPayment(
-          context: context,
-          paymentTransactionModel: buildPaypalTransaction(
-            price: price,
-            type: type,
-          ),
-          type: type,
-        );
+        final PaymentTransactionModel transaction = await cubit.payWithPaypal();
+        if (context.mounted) {
+          executePayPalPayment(
+            context: context,
+            paymentTransactionModel: transaction,
+            cubit: cubit,
+          );
+        }
         break;
 
       case 1:
-        executeStripePayment(context: context, price: price, type: type);
+        executeStripePayment(context: context);
         break;
 
       case 2:
-        executePaymobPayment(
-          context: context,
-          currentCard: currentCard,
-          price: price,
-          type: type,
-        );
+        executePaymobPayment(context: context, currentCard: currentCard);
         break;
     }
   }

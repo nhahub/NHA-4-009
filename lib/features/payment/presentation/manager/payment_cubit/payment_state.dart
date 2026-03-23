@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../../../data/models/card_model.dart';
+import '../../../data/models/paybal/payment_transaction_model.dart';
 
 abstract class PaymentState extends Equatable {
   const PaymentState();
@@ -39,6 +40,15 @@ class PaymentSuccessState extends PaymentState {
 
   @override
   List<Object?> get props => [paymentToken];
+}
+
+class PaymentWithPaypalState extends PaymentState {
+  final PaymentTransactionModel transactionModel;
+
+  const PaymentWithPaypalState({required this.transactionModel});
+
+  @override
+  List<Object?> get props => [transactionModel];
 }
 
 class PaymentFailureState extends PaymentState {

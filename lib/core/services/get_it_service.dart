@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:moodly/features/mood/data/services/recommendation_local_service.dart';
+import 'package:moodly/features/therapist/data/repos/booking_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -178,6 +179,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<RecommendationRepo>(
     () => RecommendationRepo(recommendationLocalService: getIt()),
   );
+
+  // Booking Repo
+  getIt.registerLazySingleton<BookingRepo>(() => BookingRepo());
 
   // Chat Repo
   getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(chatService: getIt()));
