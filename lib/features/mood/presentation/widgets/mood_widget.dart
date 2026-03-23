@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
-import '../../../home/data/models/feeling_today_model.dart';
+import '../../data/models/feeling_today_model.dart';
 import '../manager/mood_cubit/mood_cubit.dart';
 
 class MoodWidget extends StatelessWidget {

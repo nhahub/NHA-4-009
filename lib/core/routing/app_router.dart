@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:moodly/features/mood/data/models/recommendation_model.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -14,7 +14,7 @@ import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
-import '../../features/home/presentation/views/recommendations_view.dart';
+import '../../features/mood/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
@@ -252,8 +252,10 @@ class AppRouter {
         );
 
       case Routes.recommendationsView:
+        final recommendationModel = settings.arguments as RecommendationModel;
         return MaterialPageRoute(
-          builder: (context) => const RecommendationsView(),
+          builder: (context) =>
+              RecommendationsView(recommendationModel: recommendationModel),
         );
 
       case Routes.premiumView:

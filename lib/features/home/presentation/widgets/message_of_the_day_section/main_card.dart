@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
-import '../../../data/models/quote_model.dart';
+import '../../../data/models/quote/quote_model.dart';
 import 'card_contant.dart';
 import 'card_dot.dart';
 import 'message_of_the_day_section.dart';
 
 class MainCard extends StatelessWidget {
-  final Quote dailyQuote;
+  final QuoteModel dailyQuote;
   const MainCard({super.key, required this.dailyQuote});
 
   @override

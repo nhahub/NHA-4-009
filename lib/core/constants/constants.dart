@@ -4,6 +4,8 @@ const double kAppVerticalPadding = 26.72;
 const double kAppSectionSpacing = 21.0;
 
 // Local Storage Keys
+const String kQuoteId = "daily_quote_id";
+const String kQuoteDate = "daily_quote_date";
 const String kUserData = "userData";
 const String kHasSeenOnboarding = "hasSeenOnboarding";
 const String kSavedCards = "saved_cards";

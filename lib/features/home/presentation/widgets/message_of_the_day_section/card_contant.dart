@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/quote_model.dart';
+import '../../../data/models/quote/quote_model.dart';
 
 class CardContant extends StatefulWidget {
   const CardContant({super.key, required this.dailyQuote});
-  final Quote dailyQuote;
+  final QuoteModel dailyQuote;
 
   @override
   State<CardContant> createState() => _CardContantState();

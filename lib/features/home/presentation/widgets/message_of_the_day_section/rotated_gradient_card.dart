@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/app_colors.dart';
-import '../../../data/models/quote_model.dart';
+import '../../../data/models/quote/quote_model.dart';
 import 'card_contant.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedGradientCard extends StatelessWidget {
-  final Quote dailyQuote;
+  final QuoteModel dailyQuote;
   const RotatedGradientCard({super.key, required this.dailyQuote});
 
   @override
