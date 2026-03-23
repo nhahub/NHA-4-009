@@ -12,10 +12,9 @@ import 'payment_methods_section.dart';
 import 'saved_cards_section.dart';
 
 class SubscribeContent extends StatelessWidget {
-  final double price;
   final PaymentState state;
 
-  const SubscribeContent({super.key, required this.price, required this.state});
+  const SubscribeContent({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {

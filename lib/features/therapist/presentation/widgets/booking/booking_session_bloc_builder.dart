@@ -28,7 +28,7 @@ class BookingSessionBlocBuilder extends StatelessWidget {
                 onPressed: () {
                   context.push(
                     Routes.subscribeView,
-                    args: {"price": state.price.toDouble(), "type": "monthly"},
+                    args: {"price": state.price.toDouble()},
                   );
                 },
                 buttonText: "Pay Now",

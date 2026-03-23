@@ -4,62 +4,93 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
 
 import '../../../../../core/errors/failure.dart';
+import '../../../../therapist/data/repos/booking_repo.dart';
 import '../../../data/models/card_model.dart';
+import '../../../data/models/paybal/payment_transaction_model.dart';
 import '../../../data/models/stripe/payment_intent_input_model.dart';
 import '../../../data/repos/subscription_repo.dart';
 import '../../../domain/repos/payment_repo.dart';
+import '../../helpers/paypal_transaction_builder.dart';
 import 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
+  final BookingRepo bookingRepo;
   final PaymentRepo paymentRepo;
   final SubscriptionRepo subscriptionRepo;
+
+  final double price;
+  final String? type;
 
   List<CardModel> savedCards = [];
   int selectedMethodIndex = -1;
   int selectedSavedCardIndex = -1;
 
-  PaymentCubit({required this.paymentRepo, required this.subscriptionRepo})
-    : super(PaymentInitialState());
+  PaymentCubit({
+    required this.paymentRepo,
+    required this.subscriptionRepo,
+    required this.bookingRepo,
+    required this.price,
+    this.type,
+  }) : super(PaymentInitialState());
 
-  Future<void> initiatePaymobPayment({
+  Future<void> payWithPaymob({
     required BuildContext context,
-    required double amount,
     required BillingData billingData,
-    required String type,
   }) async {
     emit(PaymentLoadingState());
 
     final result = await paymentRepo.payWithPaymob(
       context: context,
-      amount: amount,
+      amount: price,
       billingData: billingData,
     );
     result.fold(
       (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
-      (success) {
-        subscriptionRepo.createSubscription(type: type);
-        emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
+      (success) async {
+        await handlePostPayment();
       },
     );
   }
 
-  Future<void> makePaymentWithStripe({
-    required PaymentIntentInputModel paymentIntentInputModel,
-    required String type,
-  }) async {
+  Future<void> payWithStripe() async {
     emit(PaymentLoadingState());
 
-    Either<Failure, void> response = await paymentRepo.makePayment(
-      paymentIntentInputModel: paymentIntentInputModel,
+    Either<Failure, void> response = await paymentRepo.payWithStripe(
+      paymentIntentInputModel: PaymentIntentInputModel(
+        amount: (price * 100).round().toString(),
+        currency: 'USD',
+        customerId: "cus_UAAmigSz69OFAr",
+      ),
     );
 
     return response.fold(
       (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
-      (success) {
-        subscriptionRepo.createSubscription(type: type);
-        emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
+      (success) async {
+        await handlePostPayment();
       },
     );
+  }
+
+  Future<PaymentTransactionModel> payWithPaypal() async {
+    emit(PaymentLoadingState());
+
+    try {
+      final transaction = buildPaypalTransaction(price: price);
+      emit(PaymentWithPaypalState(transactionModel: transaction));
+      return transaction;
+    } catch (e) {
+      emit(PaymentFailureState(errorMessage: e.toString()));
+      rethrow;
+    }
+  }
+
+  Future<void> handlePostPayment() async {
+    if (type != null) {
+      await subscriptionRepo.createSubscription(type: type!);
+    } else {
+      await bookingRepo.createBooking();
+    }
+    emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
   }
 
   void selectMethod(int index) {

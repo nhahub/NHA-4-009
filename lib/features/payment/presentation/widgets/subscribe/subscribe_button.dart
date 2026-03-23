@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
 
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../helpers/payment_handler.dart';
@@ -6,16 +8,9 @@ import '../../helpers/subscribe_mapper.dart';
 import '../../manager/payment_cubit/payment_state.dart';
 
 class SubscribeButton extends StatelessWidget {
-  final double price;
-  final String type;
   final PaymentState state;
 
-  const SubscribeButton({
-    super.key,
-    required this.price,
-    required this.state,
-    required this.type,
-  });
+  const SubscribeButton({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +26,9 @@ class SubscribeButton extends StatelessWidget {
           child: AppTextButton(
             onPressed: () => PaymentHandler.handle(
               context: context,
-              price: price,
               selectedMethodIndex: data.selectedMethodIndex,
               currentCard: currentCard,
-              type: type,
+              cubit: context.read<PaymentCubit>(),
             ),
             buttonText: "Continue",
           ),

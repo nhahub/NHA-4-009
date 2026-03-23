@@ -43,6 +43,7 @@ import '../../features/profile/presentation/views/privacy_policy_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/therapist/data/models/therapist_review_model.dart';
+import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
@@ -267,14 +268,17 @@ class AppRouter {
       case Routes.subscribeView:
         final args = settings.arguments as Map<String, dynamic>;
         final double price = args['price'] as double;
-        final String type = args['type'] as String;
+        final String? type = args['type'] as String?;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => PaymentCubit(
               paymentRepo: getIt.get<PaymentRepo>(),
               subscriptionRepo: getIt.get<SubscriptionRepo>(),
+              bookingRepo: getIt.get<BookingRepo>(),
+              price: price,
+              type: type,
             )..loadSavedCards(),
-            child: SubscribeView(price: price, type: type),
+            child: const SubscribeView(),
           ),
         );
 

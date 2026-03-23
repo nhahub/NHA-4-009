@@ -4,10 +4,7 @@ import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../widgets/subscribe/subscribe_view_body.dart';
 
 class SubscribeView extends StatelessWidget {
-  final String type;
-  final double price;
-
-  const SubscribeView({super.key, required this.price, required this.type});
+  const SubscribeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class SubscribeView extends StatelessWidget {
         endIcon: Icons.qr_code_scanner,
         onEndTap: () {},
       ),
-      body: SubscribeViewBody(price: price, type: type),
+      body: const SubscribeViewBody(),
     );
   }
 }
