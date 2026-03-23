@@ -2,7 +2,7 @@
 import 'package:moodly/core/constants/constants.dart';
 import 'package:moodly/features/home/data/services/water_local_service.dart';
 
-import '../models/water_cups_model.dart';
+import '../models/water/water_cups_model.dart';
 
 class WaterRepo {
   Future<WaterCupsModel> getWaterCups() async {

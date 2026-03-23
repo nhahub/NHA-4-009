@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/constants/constants.dart';
 import '../../../../helpers/water_stats_helper.dart';
-import '../../../../data/models/water_cups_model.dart';
+import '../../../../data/models/water/water_cups_model.dart';
 import '../../../manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../shared/app_custom_card.dart';
 import 'health_benefits_card.dart';

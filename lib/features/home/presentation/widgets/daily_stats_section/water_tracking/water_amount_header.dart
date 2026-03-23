@@ -7,7 +7,7 @@ import '../../../../../../core/routing/routes.dart';
 import '../../../../../../core/theming/app_assets.dart';
 import '../../../../../../core/theming/app_colors.dart';
 import '../../../../../../core/theming/app_styles.dart';
-import '../../../../data/models/water_cups_model.dart';
+import '../../../../data/models/water/water_cups_model.dart';
 import '../../../manager/cups_of_water_cubit/water_tracking_cubit.dart';
 
 class WaterAmountHeader extends StatelessWidget {

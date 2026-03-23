@@ -2,7 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/constants/constants.dart';
 
-import '../../../data/models/water_cups_model.dart';
+import '../../../data/models/water/water_cups_model.dart';
 import '../../../data/repos/water_repo.dart';
 
 class WaterTrackingCubit extends Cubit<WaterCupsModel> {
@@ -16,7 +16,7 @@ class WaterTrackingCubit extends Cubit<WaterCupsModel> {
         ),
       );
 
-  Future<void> loadData() async {
+  Future<void> getWaterCups() async {
     final WaterCupsModel data = await waterRepo.getWaterCups();
     emit(data);
   }
@@ -28,6 +28,6 @@ class WaterTrackingCubit extends Cubit<WaterCupsModel> {
 
   Future<void> resetDailyCups() async {
     await waterRepo.resetDailyCups();
-    await loadData();
+    await getWaterCups();
   }
 }

@@ -1,24 +1,31 @@
+import 'package:dartz/dartz.dart';
 import 'package:moodly/features/home/data/services/quotes_local_service.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/cache_helper.dart';
-import '../models/quote_model.dart';
+import '../models/quote/quote_model.dart';
 
 class QuoteRepo {
   final QuotesLocalService quotesLocalService;
 
   QuoteRepo({required this.quotesLocalService});
 
-  Future<QuoteModel> getQuoteOfTheDay() async {
-    final List<QuoteModel> quotes = await quotesLocalService.getQuotes();
+  Future<Either<Failure, QuoteModel>> getQuoteOfTheDay() async {
+    try {
+      final List<QuoteModel> quotes = await quotesLocalService.getQuotes();
 
-    final cachedQuote = _getCachedQuote(quotes);
-    if (cachedQuote != null) return cachedQuote;
+      final cachedQuote = _getCachedQuote(quotes);
+      if (cachedQuote != null) return right(cachedQuote);
 
-    final quote = _generateTodayQuote(quotes);
+      final quote = _generateTodayQuote(quotes);
 
-    await _cacheQuote(quote);
+      await _cacheQuote(quote);
 
-    return quote;
+      return right(quote);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
+    }
   }
 
   QuoteModel? _getCachedQuote(List<QuoteModel> quotes) {

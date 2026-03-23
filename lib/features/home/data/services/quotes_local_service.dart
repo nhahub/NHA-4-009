@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:moodly/features/home/data/models/quote_model.dart';
-import 'package:moodly/features/home/data/models/quotes_response.dart';
+import 'package:moodly/features/home/data/models/quote/quote_model.dart';
+import 'package:moodly/features/home/data/models/quote/quotes_response.dart';
 
 class QuotesLocalService {
   Future<List<QuoteModel>> getQuotes() async {
