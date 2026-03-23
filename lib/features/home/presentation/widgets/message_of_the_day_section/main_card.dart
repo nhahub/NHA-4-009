@@ -8,7 +8,7 @@ import 'card_dot.dart';
 import 'message_of_the_day_section.dart';
 
 class MainCard extends StatelessWidget {
-  final Quote dailyQuote;
+  final QuoteModel dailyQuote;
   const MainCard({super.key, required this.dailyQuote});
 
   @override

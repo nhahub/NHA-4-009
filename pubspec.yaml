@@ -87,6 +87,7 @@ flutter:
     - assets/images/
     - assets/data/moods/
     - assets/data/recommendations/
+    - assets/data/quotes/
     - assets/images/meals/angry/
     - assets/images/meals/happy/
     - assets/images/meals/anxious/

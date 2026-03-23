@@ -1,17 +1,21 @@
-class Quote {
+import 'package:json_annotation/json_annotation.dart';
+
+part 'quote_model.g.dart';
+
+@JsonSerializable()
+class QuoteModel {
   final int id;
   final String quote;
   final String author;
 
-  const Quote({required this.id, required this.quote, required this.author});
+  const QuoteModel({
+    required this.id,
+    required this.quote,
+    required this.author,
+  });
 
-  factory Quote.fromMap(Map<String, dynamic> map) {
-    return Quote(id: map['id'], quote: map['quote'], author: map['author']);
-  }
+  factory QuoteModel.fromJson(Map<String, dynamic> json) =>
+      _$QuoteModelFromJson(json);
 
-  Map<String, dynamic> toMap() {
-    return {'id': id, 'quote': quote, 'author': author};
-  }
+  Map<String, dynamic> toJson() => _$QuoteModelToJson(this);
 }
-
-const loadingQuote = Quote(id: 0, quote: "Loading your quote...", author: "");

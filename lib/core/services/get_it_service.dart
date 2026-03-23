@@ -4,8 +4,9 @@ import 'package:moodly/features/mood/data/services/recommendation_local_service.
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
-import '../../features/home/data/repos/quote_repo_impl.dart';
+import '../../features/home/data/repos/quote_repo.dart';
 import '../../features/home/data/repos/water_repo.dart';
+import '../../features/home/data/services/quotes_local_service.dart';
 import '../../features/meals_recommendations/data/local_service/recommended_food_local_service.dart';
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
@@ -90,8 +91,13 @@ Future<void> setupGetIt() async {
     () => QuestionnaireRepo(questionnaireService: getIt()),
   );
 
+  // Quote Local Service
+  getIt.registerLazySingleton<QuotesLocalService>(() => QuotesLocalService());
+
   // Quote Repo
-  getIt.registerLazySingleton<QuoteRepoImpl>(() => QuoteRepoImpl());
+  getIt.registerLazySingleton<QuoteRepo>(
+    () => QuoteRepo(quotesLocalService: getIt()),
+  );
 
   // Water Repo
   getIt.registerLazySingleton<WaterRepo>(() => WaterRepo());

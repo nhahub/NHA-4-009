@@ -7,7 +7,7 @@ import 'card_contant.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedInnerShadowCard extends StatelessWidget {
-  final Quote dailyQuote;
+  final QuoteModel dailyQuote;
   const RotatedInnerShadowCard({super.key, required this.dailyQuote});
 
   @override

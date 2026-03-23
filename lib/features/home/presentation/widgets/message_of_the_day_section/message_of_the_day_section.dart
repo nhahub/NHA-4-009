@@ -7,7 +7,7 @@ import '../../../../../core/services/get_it_service.dart';
 import '../../../../../core/widgets/app_section_header.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../data/models/quote_model.dart';
-import '../../../data/repos/quote_repo_impl.dart';
+import '../../../data/repos/quote_repo.dart';
 import 'main_card.dart';
 import 'rotated_gradient_card.dart';
 import 'rotated_inner_shadow_card.dart';
@@ -24,8 +24,8 @@ class MessageOfTheDaySection extends StatefulWidget {
 }
 
 class _MessageOfTheDaySectionState extends State<MessageOfTheDaySection> {
-  Quote? _dailyQuote;
-  final QuoteRepoImpl _quoteRepoImpl = getIt<QuoteRepoImpl>();
+  QuoteModel? _dailyQuote;
+  final QuoteRepo _quoteRepoImpl = getIt<QuoteRepo>();
 
   @override
   void initState() {

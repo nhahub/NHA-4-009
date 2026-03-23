@@ -7,7 +7,7 @@ import '../../../data/models/quote_model.dart';
 
 class CardContant extends StatefulWidget {
   const CardContant({super.key, required this.dailyQuote});
-  final Quote dailyQuote;
+  final QuoteModel dailyQuote;
 
   @override
   State<CardContant> createState() => _CardContantState();
