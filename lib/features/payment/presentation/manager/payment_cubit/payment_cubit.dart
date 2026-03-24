@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
+import 'package:moodly/features/therapist/data/models/booking_model.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
@@ -21,8 +22,8 @@ class PaymentCubit extends Cubit<PaymentState> {
   final double price;
   final String? type;
   final String? sessionType;
-  final String? slotId;
-  final String? therapistId;
+  final BookingTherapist? therapist;
+  final BookingSlot? slot;
 
   List<CardModel> savedCards = [];
   int selectedMethodIndex = -1;
@@ -35,8 +36,8 @@ class PaymentCubit extends Cubit<PaymentState> {
     required this.price,
     this.type,
     this.sessionType,
-    this.slotId,
-    this.therapistId,
+    this.slot,
+    this.therapist,
   }) : super(PaymentInitialState());
 
   Future<void> payWithPaymob({
@@ -95,8 +96,8 @@ class PaymentCubit extends Cubit<PaymentState> {
       await subscriptionRepo.createSubscription(type: type!);
     } else {
       await bookingRepo.bookingSession(
-        therapistId: therapistId!,
-        slotId: slotId!,
+        therapist: therapist!,
+        slot: slot!,
         sessionType: sessionType!,
         price: price,
       );

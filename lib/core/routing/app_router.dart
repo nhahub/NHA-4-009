@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/home/presentation/views/all_booking_sessions_view.dart';
 import 'package:moodly/features/mood/data/models/recommendation_model.dart';
+import 'package:moodly/features/therapist/data/models/booking_model.dart';
 import 'package:moodly/features/therapist/data/repos/availability_repo.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -14,6 +16,7 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
+import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/mood/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
@@ -271,8 +274,9 @@ class AppRouter {
         final double price = args['price'] as double;
         final String? type = args['type'] as String?;
         final String? sessionType = args['sessionType'] as String?;
-        final String? slotId = args['slotId'] as String?;
-        final String? therapistId = args['therapistId'] as String?;
+        final BookingSlot? slot = args['slot'] as BookingSlot?;
+        final BookingTherapist? therapist =
+            args['therapist'] as BookingTherapist?;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => PaymentCubit(
@@ -282,8 +286,8 @@ class AppRouter {
               price: price,
               type: type,
               sessionType: sessionType,
-              slotId: slotId,
-              therapistId: therapistId,
+              slot: slot,
+              therapist: therapist,
             )..loadSavedCards(),
             child: const SubscribeView(),
           ),
@@ -293,17 +297,23 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         final TherapistModel therapistModel =
             args['therapist'] as TherapistModel;
-        final String type = args['type'] as String;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => BookingCubit(
+              therapist: therapistModel,
+              availabilityRepo: getIt.get<AvailabilityRepo>(),
+            )..getAvailableSlots(),
+            child: BookingSessionView(therapist: therapistModel),
+          ),
+        );
+
+      case Routes.allBookingSessionsView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                BookingCubit(
-                    therapist: therapistModel,
-                    availabilityRepo: getIt.get<AvailabilityRepo>(),
-                  )
-                  ..selectType(type)
-                  ..getAvailableSlots(),
-            child: BookingSessionView(therapist: therapistModel),
+                GetBookingSessionsCubit(bookingRepo: getIt.get<BookingRepo>())
+                  ..getBookingSessions(),
+            child: const AllBookingSessionsView(),
           ),
         );
 

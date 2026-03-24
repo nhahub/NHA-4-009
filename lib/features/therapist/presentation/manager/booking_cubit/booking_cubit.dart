@@ -37,7 +37,7 @@ class BookingCubit extends Cubit<BookingState> {
     emit(state.copyWith(selectedSlot: slot));
   }
 
-  void selectType(String type) {
+  void selectType({required String type}) {
     final price = type == 'chat' ? therapist.chatPrice : therapist.livePrice;
     final priceAfterDiscount = type == 'chat'
         ? therapist.chatPriceAfterDiscount

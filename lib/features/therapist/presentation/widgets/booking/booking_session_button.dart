@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/functions/build_snack_bar.dart';
+import 'package:moodly/features/therapist/data/models/booking_model.dart';
 import 'package:moodly/features/therapist/presentation/manager/booking_cubit/booking_cubit.dart';
-
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
@@ -55,8 +55,17 @@ class BookingSessionButton extends StatelessWidget {
       args: {
         "price": state.price.toDouble(),
         "sessionType": state.selectedType,
-        "therapistId": state.therapist.id,
-        "slotId": state.selectedSlot!.id,
+        "therapist": BookingTherapist(
+          id: state.therapist.id,
+          name: state.therapist.name,
+          speciality: state.therapist.speciality,
+          image: state.therapist.image,
+        ),
+        "slot": BookingSlot(
+          id: state.selectedSlot!.id,
+          startTime: state.selectedSlot!.startTime,
+          endTime: state.selectedSlot!.endTime,
+        ),
       },
     );
   }

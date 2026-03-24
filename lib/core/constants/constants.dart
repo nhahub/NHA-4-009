@@ -29,3 +29,6 @@ const String kTherapistReviewsTable = "therapist_ratings";
 const String kSubscriptionsTable = "subscriptions";
 const String kTimeSlotsTable = "time_slots";
 const String kBookingsTable = "bookings";
+
+const String kImagePlaceHolder =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/960px-Placeholder_view_vector.svg.png";

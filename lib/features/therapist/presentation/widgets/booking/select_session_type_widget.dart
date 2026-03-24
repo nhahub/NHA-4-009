@@ -33,12 +33,12 @@ class SelectSessionTypeWidget extends StatelessWidget {
                     SwitchButton(
                       title: "Chat",
                       isSelected: state.selectedType == 'chat',
-                      onTap: () => cubit.selectType('chat'),
+                      onTap: () => cubit.selectType(type: 'chat'),
                     ),
                     SwitchButton(
                       title: "Call",
                       isSelected: state.selectedType == 'call',
-                      onTap: () => cubit.selectType('call'),
+                      onTap: () => cubit.selectType(type: 'call'),
                     ),
                   ],
                 );
