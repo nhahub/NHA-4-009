@@ -2,8 +2,7 @@ part of 'booking_cubit.dart';
 
 class BookingState extends Equatable {
   final TherapistModel therapist;
-  final Map<int, List<TimeSlotModel>>
-  availableSlots; // dayOfWeek -> List of slots
+  final Map<int, List<TimeSlotModel>> availableSlots;
   final int? selectedDay;
   final TimeSlotModel? selectedSlot;
   final String? selectedType;
@@ -61,4 +60,9 @@ class BookingState extends Equatable {
     price,
     priceAfterDiscount,
   ];
+}
+
+class BookingLoadingState extends BookingState {
+  const BookingLoadingState({required super.therapist})
+    : super(availableSlots: const {}, price: 0, priceAfterDiscount: 0);
 }

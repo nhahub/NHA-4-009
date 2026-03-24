@@ -15,6 +15,7 @@ class BookingCubit extends Cubit<BookingState> {
     : super(BookingState.initial(therapist: therapist));
 
   Future<void> getAvailableSlots() async {
+    emit(BookingLoadingState(therapist: therapist));
     final Either<Failure, Map<int, List<TimeSlotModel>>> result =
         await availabilityRepo.getTimeSlots(therapistId: therapist.id);
 
