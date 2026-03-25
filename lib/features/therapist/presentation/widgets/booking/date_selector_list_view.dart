@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/presentation/widgets/booking/date_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../../core/constants/constants.dart';
+import 'date_item.dart';
 
 class DateSelectorListView extends StatelessWidget {
   const DateSelectorListView({

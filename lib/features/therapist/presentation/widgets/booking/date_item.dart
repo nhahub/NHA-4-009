@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/manager/booking_cubit/booking_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/helpers/get_day_name.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../manager/booking_cubit/booking_cubit.dart';
+import '../helpers/get_day_name.dart';
 
 class DateItem extends StatelessWidget {
   const DateItem({super.key, required this.day, required this.isSelected});

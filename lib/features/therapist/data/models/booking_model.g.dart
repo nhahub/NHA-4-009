@@ -40,32 +40,3 @@ Map<String, dynamic> _$BookingModelToJson(BookingModel instance) =>
       'slot_start_time': instance.slotStartTime.toIso8601String(),
       'slot_end_time': instance.slotEndTime.toIso8601String(),
     };
-
-BookingTherapist _$BookingTherapistFromJson(Map<String, dynamic> json) =>
-    BookingTherapist(
-      id: json['therapist_id'] as String,
-      name: json['therapist_name'] as String,
-      speciality: json['therapist_speciality'] as String,
-      image: json['therapist_image'] as String?,
-    );
-
-Map<String, dynamic> _$BookingTherapistToJson(BookingTherapist instance) =>
-    <String, dynamic>{
-      'therapist_id': instance.id,
-      'therapist_name': instance.name,
-      'therapist_speciality': instance.speciality,
-      'therapist_image': instance.image,
-    };
-
-BookingSlot _$BookingSlotFromJson(Map<String, dynamic> json) => BookingSlot(
-  id: json['slot_id'] as String,
-  startTime: DateTime.parse(json['slot_start_time'] as String),
-  endTime: DateTime.parse(json['slot_end_time'] as String),
-);
-
-Map<String, dynamic> _$BookingSlotToJson(BookingSlot instance) =>
-    <String, dynamic>{
-      'slot_id': instance.id,
-      'slot_start_time': instance.startTime.toIso8601String(),
-      'slot_end_time': instance.endTime.toIso8601String(),
-    };

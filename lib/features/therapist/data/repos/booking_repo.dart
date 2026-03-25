@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/errors/failure.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
-import 'package:moodly/features/therapist/data/models/booking_model.dart';
-import 'package:moodly/features/therapist/data/services/booking_service.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/get_user.dart';
 import '../../../../core/helpers/logger.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../models/booking_model.dart';
+import '../services/booking_service.dart';
 
 class BookingRepo {
   final BookingService bookingService;

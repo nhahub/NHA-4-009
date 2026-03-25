@@ -1,6 +1,6 @@
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/services/supabase_crud_service.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/functions/get_user.dart';
+import '../../../../core/services/supabase_crud_service.dart';
 import '../models/booking_model.dart';
 
 class BookingService {

@@ -59,25 +59,3 @@ class TherapistDetailsView extends StatelessWidget {
     );
   }
 }
-
-
-// ContactButton(
-//   icon: Icons.email,
-//   onPressed: () {
-//     context.push(Routes.therapistChatView, args: therapistModel.id);
-//   },
-//   color: AppColors.orange,
-// ),
-
-
-// ContactButton(
-//   icon: Icons.call,
-//   onPressed: () {
-//     final String callID = generateCallID(
-//       therapistId: therapistModel.id,
-//       userId: getUser()!.userId,
-//     );
-//     context.push(Routes.therapistLiveView, args: callID);
-//   },
-//   color: AppColors.lightGreen,
-// ),

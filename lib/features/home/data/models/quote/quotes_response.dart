@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:moodly/features/home/data/models/quote/quote_model.dart';
+
+import 'quote_model.dart';
 
 part 'quotes_response.g.dart';
 

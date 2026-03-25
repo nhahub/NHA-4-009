@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/data/models/dummy/dummy_booked_sessions.dart';
-import 'package:moodly/features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/booked_sessions.dart/booked_sessions_list_view.dart';
+
+import '../../../data/models/dummy/dummy_booked_sessions.dart';
+import '../../manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
+import 'booked_sessions_list_view.dart';
 
 class BookingSessionsBlocBuilder extends StatelessWidget {
   const BookingSessionsBlocBuilder({super.key});

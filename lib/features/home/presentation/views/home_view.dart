@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/sessions_floating_action_button.dart';
+import '../widgets/sessions_for_you_section/sessions_floating_action_button.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../mood/presentation/helpers/mood_helper.dart';

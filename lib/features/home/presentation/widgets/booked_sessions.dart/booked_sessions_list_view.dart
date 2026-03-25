@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/booked_sessions.dart/booked_session_item.dart';
-import 'package:moodly/features/therapist/data/models/booking_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../../therapist/data/models/booking_model.dart';
+import 'booked_session_card.dart';
 
 class BookedSessionsListView extends StatelessWidget {
   final List<BookingModel> bookings;
@@ -20,7 +21,7 @@ class BookedSessionsListView extends StatelessWidget {
       child: ListView.builder(
         itemCount: bookings.length,
         itemBuilder: (context, index) {
-          return BookedSessionItem(bookingModel: bookings[index]);
+          return BookedSessionCard(bookingModel: bookings[index]);
         },
       ),
     );

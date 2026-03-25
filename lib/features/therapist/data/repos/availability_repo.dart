@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/errors/failure.dart';
-import 'package:moodly/features/therapist/data/services/availability_service.dart';
+
+import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/time_slot_model.dart';
+import '../services/availability_service.dart';
 
 class AvailabilityRepo {
   final AvailabilityService availabilityService;

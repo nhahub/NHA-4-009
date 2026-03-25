@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/manager/booking_cubit/booking_cubit.dart';
 
 import '../../../../../core/extensions/datetime_extensions.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/time_slot_model.dart';
+import '../../manager/booking_cubit/booking_cubit.dart';
 
 class TimeSwitcherButton extends StatelessWidget {
   final TimeSlotModel slot;

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/build_snack_bar.dart';
-import 'package:moodly/features/therapist/data/models/booking_model.dart';
-import 'package:moodly/features/therapist/presentation/manager/booking_cubit/booking_cubit.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_text_button.dart';
+import '../../../data/models/booking_model.dart';
+import '../../manager/booking_cubit/booking_cubit.dart';
 
 class BookingSessionButton extends StatelessWidget {
   const BookingSessionButton({super.key});

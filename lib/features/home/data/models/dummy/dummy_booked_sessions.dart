@@ -1,6 +1,5 @@
-import 'package:moodly/features/therapist/data/models/booking_model.dart';
-
 import '../../../../../core/constants/constants.dart';
+import '../../../../therapist/data/models/booking_model.dart';
 
 class DummyBookedSessions {
   static List<BookingModel> dummyBookedSessions = List.generate(

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'booking_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -61,42 +62,23 @@ class BookingModel {
   Map<String, dynamic> toJson() => _$BookingModelToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
 class BookingTherapist {
-  @JsonKey(name: 'therapist_id')
   final String id;
-
-  @JsonKey(name: 'therapist_name')
   final String name;
-
-  @JsonKey(name: 'therapist_speciality')
   final String speciality;
-
-  @JsonKey(name: 'therapist_image')
-  final String? image;
+  final String image;
 
   BookingTherapist({
     required this.id,
     required this.name,
     required this.speciality,
-    this.image,
+    required this.image,
   });
-
-  factory BookingTherapist.fromJson(Map<String, dynamic> json) =>
-      _$BookingTherapistFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BookingTherapistToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
 class BookingSlot {
-  @JsonKey(name: 'slot_id')
   final String id;
-
-  @JsonKey(name: 'slot_start_time')
   final DateTime startTime;
-
-  @JsonKey(name: 'slot_end_time')
   final DateTime endTime;
 
   BookingSlot({
@@ -104,9 +86,4 @@ class BookingSlot {
     required this.startTime,
     required this.endTime,
   });
-
-  factory BookingSlot.fromJson(Map<String, dynamic> json) =>
-      _$BookingSlotFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BookingSlotToJson(this);
 }
