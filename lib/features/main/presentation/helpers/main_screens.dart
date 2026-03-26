@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/main/presentation/widgets/chatbot_providers_wrapper.dart';
-import 'package:moodly/features/main/presentation/widgets/community_providers_wrapper.dart';
-import 'package:moodly/features/main/presentation/widgets/meditations_providers_wrapper.dart';
+
+import '../widgets/chatbot_providers_wrapper.dart';
+import '../widgets/community_providers_wrapper.dart';
 import '../widgets/home_providers_wrapper.dart';
+import '../widgets/meditations_providers_wrapper.dart';
 import '../widgets/profile_providers_wrapper.dart';
 
 class MainScreens {
