@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../data/services/audio_player_service.dart';
-import '../../../domain/audio_entity.dart';
+import '../../../data/models/audio_model.dart';
 import 'audio_info.dart';
 import 'audio_progress_bar.dart';
 import 'player_controls.dart';
@@ -11,11 +11,11 @@ class AudioViewBody extends StatelessWidget {
   const AudioViewBody({
     super.key,
     required this.audioService,
-    required this.audioEntity,
+    required this.audioModel,
   });
 
   final AudioPlayerService audioService;
-  final AudioEntity audioEntity;
+  final AudioModel audioModel;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class AudioViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AudioInfo(audioEntity: audioEntity),
+              AudioInfo(audioModel: audioModel),
               AudioProgressBar(player: audioService.player),
               PlayerControls(player: audioService.player),
             ],

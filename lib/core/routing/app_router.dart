@@ -25,8 +25,8 @@ import '../../features/meals_recommendations/presentation/manager/recommended_fo
 import '../../features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
-import '../../features/meditations/domain/audio_entity.dart';
-import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
+import '../../features/meditations/data/models/audio_model.dart';
+import '../../features/meditations/presentation/manager/audio_player_cubit/audio_player_cubit.dart';
 import '../../features/meditations/presentation/views/audio_view.dart';
 import '../../features/meditations/presentation/views/video_view.dart';
 import '../../features/mood/data/models/recommendation_model.dart';
@@ -179,13 +179,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const AddCardView());
 
       case Routes.audioView:
-        final AudioEntity audioEntity = settings.arguments as AudioEntity;
+        final AudioModel audioModel = settings.arguments as AudioModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => AudioCubit(
-              audioService: getIt.get<AudioPlayerService>(),
-              audioEntity: audioEntity,
-            )..initAudio(audioUrl: audioEntity.audioUrl),
+            create: (context) => AudioPlayerCubit(
+              audioPlayerService: getIt.get<AudioPlayerService>(),
+              audioModel: audioModel,
+            )..initAudio(audioUrl: audioModel.audioUrl),
             child: const AudioView(),
           ),
         );

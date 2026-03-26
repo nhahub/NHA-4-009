@@ -8,6 +8,8 @@ const List<VideoEntity> recommendedForYouData = [
     title: 'Calm breathing for peaceful sleep',
     duration: 12,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
   VideoEntity(
     coverUrl: AppAssets.meditation2,
@@ -15,6 +17,8 @@ const List<VideoEntity> recommendedForYouData = [
     title: 'Get rid of anxious thoughts',
     duration: 9,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
   VideoEntity(
     coverUrl: AppAssets.meditation3,
@@ -22,5 +26,7 @@ const List<VideoEntity> recommendedForYouData = [
     title: 'Total focus on learning',
     duration: 7,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
 ];

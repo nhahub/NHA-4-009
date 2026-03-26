@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/features/meditations/presentation/widgets/asmr_section/asmr_bloc_builder.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
-import 'for_difficult_situations_list_view.dart';
 
-class ForDifficultSituationsSection extends StatelessWidget {
-  const ForDifficultSituationsSection({super.key});
+class AsmrSection extends StatelessWidget {
+  const AsmrSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSectionHeader(title: "For difficult situations"),
+        AppSectionHeader(title: "ASMR Audios"),
         SizedBox(height: kAppSectionSpacing),
-        ForDifficultSituationsListView(),
+        AsmrBlocBuilder(),
       ],
     );
   }

@@ -6,7 +6,7 @@ import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
-import '../manager/cubit/audio_cubit.dart';
+import '../manager/audio_player_cubit/audio_player_cubit.dart';
 import '../widgets/audio/audio_view_body.dart';
 
 class AudioView extends StatelessWidget {
@@ -14,9 +14,9 @@ class AudioView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AudioCubit, AudioState>(
+    return BlocListener<AudioPlayerCubit, AudioPlayerState>(
       listener: (context, state) {
-        if (state is AudioFailureState) {
+        if (state is AudioPlayerFailureState) {
           errorDialog(context: context, message: state.message).then((_) {
             if (context.mounted) {
               context.pop();
@@ -26,21 +26,22 @@ class AudioView extends StatelessWidget {
       },
       child: Scaffold(
         appBar: const BackButtonAppbar(title: "Now playing"),
-        body: BlocBuilder<AudioCubit, AudioState>(
+        body: BlocBuilder<AudioPlayerCubit, AudioPlayerState>(
           builder: (context, state) {
-            if (state is AudioLoadingState) {
-              return const Center(
-                child: CustomCircularProgressIndicator(
-                  color: AppColors.brandGreen,
-                ),
-              );
-            } else if (state is AudioLoadedState) {
-              return AudioViewBody(
-                audioService: state.audioService,
-                audioEntity: state.audioEntity,
-              );
-            } else {
-              return const SizedBox.shrink();
+            switch (state) {
+              case AudioPlayerLoadingState():
+                return const Center(
+                  child: CustomCircularProgressIndicator(
+                    color: AppColors.brandGreen,
+                  ),
+                );
+              case AudioPlayerInitState(
+                audioService: final service,
+                audioModel: final model,
+              ):
+                return AudioViewBody(audioService: service, audioModel: model);
+              default:
+                return const SizedBox.shrink();
             }
           },
         ),

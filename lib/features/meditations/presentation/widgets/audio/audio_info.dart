@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
-import '../../../domain/audio_entity.dart';
+import '../../../data/models/audio_model.dart';
 
 class AudioInfo extends StatelessWidget {
-  final AudioEntity audioEntity;
-  const AudioInfo({super.key, required this.audioEntity});
+  final AudioModel audioModel;
+  const AudioInfo({super.key, required this.audioModel});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AudioInfo extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
             image: DecorationImage(
-              image: AssetImage(audioEntity.coverUrl),
+              image: NetworkImage(audioModel.coverUrl),
               fit: BoxFit.fill,
             ),
           ),
@@ -30,7 +30,7 @@ class AudioInfo extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                audioEntity.title,
+                audioModel.title,
                 softWrap: true,
                 style: AppStyles.extraBold17,
               ),

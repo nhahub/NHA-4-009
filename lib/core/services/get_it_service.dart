@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:moodly/features/meditations/data/repos/audio_repo.dart';
+import 'package:moodly/features/meditations/data/services/audio_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -205,6 +207,16 @@ Future<void> setupGetIt() async {
 
   // Chat Repo
   getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(chatService: getIt()));
+
+  // Audio Service
+  getIt.registerLazySingleton<AudioService>(
+    () => AudioService(supabaseCRUDService: getIt()),
+  );
+
+  // Audio Repo
+  getIt.registerLazySingleton<AudioRepo>(
+    () => AudioRepo(audioService: getIt()),
+  );
 
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService());

@@ -1,6 +1,6 @@
-import '../../../core/entities/media_entity.dart';
+import '../../../core/models/media_model.dart';
 
-class VideoEntity extends MediaEntity {
+class VideoEntity extends MediaModel {
   final String videoUrl;
 
   const VideoEntity({
@@ -9,5 +9,7 @@ class VideoEntity extends MediaEntity {
     required super.category,
     required super.title,
     required super.duration,
+    required super.id,
+    required super.createdAt,
   });
 }

@@ -8,7 +8,7 @@ import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../../core/widgets/vertical_space.dart';
 import '../../data/models/category_enum.dart';
 import '../widgets/categories_section/categories_section.dart';
-import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
+import '../widgets/asmr_section/asmr_section.dart';
 import '../widgets/new_arrivals_section/new_arrivals_section.dart';
 import '../widgets/popular_categories_section/popular_categories_section.dart';
 import '../widgets/recommended_for_you_section/recommended_for_you_section.dart';
@@ -57,7 +57,7 @@ class MeditationsView extends StatelessWidget {
                   ),
             if (isPremium) ...[
               const SliverToBoxAdapter(child: VerticalSpace()),
-              const SliverToBoxAdapter(child: ForDifficultSituationsSection()),
+              const SliverToBoxAdapter(child: AsmrSection()),
               const SliverToBoxAdapter(child: VerticalSpace()),
               const SliverToBoxAdapter(child: NewArrivalsSection()),
             ],
