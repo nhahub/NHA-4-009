@@ -7,7 +7,7 @@ import 'description_data.dart';
 
 class CardDescriptionContainer extends StatelessWidget {
   final String title;
-  final int? duration;
+  final double? duration;
   final bool? withDuration;
   final TextStyle? titleStyle;
 

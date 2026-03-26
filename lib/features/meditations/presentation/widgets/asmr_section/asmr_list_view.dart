@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/features/meditations/data/models/audio_model.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
-import '../../../data/mock_data/for_difficult_situations_data.dart';
 
-class ForDifficultSituationsListView extends StatelessWidget {
-  const ForDifficultSituationsListView({super.key});
+class AsmrListView extends StatelessWidget {
+  final List<AudioModel> tracks;
+  final bool isLoading;
+  const AsmrListView({super.key, this.isLoading = false, required this.tracks});
   @override
   Widget build(BuildContext context) {
     return HorizontalPaddingList(
+      isLoading: isLoading,
       height: 254,
-      itemCount: forDifficultSituationsData.length,
+      itemCount: tracks.length,
       itemBuilder: (context, index) {
         return CustomCard(
-          mediaEntity: forDifficultSituationsData[index],
+          mediaEntity: tracks[index],
           onTap: () {
-            context.push(
-              Routes.audioView,
-              args: forDifficultSituationsData[index],
-            );
+            context.push(Routes.audioView, args: tracks[index]);
           },
         );
       },

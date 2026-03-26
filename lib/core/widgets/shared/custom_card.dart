@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../entities/media_entity.dart';
+import '../../models/media_model.dart';
 import 'card_description_container.dart';
 import 'category_container.dart';
 import 'play_button.dart';
 
 class CustomCard extends StatelessWidget {
-  final MediaEntity mediaEntity;
+  final MediaModel mediaEntity;
   final VoidCallback? onTap;
   final double? cardWidth;
 
@@ -19,15 +19,18 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ImageProvider imageProvider;
+    if (mediaEntity.coverUrl.startsWith('http')) {
+      imageProvider = NetworkImage(mediaEntity.coverUrl);
+    } else {
+      imageProvider = AssetImage(mediaEntity.coverUrl);
+    }
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: cardWidth ?? 242,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(mediaEntity.coverUrl),
-            fit: BoxFit.cover,
-          ),
+          image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
           color: Colors.grey.shade300,
           borderRadius: BorderRadius.circular(16),
         ),

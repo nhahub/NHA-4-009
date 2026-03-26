@@ -3,18 +3,22 @@ import '../../../meditations/domain/video_entity.dart';
 
 const List<VideoEntity> meditationsForYouData = [
   VideoEntity(
+    id: "",
     coverUrl: AppAssets.meditation1,
     category: 'Sleep',
     title: 'Calm breathing for peaceful sleep',
     duration: 12,
     videoUrl: "",
+    createdAt: '',
   ),
   VideoEntity(
+    id: "",
     coverUrl: AppAssets.meditation2,
     category: 'Stress',
     title: 'Get rid of anxious thoughts',
     duration: 9,
     videoUrl: "",
+    createdAt: '',
   ),
   VideoEntity(
     coverUrl: AppAssets.meditation3,
@@ -22,5 +26,7 @@ const List<VideoEntity> meditationsForYouData = [
     title: 'Total focus on learning',
     duration: 7,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
 ];

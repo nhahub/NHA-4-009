@@ -8,6 +8,8 @@ const List<VideoEntity> yourDailyRoutineData = [
     title: 'Gentle start to the morning.',
     duration: 6,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
   VideoEntity(
     coverUrl: AppAssets.routine2,
@@ -15,6 +17,8 @@ const List<VideoEntity> yourDailyRoutineData = [
     title: 'Mental break in the middle of the day.',
     duration: 5,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
   VideoEntity(
     coverUrl: AppAssets.routine3,
@@ -22,6 +26,8 @@ const List<VideoEntity> yourDailyRoutineData = [
     title: '5 minutes for you.',
     duration: 5,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
   VideoEntity(
     coverUrl: AppAssets.routine4,
@@ -29,5 +35,7 @@ const List<VideoEntity> yourDailyRoutineData = [
     title: 'Calm and stress-free evening.',
     duration: 7,
     videoUrl: "",
+    id: '',
+    createdAt: '',
   ),
 ];

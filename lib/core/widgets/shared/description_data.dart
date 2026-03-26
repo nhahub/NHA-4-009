@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/format_duration.dart';
 
 import '../../helpers/alpha_from_percent.dart';
 import '../../theming/app_styles.dart' show AppStyles;
@@ -13,7 +14,7 @@ class DescriptionData extends StatelessWidget {
   });
 
   final String title;
-  final int? duration;
+  final double? duration;
   final bool? withDuration;
   final TextStyle? titleStyle;
 
@@ -34,7 +35,7 @@ class DescriptionData extends StatelessWidget {
           const SizedBox(height: 5),
           withDuration == true
               ? Text(
-                  "$duration minutes",
+                  formatDecimalMinutes(duration: duration ?? 0),
                   style: AppStyles.medium14WithShadow.copyWith(
                     color: Colors.white.withAlpha(alphaFromPercentage(80)),
                   ),

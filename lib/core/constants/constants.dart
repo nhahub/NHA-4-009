@@ -29,6 +29,6 @@ const String kTherapistReviewsTable = "therapist_ratings";
 const String kSubscriptionsTable = "subscriptions";
 const String kTimeSlotsTable = "time_slots";
 const String kBookingsTable = "bookings";
+const String kSoundTherapyTracksTable = "sound_therapy_tracks";
 
-const String kImagePlaceHolder =
-    "https://placehold.co/600x400";
+const String kImagePlaceHolder = "https://placehold.co/600x400";
