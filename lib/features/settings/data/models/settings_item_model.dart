@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../domain/entities/settings_action_type.dart';
 
 class SettingsItemModel {

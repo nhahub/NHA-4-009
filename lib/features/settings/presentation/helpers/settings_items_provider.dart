@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/settings/data/models/settings_item_model.dart';
-import 'package:moodly/features/settings/domain/entities/settings_action_type.dart';
+import '../../data/models/settings_item_model.dart';
+import '../../domain/entities/settings_action_type.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 

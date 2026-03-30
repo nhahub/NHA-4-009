@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/settings/presentation/widgets/user_account_list_tile.dart';
+import '../../../../core/constants/constants.dart';
+import 'user_account_list_tile.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import 'settings_section.dart';

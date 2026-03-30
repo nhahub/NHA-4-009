@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
-import '../helpers/logout_dialog.dart';
 import '../../domain/entities/settings_action_type.dart';
+import '../helpers/logout_dialog.dart';
 
 void handleSettingsAction({
   required BuildContext context,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/settings/presentation/views/subscription_management_view.dart';
+import '../../features/settings/presentation/views/subscription_management_view.dart';
 
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';

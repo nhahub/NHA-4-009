@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/settings/presentation/helpers/handle_settings_action.dart';
-import 'package:moodly/features/settings/presentation/widgets/custom_settings_tile.dart';
+import '../helpers/handle_settings_action.dart';
+import 'custom_settings_tile.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../helpers/settings_items_provider.dart';
 
