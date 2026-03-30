@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 import '../helpers/handle_settings_action.dart';
 import 'custom_settings_tile.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -13,7 +14,10 @@ class SettingsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        const Text("Settings", style: AppStyles.extraBold20),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+          child: Text("Settings", style: AppStyles.extraBold20),
+        ),
         ...getSettingsItems().map(
           (item) => CustomSettingsTile(
             onTap: () {

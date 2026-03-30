@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/get_user.dart';
@@ -11,24 +12,27 @@ class UserAccountListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      onTap: () {
-        context.push(Routes.editProfileView);
-      },
-      title: Text(getUser()?.name ?? '', style: AppStyles.extraBold17),
-      subtitle: Text(
-        getUser()?.email ?? '',
-        style: AppStyles.regular14,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        softWrap: false,
-      ),
-      leading: UserAvatar(
-        name: getUser()?.name ?? '',
-        radius: 32,
-        fontSize: 30,
-        imageUrl: getUser()?.image,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        onTap: () {
+          context.push(Routes.editProfileView);
+        },
+        title: Text(getUser()?.name ?? '', style: AppStyles.extraBold17),
+        subtitle: Text(
+          getUser()?.email ?? '',
+          style: AppStyles.regular14,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          softWrap: false,
+        ),
+        leading: UserAvatar(
+          name: getUser()?.name ?? '',
+          radius: 32,
+          fontSize: 30,
+          imageUrl: getUser()?.image,
+        ),
       ),
     );
   }

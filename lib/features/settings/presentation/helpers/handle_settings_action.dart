@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/settings/presentation/helpers/show_feedback_bottom_sheet.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
@@ -15,6 +16,7 @@ void handleSettingsAction({
       break;
 
     case SettingsActionType.rateUs:
+      showFeedbackBottomSheet(context: context);
       break;
 
     case SettingsActionType.subscription:

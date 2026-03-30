@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moodly/core/constants/constants.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -24,7 +25,9 @@ class CustomSettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.zero,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: kAppHorizontalPadding,
+      ),
       splashColor: Colors.transparent,
       onTap: onTap,
       leading: CircleAvatar(
