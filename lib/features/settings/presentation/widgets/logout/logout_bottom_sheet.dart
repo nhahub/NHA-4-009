@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/constants/constants.dart';
 import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/settings/presentation/widgets/logout_title.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/functions/error_dialog.dart';
-import '../../../../core/routing/routes.dart';
-import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import 'package:moodly/features/settings/presentation/widgets/logout/logout_title.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/functions/error_dialog.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 import 'logout_button.dart';
 import 'logout_message.dart';
 

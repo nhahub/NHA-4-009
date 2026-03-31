@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'user_account_list_tile.dart';
-import '../../../../core/enums/fade_position.dart';
-import '../../../../core/widgets/fade_scrollable.dart';
+import '../../../../../core/enums/fade_position.dart';
+import '../../../../../core/widgets/fade_scrollable.dart';
 import 'settings_section.dart';
 
 class SettingsViewBody extends StatelessWidget {

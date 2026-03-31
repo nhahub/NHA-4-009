@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/constants/constants.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/functions/get_user.dart';
-import '../../../../core/routing/routes.dart';
-import '../../../../core/theming/app_styles.dart';
-import '../../../../core/widgets/user_avatar.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/functions/get_user.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/user_avatar.dart';
 
 class UserAccountListTile extends StatelessWidget {
   const UserAccountListTile({super.key});

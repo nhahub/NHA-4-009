@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/constants/constants.dart';
-import '../helpers/handle_settings_action.dart';
+import '../../helpers/handle_settings_action.dart';
 import 'custom_settings_tile.dart';
-import '../../../../core/theming/app_styles.dart';
-import '../helpers/settings_items_provider.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../helpers/settings_items_provider.dart';
 
 class SettingsSection extends StatelessWidget {
   const SettingsSection({super.key});

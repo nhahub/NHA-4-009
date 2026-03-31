@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/custom_appbar.dart';
-import '../widgets/settings_view_body.dart';
+import '../widgets/settings/settings_view_body.dart';
 
 class SettingsView extends StatelessWidget {
   final bool isPremium;

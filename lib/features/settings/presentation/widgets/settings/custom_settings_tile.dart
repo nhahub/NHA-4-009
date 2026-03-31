@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moodly/core/constants/constants.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/app_styles.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class CustomSettingsTile extends StatelessWidget {
   final String title;
@@ -34,7 +34,7 @@ class CustomSettingsTile extends StatelessWidget {
       onTap: onTap,
       leading: CircleAvatar(
         backgroundColor:
-            iconBackGroundColor ?? AppColors.lightGrey.withAlpha(40),
+            iconBackGroundColor ?? AppColors.lightGreen.withAlpha(30),
         child: SvgPicture.asset(
           icon,
           width: iconSize,
