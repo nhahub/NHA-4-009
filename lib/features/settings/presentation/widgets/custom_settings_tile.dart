@@ -12,6 +12,7 @@ class CustomSettingsTile extends StatelessWidget {
   final double? iconSize;
   final Color? iconColor;
   final Color? iconBackGroundColor;
+  final bool withTrailing;
   const CustomSettingsTile({
     required this.onTap,
     required this.title,
@@ -19,6 +20,7 @@ class CustomSettingsTile extends StatelessWidget {
     this.iconColor,
     this.iconSize = 20,
     this.iconBackGroundColor,
+    this.withTrailing = true,
     super.key,
   });
 
@@ -44,11 +46,13 @@ class CustomSettingsTile extends StatelessWidget {
         ),
       ),
       title: Text(title, style: AppStyles.medium16),
-      trailing: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(333),
-        child: const Icon(Icons.chevron_right, color: AppColors.bodyGray),
-      ),
+      trailing: withTrailing
+          ? InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(333),
+              child: const Icon(Icons.chevron_right, color: AppColors.bodyGray),
+            )
+          : null,
     );
   }
 }

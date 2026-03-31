@@ -12,11 +12,6 @@ List<SettingsItemModel> getSettingsItems() {
       action: SettingsActionType.myAccount,
     ),
     SettingsItemModel(
-      title: "Rate Us",
-      icon: AppAssets.rateIcon,
-      action: SettingsActionType.rateUs,
-    ),
-    SettingsItemModel(
       title: "Subscription Management",
       icon: AppAssets.subscriptionIcon,
       action: SettingsActionType.subscription,
@@ -40,9 +35,16 @@ List<SettingsItemModel> getSettingsItems() {
       action: SettingsActionType.about,
     ),
     SettingsItemModel(
+      title: "Rate Us",
+      icon: AppAssets.rateIcon,
+      action: SettingsActionType.rateUs,
+      withTrailing: false,
+    ),
+    SettingsItemModel(
       title: "Log Out",
       icon: AppAssets.logoutIcon,
       action: SettingsActionType.logout,
+      withTrailing: false,
       iconColor: Colors.red,
       iconSize: 16,
       iconBackgroundColor: AppColors.moreLighterRed,

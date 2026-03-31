@@ -4,7 +4,7 @@ import 'package:moodly/features/settings/presentation/helpers/show_feedback_bott
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
 import '../../domain/entities/settings_action_type.dart';
-import '../helpers/logout_dialog.dart';
+import 'show_logout_bottom_sheet.dart';
 
 void handleSettingsAction({
   required BuildContext context,
@@ -13,10 +13,6 @@ void handleSettingsAction({
   switch (action) {
     case SettingsActionType.myAccount:
       context.push(Routes.editProfileView);
-      break;
-
-    case SettingsActionType.rateUs:
-      showFeedbackBottomSheet(context: context);
       break;
 
     case SettingsActionType.subscription:
@@ -35,8 +31,12 @@ void handleSettingsAction({
       context.push(Routes.aboutView);
       break;
 
+    case SettingsActionType.rateUs:
+      showFeedbackBottomSheet(context: context);
+      break;
+
     case SettingsActionType.logout:
-      logoutDialog(context);
+      showLogoutBottomSheet(context);
       break;
   }
 }

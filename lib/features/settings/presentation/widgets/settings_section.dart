@@ -28,6 +28,7 @@ class SettingsSection extends StatelessWidget {
             iconColor: item.iconColor,
             iconSize: item.iconSize,
             iconBackGroundColor: item.iconBackgroundColor,
+            withTrailing: item.withTrailing,
           ),
         ),
       ],
