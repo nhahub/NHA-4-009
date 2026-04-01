@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
-import '../../helpers/handle_settings_action.dart';
-import 'custom_settings_tile.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../helpers/handle_settings_action.dart';
 import '../../helpers/settings_items_provider.dart';
+import 'custom_settings_tile.dart';
 
 class SettingsSection extends StatelessWidget {
   const SettingsSection({super.key});

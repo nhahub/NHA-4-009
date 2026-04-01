@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../models/app_rating_model.dart';
-import '../services/app_rating_local_service.dart';
-import '../services/app_rating_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
+import '../models/app_rating_model.dart';
+import '../services/app_rating_local_service.dart';
+import '../services/app_rating_service.dart';
 
 class AppRatingRepo {
   final AppRatingService appRatingService;

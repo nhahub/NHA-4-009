@@ -1,8 +1,8 @@
 import 'dart:convert';
-import '../models/app_rating_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/cache_helper.dart';
+import '../models/app_rating_model.dart';
 
 class AppRatingLocalService {
   /// Save rating locally

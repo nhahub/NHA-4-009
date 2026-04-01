@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/settings/presentation/widgets/about/about_item.dart';
+
+import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_assets.dart';
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../widgets/about/about_item.dart';
 
 class AboutView extends StatelessWidget {
   const AboutView({super.key});
