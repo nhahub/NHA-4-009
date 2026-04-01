@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/services/get_it_service.dart';
-import 'package:moodly/features/payment/data/models/payment_types_model.dart';
-import 'package:moodly/features/payment/data/models/subscription_model.dart';
-import 'package:moodly/features/payment/data/services/subscription_local_service.dart';
-import 'package:moodly/features/settings/presentation/widgets/upgrade_subscription/current_plan_card.dart';
-import 'package:moodly/features/settings/presentation/widgets/upgrade_subscription/monthly_subscribe_button.dart';
-import 'package:moodly/features/settings/presentation/widgets/upgrade_subscription/normal_subscribe_button.dart';
-import 'package:moodly/features/settings/presentation/widgets/upgrade_subscription/upgrade_card.dart';
-import 'package:moodly/features/settings/presentation/widgets/upgrade_subscription/yearly_status.dart';
-import 'package:moodly/features/settings/presentation/widgets/upgrade_subscription/yearly_subscribe_button.dart';
+
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/services/get_it_service.dart';
+import '../../../../payment/data/models/payment_types_model.dart';
+import '../../../../payment/data/models/subscription_model.dart';
+import '../../../../payment/data/services/subscription_local_service.dart';
+import 'current_plan_card.dart';
+import 'monthly_subscribe_button.dart';
+import 'normal_subscribe_button.dart';
+import 'upgrade_card.dart';
+import 'yearly_status.dart';
+import 'yearly_subscribe_button.dart';
 
 class UpgradeSubscriptionBottomSheet extends StatefulWidget {
   const UpgradeSubscriptionBottomSheet({super.key});

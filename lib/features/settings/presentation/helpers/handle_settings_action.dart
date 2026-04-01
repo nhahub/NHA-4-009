@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/settings/presentation/helpers/show_upgrade_subscription_bottom_sheet.dart';
+import 'show_upgrade_subscription_bottom_sheet.dart';
 import 'show_feedback_bottom_sheet.dart';
 
 import '../../../../core/extensions/context_extensions.dart';

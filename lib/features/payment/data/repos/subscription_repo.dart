@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/helpers/logger.dart';
+import '../../../../core/helpers/logger.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';

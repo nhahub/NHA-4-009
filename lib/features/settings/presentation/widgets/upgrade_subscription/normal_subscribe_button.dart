@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
+
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/widgets/app_text_button.dart';
 
 class NormalSubscribeButton extends StatelessWidget {
   const NormalSubscribeButton({super.key});

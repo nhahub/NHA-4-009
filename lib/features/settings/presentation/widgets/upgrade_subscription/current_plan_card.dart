@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/string_extensions.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/payment/data/models/payment_types_model.dart';
-import 'package:moodly/features/payment/data/models/subscription_model.dart';
 
+import '../../../../../core/extensions/string_extensions.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../payment/data/models/payment_types_model.dart';
+import '../../../../payment/data/models/subscription_model.dart';
 
 class CurrentPlanCard extends StatelessWidget {
   final SubscriptionModel? subscriptionModel;

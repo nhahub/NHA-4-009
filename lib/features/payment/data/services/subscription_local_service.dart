@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:moodly/features/payment/data/models/subscription_model.dart';
+import '../models/subscription_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/cache_helper.dart';
