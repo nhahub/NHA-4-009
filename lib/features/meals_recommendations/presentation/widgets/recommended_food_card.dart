@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/helpers/alpha_from_percent.dart';
@@ -31,6 +30,19 @@ class RecommendedFoodCard extends StatelessWidget {
             recommendedFoodItemModel.image,
             fit: BoxFit.fitWidth,
             width: double.infinity,
+            frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+              if (wasSynchronouslyLoaded) return child;
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: frame != null
+                    ? child
+                    : Container(
+                        width: double.infinity,
+                        height: 200,
+                        color: Colors.grey[300],
+                      ),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(
