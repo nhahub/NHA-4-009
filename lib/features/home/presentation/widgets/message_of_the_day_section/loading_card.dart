@@ -19,8 +19,12 @@ class LoadingCard extends StatelessWidget {
       ),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CardQuote(dailyQuote: dailyQuote),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: CardQuote(
+            dailyQuote: dailyQuote,
+            isExpanded: false,
+            onTap: () {},
+          ),
         ),
       ),
     );

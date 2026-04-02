@@ -5,9 +5,16 @@ import 'package:moodly/features/home/presentation/widgets/message_of_the_day_sec
 import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/card_quote.dart';
 
 class CardContant extends StatelessWidget {
-  const CardContant({super.key, required this.dailyQuote});
-
+  final bool isExpanded;
+  final VoidCallback? onTap;
   final QuoteModel dailyQuote;
+
+  const CardContant({
+    super.key,
+    required this.dailyQuote,
+    required this.isExpanded,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,11 @@ class CardContant extends StatelessWidget {
                   horizontal: 18,
                   vertical: 8,
                 ),
-                child: CardQuote(dailyQuote: dailyQuote),
+                child: CardQuote(
+                  dailyQuote: dailyQuote,
+                  isExpanded: isExpanded,
+                  onTap: onTap,
+                ),
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

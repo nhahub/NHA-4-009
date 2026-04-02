@@ -6,9 +6,18 @@ import '../../../data/models/quote/quote_model.dart';
 import 'message_of_the_day_section.dart';
 
 class MainCard extends StatelessWidget {
+  final bool isExpanded;
+  final VoidCallback? onTap;
   final bool isLoading;
   final QuoteModel dailyQuote;
-  const MainCard({super.key, required this.dailyQuote, this.isLoading = false});
+
+  const MainCard({
+    super.key,
+    required this.dailyQuote,
+    this.isLoading = false,
+    required this.isExpanded,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +36,11 @@ class MainCard extends StatelessWidget {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: CardContant(dailyQuote: dailyQuote),
+            child: CardContant(
+              dailyQuote: dailyQuote,
+              isExpanded: isExpanded,
+              onTap: onTap,
+            ),
           );
   }
 }

@@ -5,25 +5,20 @@ import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/quote/quote_model.dart';
 
-class CardQuote extends StatefulWidget {
-  const CardQuote({super.key, required this.dailyQuote});
+class CardQuote extends StatelessWidget {
+  final bool isExpanded;
   final QuoteModel dailyQuote;
-
-  @override
-  State<CardQuote> createState() => _CardQuoteState();
-}
-
-class _CardQuoteState extends State<CardQuote> {
-  bool isExpanded = false;
-
+  final VoidCallback? onTap;
+  const CardQuote({
+    super.key,
+    required this.dailyQuote,
+    required this.isExpanded,
+    this.onTap,
+  });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isExpanded = !isExpanded;
-        });
-      },
+      onTap: onTap,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -32,7 +27,7 @@ class _CardQuoteState extends State<CardQuote> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '"${widget.dailyQuote.quote}"',
+              '"${dailyQuote.quote}"',
               maxLines: isExpanded ? null : 3,
               overflow: isExpanded
                   ? TextOverflow.visible
@@ -43,7 +38,7 @@ class _CardQuoteState extends State<CardQuote> {
             ),
             const SizedBox(height: 10),
             Text(
-              "— ${widget.dailyQuote.author}",
+              "— ${dailyQuote.author}",
               style: AppStyles.extraBold16.copyWith(
                 color: AppColors.borderButton.withAlpha(
                   alphaFromPercentage(70),

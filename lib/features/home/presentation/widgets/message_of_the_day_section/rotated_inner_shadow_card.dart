@@ -8,6 +8,8 @@ import 'card_quote.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedInnerShadowCard extends StatelessWidget {
+  final bool isExpanded;
+  final VoidCallback? onTap;
   final bool isLoading;
 
   final QuoteModel dailyQuote;
@@ -15,6 +17,8 @@ class RotatedInnerShadowCard extends StatelessWidget {
     super.key,
     required this.dailyQuote,
     this.isLoading = false,
+    required this.isExpanded,
+    this.onTap,
   });
 
   @override
@@ -42,7 +46,11 @@ class RotatedInnerShadowCard extends StatelessWidget {
                       horizontal: 18,
                       vertical: 30,
                     ),
-                    child: CardQuote(dailyQuote: dailyQuote),
+                    child: CardQuote(
+                      dailyQuote: dailyQuote,
+                      isExpanded: isExpanded,
+                      onTap: onTap,
+                    ),
                   ),
                 ),
               ),
