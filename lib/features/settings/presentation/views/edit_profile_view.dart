@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/functions/get_user.dart';
+import 'package:moodly/core/widgets/user_avatar.dart';
 
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
@@ -7,9 +9,15 @@ class EditProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: BackButtonAppbar(title: "Edit Profile"),
-      body: Center(child: Text("Edit Profile content goes here.")),
+    return  Scaffold(
+      appBar: const BackButtonAppbar(title: "Edit Profile"),
+      body: 
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [ UserAvatar(name: getUser()?.name??""),
+          const Text("Edit Profile View"),
+        ],
+      ),
     );
   }
 }
