@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../../core/errors/failure.dart';
 import '../../../data/repos/settings_repo.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'update_profile_state.dart';
 

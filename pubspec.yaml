@@ -95,6 +95,7 @@ flutter:
     - assets/images/meals/neutral/
     - assets/mock_images/
     - .env
+    - assets/data/legal/
 
   fonts:
     - family: SFPro

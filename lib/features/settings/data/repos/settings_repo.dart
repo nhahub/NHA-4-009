@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/models/user_data_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/functions/get_user.dart';
+import '../../../../core/models/user_data_model.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 

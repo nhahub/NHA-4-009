@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../data/models/quote/quote_model.dart';
 import 'card_quote.dart';
 import 'message_of_the_day_section.dart';

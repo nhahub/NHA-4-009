@@ -1,0 +1,46 @@
+{
+  "privacyPolicyData": [
+    {
+      "title": "Effective Date: May 20, 2026"
+    },
+    {
+      "paragraphs": [
+        "Moodly (\"we,\" \"us,\" or \"our\") is committed to protecting the privacy of our users (\"you\" or \"your\"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application, Modily (the \"App\")."
+      ]
+    },
+    {
+      "title": "1. Information We Collect:",
+      "bullets": [
+        "Account Information: When you create an account, we collect your email address, username (if chosen), and a secure password hash.",
+        "Usage Data: We collect data about your use of the App, such as features accessed, frequency of use, and journaling activity (without content).",
+        "Optional Information: You may choose to provide additional information such as a profile picture or demographic data."
+      ]
+    },
+    {
+      "title": "2. How We Use Your Information:",
+      "bullets": [
+        "Provide and Improve the App: We use your information to operate, maintain, and improve the App.",
+        "Personalize Your Experience: We may use your information to personalize your experience and provide content that supports your mental well-being.",
+        "Ensure Security: We use your data to keep your account safe and prevent misuse."
+      ]
+    },
+    {
+      "title": "3. Your Privacy Matters:",
+      "paragraphs": [
+        "We understand that mental health is personal. We do not read or store your private journal content, and we do not sell your data to third parties."
+      ]
+    },
+    {
+      "title": "4. Data Protection:",
+      "paragraphs": [
+        "We use appropriate security measures such as encryption and secure storage to protect your data."
+      ]
+    },
+    {
+      "title": "5. Your Choices:",
+      "paragraphs": [
+        "You can update or delete your account at any time and choose what information you want to share."
+      ]
+    }
+  ]
+}

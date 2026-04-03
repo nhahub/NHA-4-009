@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../../features/settings/data/repos/privacy_policy_repo.dart';
+import '../../features/settings/data/repos/terms_repo.dart';
+import '../../features/settings/data/services/privacy_policy_local_service.dart';
+import '../../features/settings/data/services/terms_local_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -230,6 +234,24 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<AppRatingLocalService>(
     () => AppRatingLocalService(),
   );
+
+  // Terms Repo
+  getIt.registerLazySingleton<TermsRepo>(
+    () => TermsRepo(termsLocalService: getIt()),
+  );
+
+  // Privacy Policy Local Service
+  getIt.registerLazySingleton<PrivacyPolicyLocalService>(
+    () => PrivacyPolicyLocalService(),
+  );
+
+  // Privacy Policy Repo
+  getIt.registerLazySingleton<PrivacyPolicyRepo>(
+    () => PrivacyPolicyRepo(privacyPolicyLocalService: getIt()),
+  );
+
+  // Terms Local Service
+  getIt.registerLazySingleton<TermsLocalService>(() => TermsLocalService());
 
   // App Rating Repo
   getIt.registerLazySingleton<AppRatingRepo>(

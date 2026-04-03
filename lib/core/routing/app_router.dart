@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/settings/presentation/views/profile.dart';
+import '../../features/settings/data/repos/privacy_policy_repo.dart';
+import '../../features/settings/data/repos/terms_repo.dart';
+import '../../features/settings/presentation/manager/privacy_policy_cubit/privacy_policy_cubit.dart';
+import '../../features/settings/presentation/manager/terms_cubit/terms_cubit.dart';
+import '../../features/settings/presentation/views/profile.dart';
 import '../../features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 
 import '../../features/community/presentation/views/add_community_post_view.dart';
@@ -323,12 +327,21 @@ class AppRouter {
 
       case Routes.termsAndConditionsView:
         return MaterialPageRoute(
-          builder: (context) => const TermsAndConditionsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TermsCubit(termsRepo: getIt.get<TermsRepo>())..getTerms(),
+            child: const TermsAndConditionsView(),
+          ),
         );
 
       case Routes.privacyPolicyView:
         return MaterialPageRoute(
-          builder: (context) => const PrivacyPolicyView(),
+          builder: (context) => BlocProvider(
+            create: (context) => PrivacyPolicyCubit(
+              privacyPolicyRepo: getIt.get<PrivacyPolicyRepo>(),
+            )..getPrivacyPolicy(),
+            child: const PrivacyPolicyView(),
+          ),
         );
 
       case Routes.allMeditationsView:

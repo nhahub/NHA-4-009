@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 import '../../../data/models/quote/quote_model.dart';
 import 'card_dot.dart';

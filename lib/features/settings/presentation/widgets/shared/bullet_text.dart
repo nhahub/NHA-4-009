@@ -14,7 +14,7 @@ class BulletText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "• ",
+            "•  ",
             style: AppStyles.regular13.copyWith(color: Colors.black54),
           ),
           Expanded(

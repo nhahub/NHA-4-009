@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'loading_card.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/quote/quote_model.dart';
 import 'card_quote.dart';
+import 'loading_card.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedInnerShadowCard extends StatelessWidget {

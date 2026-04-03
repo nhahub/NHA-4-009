@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/core/widgets/user_avatar.dart';
+import '../../../../core/functions/get_user.dart';
+import '../../../../core/widgets/user_avatar.dart';
 
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 

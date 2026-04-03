@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/settings/presentation/widgets/edit_profile/custom_text_field.dart';
+import '../widgets/edit_profile/custom_text_field.dart';
 
 
 class MyAccountScreen extends StatelessWidget {
