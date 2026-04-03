@@ -98,16 +98,23 @@ abstract class AppStyles {
     fontWeight: FontWeightHelper.medium,
     fontFamily: "SFPro",
   );
-  static const TextStyle medium13 = TextStyle(
-    fontSize: 13,
-    fontWeight: FontWeightHelper.medium,
-    fontFamily: "SFPro",
-  );
   static const TextStyle regular14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeightHelper.regular,
     fontFamily: "SFPro",
   );
+  static const TextStyle medium13 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeightHelper.medium,
+    fontFamily: "SFPro",
+  );
+  static const TextStyle regular13 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeightHelper.regular,
+    height: 1.6,
+    fontFamily: "SFPro",
+  );
+
   static const TextStyle extraBold12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeightHelper.extraBold,

@@ -33,13 +33,16 @@ class PrivacyPolicyView extends StatelessWidget {
               SizedBox(height: 10),
 
               _BulletText(
-                  "Account Information: When you create an account, we collect your email address, username (if chosen), and a secure password hash."),
+                "Account Information: When you create an account, we collect your email address, username (if chosen), and a secure password hash.",
+              ),
 
               _BulletText(
-                  "Usage Data: We collect data about your use of the App, such as features accessed, frequency of use, and journaling activity (without content)."),
+                "Usage Data: We collect data about your use of the App, such as features accessed, frequency of use, and journaling activity (without content).",
+              ),
 
               _BulletText(
-                  "Optional Information: You may choose to provide additional information such as a profile picture or demographic data."),
+                "Optional Information: You may choose to provide additional information such as a profile picture or demographic data.",
+              ),
 
               SizedBox(height: 20),
 
@@ -48,13 +51,16 @@ class PrivacyPolicyView extends StatelessWidget {
               SizedBox(height: 10),
 
               _BulletText(
-                  "Provide and Improve the App: We use your information to operate, maintain, and improve the App."),
+                "Provide and Improve the App: We use your information to operate, maintain, and improve the App.",
+              ),
 
               _BulletText(
-                  "Personalize Your Experience: We may use your information to personalize your experience and provide content that supports your mental well-being."),
+                "Personalize Your Experience: We may use your information to personalize your experience and provide content that supports your mental well-being.",
+              ),
 
               _BulletText(
-                  "Ensure Security: We use your data to keep your account safe and prevent misuse."),
+                "Ensure Security: We use your data to keep your account safe and prevent misuse.",
+              ),
 
               SizedBox(height: 20),
 
@@ -63,7 +69,8 @@ class PrivacyPolicyView extends StatelessWidget {
               SizedBox(height: 10),
 
               _BodyText(
-                  "We understand that mental health is personal. We do not read or store your private journal content, and we do not sell your data to third parties."),
+                "We understand that mental health is personal. We do not read or store your private journal content, and we do not sell your data to third parties.",
+              ),
 
               SizedBox(height: 20),
 
@@ -72,7 +79,8 @@ class PrivacyPolicyView extends StatelessWidget {
               SizedBox(height: 10),
 
               _BodyText(
-                  "We use appropriate security measures such as encryption and secure storage to protect your data."),
+                "We use appropriate security measures such as encryption and secure storage to protect your data.",
+              ),
 
               SizedBox(height: 20),
 
@@ -81,7 +89,8 @@ class PrivacyPolicyView extends StatelessWidget {
               SizedBox(height: 10),
 
               _BodyText(
-                  "You can update or delete your account at any time and choose what information you want to share."),
+                "You can update or delete your account at any time and choose what information you want to share.",
+              ),
 
               SizedBox(height: 30),
             ],
@@ -136,11 +145,7 @@ class _BodyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 13,
-        height: 1.6,
-        color: Colors.black54,
-      ),
+      style: const TextStyle(fontSize: 13, height: 1.6, color: Colors.black54),
     );
   }
 }
@@ -156,8 +161,10 @@ class _BulletText extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("• ",
-              style: TextStyle(fontSize: 13, color: Colors.black54)),
+          const Text(
+            "• ",
+            style: TextStyle(fontSize: 13, color: Colors.black54),
+          ),
           Expanded(
             child: Text(
               text,

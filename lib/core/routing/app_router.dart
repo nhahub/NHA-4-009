@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/settings/presentation/views/profile.dart';
 import '../../features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 
 import '../../features/community/presentation/views/add_community_post_view.dart';
@@ -44,7 +45,6 @@ import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/settings/data/repos/settings_repo.dart';
 import '../../features/settings/presentation/views/about_view.dart';
-import '../../features/settings/presentation/views/edit_profile_view.dart';
 import '../../features/settings/presentation/views/privacy_policy_view.dart';
 import '../../features/settings/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/data/models/booking_model.dart';
@@ -341,7 +341,7 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) =>
                 UpdateProfileCubit(settingsRepo: getIt.get<SettingsRepo>()),
-            child: const EditProfileView(),
+            child: const MyAccountScreen(),
           ),
         );
 
