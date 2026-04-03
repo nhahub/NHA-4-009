@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/functions/confirm_dialog.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
-import 'package:moodly/core/models/user_data_model.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/core/widgets/user_avatar.dart';
-import 'package:moodly/features/auth/presentation/widgets/Register/name_text_field.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/password_text_field.dart';
-import 'package:moodly/features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/phone_text_field.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/functions/confirm_dialog.dart';
+import '../../../../../core/functions/error_dialog.dart';
+import '../../../../../core/models/user_data_model.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../../../core/widgets/user_avatar.dart';
+import '../../../../auth/presentation/widgets/Register/name_text_field.dart';
+import '../../../../auth/presentation/widgets/shared/password_text_field.dart';
+import '../../manager/update_profile_cubit/update_profile_cubit.dart';
+import 'phone_text_field.dart';
 
 import '../../../../auth/presentation/widgets/shared/email_text_field.dart';
 

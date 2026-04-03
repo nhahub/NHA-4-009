@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/dummy/dummy_legal_data.dart';
 import '../../data/models/legal_data_model.dart';
 import '../manager/terms_cubit/terms_cubit.dart';
 import '../widgets/shared/legal_list_view.dart';
-import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
 class TermsAndConditionsView extends StatelessWidget {
   const TermsAndConditionsView({super.key});

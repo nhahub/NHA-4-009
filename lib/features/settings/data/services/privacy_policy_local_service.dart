@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter/services.dart';
+
 import '../models/legal_data_model.dart';
 
 class PrivacyPolicyLocalService {

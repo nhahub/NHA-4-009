@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/legal_data_model.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'legal_section_widget.dart';
 
 class LegalListView extends StatelessWidget {

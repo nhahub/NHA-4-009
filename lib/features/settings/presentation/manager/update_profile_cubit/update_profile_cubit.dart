@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/get_user.dart';
+import '../../../../../core/functions/get_user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../core/errors/failure.dart';

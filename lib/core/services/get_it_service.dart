@@ -1,9 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import '../../features/settings/data/repos/privacy_policy_repo.dart';
-import '../../features/settings/data/repos/terms_repo.dart';
-import '../../features/settings/data/services/privacy_policy_local_service.dart';
-import '../../features/settings/data/services/terms_local_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -33,9 +29,13 @@ import '../../features/payment/data/services/subscription_local_service.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
 import '../../features/settings/data/repos/app_rating_repo.dart';
+import '../../features/settings/data/repos/privacy_policy_repo.dart';
 import '../../features/settings/data/repos/settings_repo.dart';
+import '../../features/settings/data/repos/terms_repo.dart';
 import '../../features/settings/data/services/app_rating_local_service.dart';
 import '../../features/settings/data/services/app_rating_service.dart';
+import '../../features/settings/data/services/privacy_policy_local_service.dart';
+import '../../features/settings/data/services/terms_local_service.dart';
 import '../../features/therapist/data/repos/availability_repo.dart';
 import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';

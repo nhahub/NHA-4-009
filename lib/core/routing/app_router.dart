@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/settings/data/repos/privacy_policy_repo.dart';
-import '../../features/settings/data/repos/terms_repo.dart';
-import '../../features/settings/presentation/manager/privacy_policy_cubit/privacy_policy_cubit.dart';
-import '../../features/settings/presentation/manager/terms_cubit/terms_cubit.dart';
-import '../../features/settings/presentation/views/update_profile_view.dart';
-import '../../features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 
-import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -18,6 +11,7 @@ import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
+import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
 import '../../features/home/presentation/views/all_booking_sessions_view.dart';
@@ -47,10 +41,16 @@ import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.
 import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
+import '../../features/settings/data/repos/privacy_policy_repo.dart';
 import '../../features/settings/data/repos/settings_repo.dart';
+import '../../features/settings/data/repos/terms_repo.dart';
+import '../../features/settings/presentation/manager/privacy_policy_cubit/privacy_policy_cubit.dart';
+import '../../features/settings/presentation/manager/terms_cubit/terms_cubit.dart';
+import '../../features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 import '../../features/settings/presentation/views/about_view.dart';
 import '../../features/settings/presentation/views/privacy_policy_view.dart';
 import '../../features/settings/presentation/views/terms_and_conditions_view.dart';
+import '../../features/settings/presentation/views/update_profile_view.dart';
 import '../../features/therapist/data/models/booking_model.dart';
 import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/therapist/data/models/therapist_review_model.dart';
