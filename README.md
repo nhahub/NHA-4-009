@@ -105,7 +105,6 @@ The app combines mood tracking, guided meditation, personalized recommendations,
 ## 🛠️ Tech Stack  
 - **Flutter** (Clean Architecture + BLoC/Cubit)  
 - **Supabase / API** (Authentication & Database)  
-- **Firebase** (Notifications)  
 - **Real-time Features** (Chat & Live Sessions)  
 
 ---
