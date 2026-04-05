@@ -79,23 +79,20 @@ The app combines mood tracking, guided meditation, personalized recommendations,
 ### Auth Screens  
 ![Auth Screens](assets/moodly_app_presentation/3.png)  
 
-### Questionnaire Screens 
-![Questionnaire Screens](assets/moodly_app_presentation/4.png)  
+### Onboarding Screen 
+![Onboarding Screen](assets/moodly_app_presentation/4.png)  
 
-### Premium Screen
-![Premium Screen](assets/moodly_app_presentation/4.png)  
+### Questionnaire Screens
+![Questionnaire Screens](assets/moodly_app_presentation/5.png)  
+
+### Premium Screen 
+![Premium Screen](assets/moodly_app_presentation/6.png) 
 
 ### Home Screen 
-![Home Screen](assets/moodly_app_presentation/5.png)  
+![Home Screen](assets/moodly_app_presentation/7.png)  
 
 ### Water Tracking Screen 
-![Water Tracking Screen](assets/moodly_app_presentation/6.png)  
-
-### Chat & Community  
-![Chat & Community](assets/moodly_app_presentation/7.png)  
-
-### Payment Screens  
-![Payment Screens](assets/moodly_app_presentation/8.png)  
+![Water Tracking Screen](assets/moodly_app_presentation/8.png)  
 
 ### Recommended Food Screens  
 ![Recommended Food Screens](assets/moodly_app_presentation/9.png)  
