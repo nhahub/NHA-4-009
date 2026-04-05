@@ -7,8 +7,8 @@ Built with **Clean Architecture**, focusing on performance, scalability, and smo
 
 ## 📖 About  
 
-Moodly is a comprehensive **mental health & lifestyle application** that يساعد المستخدمين يفهموا مشاعرهم ويحسنوا نمط حياتهم.  
-The app combines mood tracking, guided meditation, personalized recommendations, and therapist interaction — all in one place.  
+Moodly is a comprehensive **mental health & lifestyle application** that helps users understand their emotions and improve their lifestyle.  
+The app combines mood tracking, personalized recommendations, and therapist interaction — all in one place.
 
 ---
 
@@ -45,7 +45,7 @@ The app combines mood tracking, guided meditation, personalized recommendations,
 ### 👨‍⚕️ Therapist Interaction  
 - Therapist listing  
 - Therapist details & reviews  
-- Booking sessions بسهولة  
+- Booking sessions
 - Live session support  
 
 ### 💬 Communication  
