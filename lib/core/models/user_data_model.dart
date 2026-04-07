@@ -29,4 +29,24 @@ class UserDataModel {
       _$UserDataModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDataModelToJson(this);
+
+  UserDataModel copyWith({
+    String? userId,
+    String? name,
+    String? email,
+    String? phone,
+    String? picture,
+    bool? isOldUser,
+    String? userType,
+  }) {
+    return UserDataModel(
+      userId: userId ?? this.userId,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      picture: picture ?? this.picture,
+      isOldUser: isOldUser ?? this.isOldUser,
+      userType: userType ?? this.userType,
+    );
+  }
 }

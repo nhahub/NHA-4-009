@@ -50,7 +50,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     result.fold(
       (failure) => emit(QuestionnaireFailureState(message: failure.message)),
       (_) async {
-        await userDataRepo.updateisOldUserField(isOldUser: true);
+        await userDataRepo.updateUserFields(isOldUser: true);
         return emit(QuestionnaireUploadedState());
       },
     );

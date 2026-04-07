@@ -12,49 +12,46 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
 
   UpdateProfileCubit({required this.userDataRepo})
     : super(UpdateProfileState(userDataModel: getUser()));
+
   String? phoneNumber;
 
   void setPhoneNumber(String number) {
     phoneNumber = number;
   }
 
-  Future<void> updateUserProfile({
-    String? phone,
+  Future<void> updateUserFields({
     String? name,
+    String? phone,
     String? picture,
+    bool? isOldUser,
   }) async {
-    emit(
-      UpdateProfileState(userDataModel: state.userDataModel, isLoading: true),
+    final UserDataModel? currentUser = state.userDataModel;
+    emit(UpdateProfileState(userDataModel: currentUser, isLoading: true));
+    final Either<Failure, void> response = await userDataRepo.updateUserFields(
+      name: name,
+      phone: phone,
+      picture: picture,
+      isOldUser: isOldUser,
     );
-
-    final Either<Failure, UserDataModel> userResponse = await userDataRepo
-        .updateUserData(
-          userDataModel: UserDataModel(
-            userId: getUser()!.userId,
-            phone: phone ?? getUser()!.phone,
-            name: name ?? getUser()!.name,
-            picture: picture ?? getUser()!.picture,
-          ),
-        );
-    return userResponse.fold(
+    response.fold(
       (failure) => emit(
         UpdateProfileState(
-          userDataModel: state.userDataModel,
+          userDataModel: currentUser,
           isLoading: false,
           error: failure.message,
         ),
       ),
-      (userData) async {
-        final UserDataModel userDataModel = UserDataModel(
-          userId: userData.userId,
-          phone: userData.phone,
-          name: userData.name,
-          picture: userData.picture,
+      (_) {
+        if (currentUser == null) return;
+        final UserDataModel updatedUserData = currentUser.copyWith(
+          name: name ?? currentUser.name,
+          phone: phone ?? currentUser.phone,
+          picture: picture ?? currentUser.picture,
+          isOldUser: isOldUser ?? currentUser.isOldUser,
         );
-
-        await saveUserDataLocal(userDataModel: userDataModel);
+        saveUserDataLocal(userDataModel: updatedUserData);
         emit(
-          UpdateProfileState(userDataModel: userDataModel, isLoading: false),
+          UpdateProfileState(userDataModel: updatedUserData, isLoading: false),
         );
       },
     );
