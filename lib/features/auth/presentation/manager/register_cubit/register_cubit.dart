@@ -37,7 +37,6 @@ class RegisterCubit extends Cubit<RegisterState> {
             userId: authResponse.user!.id,
             name: name,
             email: authResponse.user!.email,
-            createdAt: authResponse.user!.userMetadata!['created_at'],
           ),
         );
         emit(RegisterSuccessState());

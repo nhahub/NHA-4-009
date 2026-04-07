@@ -123,6 +123,21 @@ class SupabaseCRUDService {
     await client.from(table).delete().eq(idColumn, idValue);
   }
 
+  /// Check if row exists
+  Future<bool> isRowExists({
+    required String table,
+    required String column,
+    required dynamic value,
+  }) async {
+    final response = await client
+        .from(table)
+        .select(column)
+        .eq(column, value)
+        .maybeSingle();
+
+    return response != null;
+  }
+
   /// Realtime
   Stream<List<Map<String, dynamic>>> listenToTable({
     required String table,

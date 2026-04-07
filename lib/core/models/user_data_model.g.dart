@@ -15,9 +15,6 @@ UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) =>
       picture: json['picture'] as String?,
       isOldUser: json['is_old_user'] as bool? ?? false,
       userType: json['user_type'] as String? ?? 'user',
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
     );
 
 Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) =>
@@ -29,5 +26,4 @@ Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) =>
       'picture': instance.picture,
       'user_type': instance.userType,
       'is_old_user': instance.isOldUser,
-      'created_at': instance.createdAt?.toIso8601String(),
     };

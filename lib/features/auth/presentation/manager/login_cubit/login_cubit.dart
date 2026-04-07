@@ -48,23 +48,45 @@ class LoginCubit extends Cubit<LoginState> {
         if (authResponse == null) {
           return emit(LoginInitialState());
         } else {
-          final Either<Failure, UserDataModel?> result = await userDataRepo
-              .updateUserData(
-                userDataModel: UserDataModel(
-                  userId: authResponse.user!.id,
-                  name: authResponse.user!.userMetadata!['full_name'],
-                  email: authResponse.user!.email,
-                  picture: authResponse.user!.userMetadata!['picture'],
-                  createdAt: authResponse.user!.userMetadata!['created_at'],
-                ),
-              );
-          await result.fold(
-            (failure) async {
-              emit(LoginFailureState(message: failure.message));
-            },
-            (userData) async {
-              await saveUserDataLocal(userDataModel: userData!);
-              emit(LoginSuccessState(isOldUser: getUser()!.isOldUser));
+          final Either<Failure, bool> response = await userDataRepo
+              .isUserExists();
+
+          response.fold(
+            (failure) => emit(LoginFailureState(message: failure.message)),
+            (isUserExists) async {
+              if (isUserExists) {
+                final Either<Failure, UserDataModel?> result =
+                    await userDataRepo.getUserData();
+
+                return await result.fold(
+                  (failure) async {
+                    emit(LoginFailureState(message: failure.message));
+                  },
+                  (userData) async {
+                    await saveUserDataLocal(userDataModel: userData!);
+                    emit(LoginSuccessState(isOldUser: getUser()!.isOldUser));
+                  },
+                );
+              } else {
+                final Either<Failure, UserDataModel?> result =
+                    await userDataRepo.updateUserData(
+                      userDataModel: UserDataModel(
+                        userId: authResponse.user!.id,
+                        name: authResponse.user!.userMetadata!['full_name'],
+                        email: authResponse.user!.email,
+                        picture: authResponse.user!.userMetadata!['picture'],
+                      ),
+                    );
+                await result.fold(
+                  (failure) async {
+                    emit(LoginFailureState(message: failure.message));
+                  },
+                  (userData) async {
+                    await saveUserDataLocal(userDataModel: userData!);
+                    emit(LoginSuccessState(isOldUser: getUser()!.isOldUser));
+                  },
+                );
+              }
             },
           );
         }

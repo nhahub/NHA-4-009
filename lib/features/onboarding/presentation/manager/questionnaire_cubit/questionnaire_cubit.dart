@@ -1,10 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/user_data_local.dart';
-import 'package:moodly/core/models/user_data_model.dart';
 import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
-
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/question_model.dart';
 import '../../../data/models/questionnaire_answers_model.dart';
@@ -53,17 +50,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     result.fold(
       (failure) => emit(QuestionnaireFailureState(message: failure.message)),
       (_) async {
-        await userDataRepo.updateUserData(
-          userDataModel: UserDataModel(
-            name: getUser()!.name,
-            email: getUser()!.email,
-            picture: getUser()!.picture,
-            phone: getUser()!.phone,
-            createdAt: getUser()!.createdAt,
-            userId: getUser()!.userId,
-            isOldUser: true,
-          ),
-        );
+        await userDataRepo.updateisOldUserField(isOldUser: true);
         return emit(QuestionnaireUploadedState());
       },
     );

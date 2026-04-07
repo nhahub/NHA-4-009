@@ -19,6 +19,42 @@ class UserDataService {
     return UserDataModel.fromJson(userData);
   }
 
+  Future<void> updateisOldUserField({required bool isOldUser}) async {
+    await supabaseCRUDService.updateData(
+      table: kUserDataTable,
+      data: {"is_old_user": isOldUser},
+      idColumn: 'id',
+      idValue: supabaseCRUDService.getCurrentUserId(),
+    );
+  }
+
+  Future<void> updateNameField({required String name}) async {
+    await supabaseCRUDService.updateData(
+      table: kUserDataTable,
+      data: {"name": name},
+      idColumn: 'id',
+      idValue: supabaseCRUDService.getCurrentUserId(),
+    );
+  }
+
+  Future<void> updatePhoneField({required String phone}) async {
+    await supabaseCRUDService.updateData(
+      table: kUserDataTable,
+      data: {"phone": phone},
+      idColumn: 'id',
+      idValue: supabaseCRUDService.getCurrentUserId(),
+    );
+  }
+
+  Future<void> updatePictureField({required String picture}) async {
+    await supabaseCRUDService.updateData(
+      table: kUserDataTable,
+      data: {"picture": picture},
+      idColumn: 'id',
+      idValue: supabaseCRUDService.getCurrentUserId(),
+    );
+  }
+
   Future<UserDataModel?> getUserData() async {
     final Map<String, dynamic>? userData = await supabaseCRUDService
         .getSingleRow(
@@ -28,5 +64,14 @@ class UserDataService {
         );
 
     return UserDataModel?.fromJson(userData!);
+  }
+
+  Future<bool> isUserExists() async {
+    final bool response = await supabaseCRUDService.isRowExists(
+      table: kUserDataTable,
+      column: "id",
+      value: supabaseCRUDService.getCurrentUserId(),
+    );
+    return response;
   }
 }
