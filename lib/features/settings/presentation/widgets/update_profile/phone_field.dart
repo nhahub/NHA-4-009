@@ -13,29 +13,40 @@ class PhoneField extends StatefulWidget {
 }
 
 class _PhoneFieldState extends State<PhoneField> {
-  late final TextEditingController _phoneNumberController;
+  late TextEditingController _phoneNumberController;
+
   PhoneNumber initialNumber = PhoneNumber(isoCode: 'EG');
+
+  bool _isValid = false;
 
   @override
   void initState() {
     super.initState();
 
-    final String storedNumber = getUser()?.phone ?? '';
+    _phoneNumberController = TextEditingController();
 
-    String localNumber = storedNumber;
-
-    if (storedNumber.startsWith('+')) {
-      localNumber = storedNumber.replaceFirst(RegExp(r'^\+\d{1,2}'), '');
-
-      if (!localNumber.startsWith('0')) {
-        localNumber = '0$localNumber';
-      }
-    }
-
-    _phoneNumberController = TextEditingController(text: localNumber);
+    _loadInitialNumber();
   }
 
-  bool _isValid = false;
+  Future<void> _loadInitialNumber() async {
+    final storedNumber = getUser()?.phone;
+
+    if (storedNumber == null || storedNumber.isEmpty) return;
+
+    try {
+      final number = await PhoneNumber.getRegionInfoFromPhoneNumber(
+        storedNumber,
+        'EG',
+      );
+
+      setState(() {
+        initialNumber = number;
+        _phoneNumberController.text = number.parseNumber();
+      });
+    } catch (e) {
+      _phoneNumberController.text = storedNumber;
+    }
+  }
 
   @override
   void dispose() {

@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:moodly/core/services/supabase_storage_service.dart';
 import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 import 'package:moodly/features/auth/data/services/user_data_service.dart';
-import 'package:moodly/features/settings/data/repos/images_repo.dart';
+import 'package:moodly/features/settings/data/repos/profile_image_service.dart';
 import 'package:moodly/features/settings/data/repos/profile_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -286,8 +286,8 @@ Future<void> setupGetIt() async {
   );
 
   // Images Repo
-  getIt.registerLazySingleton<ImagesRepo>(
-    () => ImagesRepo(
+  getIt.registerLazySingleton<ProfileImageService>(
+    () => ProfileImageService(
       supabaseStorageService: getIt(),
       supabaseCRUDService: getIt(),
     ),
@@ -295,7 +295,7 @@ Future<void> setupGetIt() async {
 
   // Profile Repo
   getIt.registerLazySingleton<ProfileRepo>(
-    () => ProfileRepo(userDataRepo: getIt(), imagesRepo: getIt()),
+    () => ProfileRepo(userDataRepo: getIt(), profileImageService: getIt()),
   );
 
   // Audio Player Service

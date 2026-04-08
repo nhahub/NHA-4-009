@@ -5,7 +5,7 @@ class SupabaseCRUDService {
 
   SupabaseCRUDService({required this.client});
 
-  getCurrentUserId() => client.auth.currentUser?.id;
+  String? getCurrentUserId() => client.auth.currentUser?.id;
 
   /// Add data
   Future<void> addData({

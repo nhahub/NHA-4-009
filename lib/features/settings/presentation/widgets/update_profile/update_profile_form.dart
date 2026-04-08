@@ -1,18 +1,17 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/phone_field.dart';
+import 'package:moodly/features/settings/presentation/widgets/update_profile/change_picture_button.dart';
+import 'package:moodly/features/settings/presentation/widgets/update_profile/profile_avatar.dart';
+import 'package:moodly/features/settings/presentation/widgets/update_profile/profile_email_section.dart';
+import 'package:moodly/features/settings/presentation/widgets/update_profile/profile_phone_field.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/models/user_data_model.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
-import '../../../../../core/widgets/user_avatar.dart';
 import '../../../../auth/presentation/widgets/Register/name_text_field.dart';
 import '../../manager/update_profile_cubit/update_profile_cubit.dart';
 
@@ -37,9 +36,9 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
   Widget build(BuildContext context) {
     return BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
       listener: (context, state) {
-        if (state.error != null) {
+        if (state.status.isFailure) {
           errorDialog(context: context, message: state.error!);
-        } else if (state.isSuccess) {
+        } else if (state.status.isSuccess) {
           confirmDialog(
             context: context,
             title: "Success",
@@ -63,50 +62,25 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  state.file != null
-                      ? CircleAvatar(
-                          radius: 45,
-                          backgroundColor: AppColors.lightGrey,
-                          backgroundImage: FileImage(state.file!),
-                        )
-                      : UserAvatar(
-                          name: user?.name ?? "",
-                          imageUrl: user?.picture,
-                        ),
+                  ProfileAvatar(user: user, file: state.file),
                   const SizedBox(height: 5),
-                  TextButton(
-                    onPressed: () {
-                      context
-                          .read<UpdateProfileCubit>()
-                          .pickProfileImageFromGallery();
-                    },
-                    child: Text(
-                      "Change Picture",
-                      style: AppStyles.regular14.copyWith(
-                        color: AppColors.linkGray,
-                      ),
-                    ),
-                  ),
+                  const ChangePictureButton(),
                   NameTextField(nameController: nameController),
                   const SizedBox(height: 20),
-                  PhoneField(
-                    onInputChanged: (phone) {
-                      context.read<UpdateProfileCubit>().updatePhoneNumber(
-                        phone,
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 40),
+                  const ProfilePhoneField(),
+                  const SizedBox(height: 20),
+                  ProfileEmailSection(user: user),
+                  const SizedBox(height: 30),
                   BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
                     builder: (context, state) {
                       return IgnorePointer(
-                        ignoring: state.isLoading,
+                        ignoring: state.status.isLoading,
                         child: SizedBox(
                           width: double.infinity,
                           child: AppTextButton(
                             onPressed: () => validateThenEditProfile(context),
                             buttonText: "Save Changes",
-                            child: state.isLoading
+                            child: state.status.isLoading
                                 ? const CustomCircularProgressIndicator()
                                 : null,
                           ),
@@ -131,16 +105,6 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
       final String? oldNumber = user?.phone;
       final File? file = cubit.state.file;
 
-      // context.read<UpdateProfileCubit>().updateUserFields(
-      //   name: nameController.text.trim() == user?.name
-      //       ? null
-      //       : nameController.text.trim(),
-      //   phone: newPhone == oldNumber ? null : newPhone,
-      // );
-
-      // file != null
-      //     ? context.read<UpdateProfileCubit>().changeProfileImageFromGallery()
-      //     : null;
       context.read<UpdateProfileCubit>().updateProfile(
         name: nameController.text.trim() == user?.name
             ? null

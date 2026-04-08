@@ -1,47 +1,45 @@
 part of 'update_profile_cubit.dart';
 
+enum UpdateProfileStatus { initial, loading, success, failure }
+
+extension UpdateProfileStatusX on UpdateProfileStatus {
+  bool get isInitial => this == UpdateProfileStatus.initial;
+  bool get isLoading => this == UpdateProfileStatus.loading;
+  bool get isSuccess => this == UpdateProfileStatus.success;
+  bool get isFailure => this == UpdateProfileStatus.failure;
+}
+
 class UpdateProfileState extends Equatable {
+  final UpdateProfileStatus status;
   final UserDataModel? userDataModel;
-  final bool isLoading;
   final String? error;
-  final bool isSuccess;
   final File? file;
   final String? phoneNumber;
 
   const UpdateProfileState({
     this.userDataModel,
-    this.isLoading = false,
-    this.isSuccess = false,
     this.error,
     this.file,
     this.phoneNumber,
+    this.status = UpdateProfileStatus.initial,
   });
 
   @override
-  List<Object?> get props => [
-    userDataModel,
-    isLoading,
-    isSuccess,
-    error,
-    file,
-    phoneNumber,
-  ];
+  List<Object?> get props => [userDataModel, file, phoneNumber, status, error];
 
   UpdateProfileState copyWith({
     UserDataModel? userDataModel,
-    bool? isLoading,
-    bool? isSuccess,
+    UpdateProfileStatus? status,
     String? error,
     File? file,
     String? phoneNumber,
   }) {
     return UpdateProfileState(
       userDataModel: userDataModel ?? this.userDataModel,
-      isLoading: isLoading ?? this.isLoading,
-      isSuccess: isSuccess ?? this.isSuccess,
-      error: error ?? this.error,
+      error: error,
       file: file ?? this.file,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      status: status ?? this.status,
     );
   }
 }

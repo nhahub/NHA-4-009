@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 import 'package:moodly/features/settings/data/repos/profile_repo.dart';
 import 'package:moodly/features/settings/presentation/helpers/image_picker_helper.dart';
@@ -23,7 +24,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   Future<void> pickProfileImageFromGallery() async {
     final File? file = await pickImageFromGallery();
     final safe = await safeFile(file ?? File(''));
-    emit(state.copyWith(file: safe));
+    emit(state.copyWith(status: UpdateProfileStatus.initial, file: safe));
   }
 
   Future<File> safeFile(File file) async {
@@ -33,7 +34,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   }
 
   Future<void> updateProfile({String? name, String? phone, File? file}) async {
-    emit(state.copyWith(isLoading: true, isSuccess: false, error: null));
+    emit(state.copyWith(status: UpdateProfileStatus.loading));
 
     try {
       String? imageUrl;
@@ -64,12 +65,16 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       emit(
         state.copyWith(
           userDataModel: updatedUser,
-          isLoading: false,
-          isSuccess: true,
+          status: UpdateProfileStatus.success,
         ),
       );
     } catch (e) {
-      emit(state.copyWith(isLoading: false, error: e.toString()));
+      emit(
+        state.copyWith(
+          status: UpdateProfileStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
     }
   }
 }

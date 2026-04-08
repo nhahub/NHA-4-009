@@ -16,31 +16,14 @@ class SupabaseStorageService {
     }
   }
 
-  Future<String> uploadFile({
+  Future<void> uploadFile({
     required File file,
     required String filePath,
-    required String userId,
     required String bucketName,
   }) async {
-    // final String fileName = b.basename(file.path);
-
-    final String finalName = "$userId.jpg";
-    final String finalFilePath = "$filePath/$finalName";
-
     await client.storage
         .from(bucketName)
-        .upload(
-          finalFilePath,
-          file,
-          fileOptions: const FileOptions(upsert: true),
-        );
-
-    final String publicUrl = getFileUrl(
-      filePath: finalFilePath,
-      bucketName: bucketName,
-    );
-
-    return publicUrl;
+        .upload(filePath, file, fileOptions: const FileOptions(upsert: true));
   }
 
   String getFileUrl({required String filePath, required String bucketName}) {
