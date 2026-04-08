@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/user_data_local.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import '../../../../../core/functions/user_data_local.dart';
+import '../../../data/repos/user_data_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../core/errors/failure.dart';

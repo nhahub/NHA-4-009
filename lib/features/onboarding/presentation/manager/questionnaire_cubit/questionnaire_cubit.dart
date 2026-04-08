@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import '../../../../auth/data/repos/user_data_repo.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/question_model.dart';
 import '../../../data/models/questionnaire_answers_model.dart';

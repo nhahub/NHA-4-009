@@ -1,9 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/phone_field.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../manager/update_profile_cubit/update_profile_cubit.dart';
+import 'phone_field.dart';
 
 class ProfilePhoneField extends StatelessWidget {
   const ProfilePhoneField({super.key});

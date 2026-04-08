@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:moodly/core/models/user_data_model.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/widgets/user_avatar.dart';
+import '../../../../../core/models/user_data_model.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/widgets/user_avatar.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final UserDataModel? user;

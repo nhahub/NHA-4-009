@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
-import 'package:moodly/features/settings/data/repos/profile_repo.dart';
-import 'package:moodly/features/settings/presentation/helpers/image_picker_helper.dart';
+import '../../../../../core/networking/api_error_handler.dart';
+import '../../../../auth/data/repos/user_data_repo.dart';
+import '../../../data/repos/profile_repo.dart';
+import '../../helpers/image_picker_helper.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/models/user_data_model.dart';
 import 'package:path_provider/path_provider.dart';

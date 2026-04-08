@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/functions/user_data_local.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
-import 'package:moodly/features/auth/data/services/user_data_service.dart';
+import '../../../../core/functions/user_data_local.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../services/user_data_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/models/user_data_model.dart';

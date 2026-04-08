@@ -1,4 +1,4 @@
-import 'package:moodly/core/theming/app_assets.dart';
+import '../../../../../core/theming/app_assets.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 
 class DummyBookedSessions {

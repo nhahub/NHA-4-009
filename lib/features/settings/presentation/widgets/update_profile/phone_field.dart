@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:moodly/core/theming/app_styles.dart';
+import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';
 

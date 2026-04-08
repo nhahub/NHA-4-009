@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/change_picture_button.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/profile_avatar.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/profile_email_section.dart';
-import 'package:moodly/features/settings/presentation/widgets/update_profile/profile_phone_field.dart';
+import 'change_picture_button.dart';
+import 'profile_avatar.dart';
+import 'profile_email_section.dart';
+import 'profile_phone_field.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';

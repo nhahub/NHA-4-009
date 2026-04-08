@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
-import 'package:moodly/features/settings/data/repos/profile_repo.dart';
+import '../../features/auth/data/repos/user_data_repo.dart';
+import '../../features/settings/data/repos/profile_repo.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import '../../data/repos/user_data_repo.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../../core/theming/app_colors.dart';

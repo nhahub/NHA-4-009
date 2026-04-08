@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
-import 'package:moodly/features/settings/data/repos/profile_image_service.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../../../auth/data/repos/user_data_repo.dart';
+import 'profile_image_service.dart';
 
 import '../../../../core/errors/failure.dart';
 

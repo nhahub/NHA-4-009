@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/core/services/supabase_storage_service.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
-import 'package:moodly/features/auth/data/services/user_data_service.dart';
-import 'package:moodly/features/settings/data/repos/profile_image_service.dart';
-import 'package:moodly/features/settings/data/repos/profile_repo.dart';
+import 'supabase_storage_service.dart';
+import '../../features/auth/data/repos/user_data_repo.dart';
+import '../../features/auth/data/services/user_data_service.dart';
+import '../../features/settings/data/repos/profile_image_service.dart';
+import '../../features/settings/data/repos/profile_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';

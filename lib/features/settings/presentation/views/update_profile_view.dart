@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/update_profile/update_profile_form.dart';
+
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../widgets/update_profile/update_profile_form.dart';
 
 class UpdateProfileView extends StatelessWidget {
   const UpdateProfileView({super.key});
