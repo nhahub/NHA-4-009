@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../services/supabase_auth_service.dart';

@@ -15,17 +15,25 @@ class UpdateProfileState extends Equatable {
   final String? error;
   final File? file;
   final String? phoneNumber;
-
+  final int imageVersion;
   const UpdateProfileState({
     this.userDataModel,
     this.error,
     this.file,
     this.phoneNumber,
+    this.imageVersion = 0,
     this.status = UpdateProfileStatus.initial,
   });
 
   @override
-  List<Object?> get props => [userDataModel, file, phoneNumber, status, error];
+  List<Object?> get props => [
+    userDataModel,
+    file,
+    phoneNumber,
+    status,
+    error,
+    imageVersion,
+  ];
 
   UpdateProfileState copyWith({
     UserDataModel? userDataModel,
@@ -33,6 +41,7 @@ class UpdateProfileState extends Equatable {
     String? error,
     File? file,
     String? phoneNumber,
+    int? imageVersion,
   }) {
     return UpdateProfileState(
       userDataModel: userDataModel ?? this.userDataModel,
@@ -40,6 +49,7 @@ class UpdateProfileState extends Equatable {
       file: file ?? this.file,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       status: status ?? this.status,
+      imageVersion: imageVersion ?? this.imageVersion,
     );
   }
 }

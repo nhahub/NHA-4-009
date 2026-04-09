@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../functions/user_data_local.dart';
 import '../theming/app_assets.dart';
@@ -44,17 +45,19 @@ class UserAvatar extends StatelessWidget {
         backgroundColor: AppColors.lightGrey,
         child: ClipOval(
           child: CachedNetworkImage(
+            key: ValueKey(imageUrl),
             imageUrl: imageUrl!,
+            cacheKey: imageUrl,
             width: size,
             height: size,
             fit: BoxFit.cover,
-
-            placeholder: (context, url) => Container(
-              width: size,
-              height: size,
-              color: AppColors.lightGrey,
-              child: const Center(
-                child: CircularProgressIndicator(strokeWidth: 2),
+            placeholder: (context, url) => Skeletonizer(
+              containersColor: Colors.grey.shade50,
+              enabled: true,
+              child: Container(
+                width: size,
+                height: size,
+                color: Colors.grey.shade50,
               ),
             ),
 

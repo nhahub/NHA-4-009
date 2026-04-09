@@ -1,10 +1,13 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+
 import '../../../../../core/models/user_data_model.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/user_avatar.dart';
 
 class ProfileAvatar extends StatelessWidget {
+  final int imageVersion;
   final UserDataModel? user;
   final File? file;
 
@@ -12,6 +15,7 @@ class ProfileAvatar extends StatelessWidget {
     super.key,
     required this.user,
     required this.file,
+    required this.imageVersion,
   });
 
   @override
@@ -22,6 +26,9 @@ class ProfileAvatar extends StatelessWidget {
             backgroundColor: AppColors.lightGrey,
             backgroundImage: FileImage(file!),
           )
-        : UserAvatar(name: user?.name ?? "", imageUrl: user?.picture);
+        : UserAvatar(
+            name: user?.name ?? "",
+            imageUrl: "${user!.picture}?v=$imageVersion",
+          );
   }
 }

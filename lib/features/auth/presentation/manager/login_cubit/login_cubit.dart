@@ -3,10 +3,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../../core/models/user_data_model.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/functions/user_data_local.dart';
-
+import '../../../../../core/models/user_data_model.dart';
 import '../../../data/repos/auth_repo.dart';
 import '../../../data/repos/user_data_repo.dart';
 

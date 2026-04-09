@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../manager/update_profile_cubit/update_profile_cubit.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
@@ -13,7 +15,8 @@ void handleSettingsAction({
 }) {
   switch (action) {
     case SettingsActionType.myAccount:
-      context.push(Routes.editProfileView);
+      final cubit = context.read<UpdateProfileCubit>();
+      context.push(Routes.editProfileView, args: cubit);
       break;
 
     case SettingsActionType.privacy:

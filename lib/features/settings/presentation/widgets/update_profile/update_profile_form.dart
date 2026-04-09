@@ -62,7 +62,11 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ProfileAvatar(user: user, file: state.file),
+                  ProfileAvatar(
+                    user: user,
+                    file: state.file,
+                    imageVersion: state.imageVersion,
+                  ),
                   const SizedBox(height: 5),
                   const ChangePictureButton(),
                   NameTextField(nameController: nameController),

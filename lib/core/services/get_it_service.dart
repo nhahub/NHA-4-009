@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'supabase_storage_service.dart';
-import '../../features/auth/data/repos/user_data_repo.dart';
-import '../../features/auth/data/services/user_data_service.dart';
-import '../../features/settings/data/repos/profile_image_service.dart';
-import '../../features/settings/data/repos/profile_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
+import '../../features/auth/data/repos/user_data_repo.dart';
+import '../../features/auth/data/services/supabase_auth_service.dart';
+import '../../features/auth/data/services/user_data_service.dart';
 import '../../features/home/data/repos/quote_repo.dart';
 import '../../features/home/data/repos/water_repo.dart';
 import '../../features/home/data/services/quotes_local_service.dart';
@@ -37,6 +35,7 @@ import '../../features/settings/data/repos/app_rating_repo.dart';
 import '../../features/settings/data/repos/privacy_policy_repo.dart';
 import '../../features/settings/data/repos/settings_repo.dart';
 import '../../features/settings/data/repos/terms_repo.dart';
+import '../../features/settings/data/repos/update_profile_repo.dart';
 import '../../features/settings/data/services/app_rating_local_service.dart';
 import '../../features/settings/data/services/app_rating_service.dart';
 import '../../features/settings/data/services/privacy_policy_local_service.dart';
@@ -51,8 +50,8 @@ import '../../features/therapist/data/services/booking_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
-import '../../features/auth/data/services/supabase_auth_service.dart';
 import 'supabase_crud_service.dart';
+import 'supabase_storage_service.dart';
 
 final getIt = GetIt.instance;
 
@@ -285,17 +284,13 @@ Future<void> setupGetIt() async {
     ),
   );
 
-  // Images Repo
-  getIt.registerLazySingleton<ProfileImageService>(
-    () => ProfileImageService(
+  // Update Profile Repo
+  getIt.registerLazySingleton<UpdateProfileRepo>(
+    () => UpdateProfileRepo(
+      userDataService: getIt(),
       supabaseStorageService: getIt(),
       supabaseCRUDService: getIt(),
     ),
-  );
-
-  // Profile Repo
-  getIt.registerLazySingleton<ProfileRepo>(
-    () => ProfileRepo(userDataRepo: getIt(), profileImageService: getIt()),
   );
 
   // Audio Player Service

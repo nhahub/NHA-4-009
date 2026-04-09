@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/functions/user_data_local.dart';
-import '../../../../core/networking/api_error_handler.dart';
-import '../services/user_data_service.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/models/user_data_model.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../services/user_data_service.dart';
 
 class UserDataRepo {
   UserDataService userDataService;

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/auth/data/repos/user_data_repo.dart';
-import '../../features/settings/data/repos/profile_repo.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
+import '../../features/auth/data/repos/user_data_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import '../../features/auth/presentation/manager/register_cubit/register_cubit.dart';
@@ -359,12 +358,11 @@ class AppRouter {
         );
 
       case Routes.editProfileView:
+        final cubit = settings.arguments as UpdateProfileCubit;
+
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => UpdateProfileCubit(
-              userDataRepo: getIt.get<UserDataRepo>(),
-              profileRepo: getIt.get<ProfileRepo>(),
-            ),
+          builder: (context) => BlocProvider.value(
+            value: cubit,
             child: const UpdateProfileView(),
           ),
         );
