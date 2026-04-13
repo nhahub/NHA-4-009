@@ -133,7 +133,7 @@ Future<void> setupGetIt() async {
 
   // Auth Repo
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepo(supabaseAuthService: getIt()),
+    () => AuthRepo(supabaseAuthService: getIt(), userDataRepo: getIt()),
   );
 
   // Mood Repo

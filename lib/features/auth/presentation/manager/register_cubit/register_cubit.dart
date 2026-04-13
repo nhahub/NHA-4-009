@@ -1,25 +1,15 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../../../../core/errors/failure.dart';
-import '../../../../../core/functions/user_data_local.dart';
-import '../../../../../core/models/user_data_model.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/repos/auth_repo.dart';
-import '../../../data/repos/user_data_repo.dart';
-
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  final UserDataRepo _userDataRepo;
   final AuthRepo _authRepo;
-  RegisterCubit({
-    required AuthRepo authRepo,
-    required UserDataRepo userDataRepo,
-  }) : _authRepo = authRepo,
-       _userDataRepo = userDataRepo,
-       super(RegisterInitialState());
+
+  RegisterCubit({required AuthRepo authRepo})
+    : _authRepo = authRepo,
+      super(RegisterInitialState());
 
   Future<void> register({
     required String email,
@@ -27,38 +17,13 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String name,
   }) async {
     emit(RegisterLoadingState());
-
-    final Either<Failure, AuthResponse> response = await _authRepo.register(
-      email: email,
-      password: password,
-      name: name,
-    );
-    return response.fold(
-      (failure) => emit(RegisterFailureState(message: failure.message)),
-      (authResponse) {
-        _saveUserData(
-          userDataModel: UserDataModel(
-            userId: authResponse.user!.id,
-            name: name,
-            email: authResponse.user!.email,
-          ),
-        );
-        emit(RegisterSuccessState());
-      },
-    );
-  }
-
-  Future<void> _saveUserData({required UserDataModel userDataModel}) async {
-    final Either<Failure, UserDataModel> result = await _userDataRepo
-        .updateUserData(userDataModel: userDataModel);
-
-    return result.fold(
-      (failure) {
-        return emit(RegisterFailureState(message: failure.message));
-      },
-      (userData) async {
-        return await saveUserDataLocal(userDataModel: userData);
-      },
-    );
+    try {
+      await _authRepo.register(email: email, password: password, name: name);
+      emit(RegisterSuccessState());
+    } catch (e) {
+      emit(
+        RegisterFailureState(message: ApiErrorHandler.handle(error: e).message),
+      );
+    }
   }
 }

@@ -1,10 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/repos/auth_repo.dart';
-
 part 'forgot_password_state.dart';
 
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
@@ -13,16 +10,18 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   ForgotPasswordCubit({required AuthRepo authRepo})
     : _authRepo = authRepo,
       super(ForgotPasswordInitialState());
-  // Forgot Password
+
   Future<void> forgotPassword(String email) async {
     emit(ForgotPasswordLoadingState());
-
-    final Either<Failure, void> response = await _authRepo.forgotPassword(
-      email: email,
-    );
-    return response.fold(
-      (failure) => emit(ForgotPasswordFailureState(message: failure.message)),
-      (_) => emit(ForgotPasswordSuccessState()),
-    );
+    try {
+      await _authRepo.forgotPassword(email: email);
+      emit(ForgotPasswordSuccessState());
+    } catch (e) {
+      emit(
+        ForgotPasswordFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

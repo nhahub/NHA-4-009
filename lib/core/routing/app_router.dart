@@ -98,10 +98,7 @@ class AppRouter {
       case Routes.loginView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => LoginCubit(
-              authRepo: getIt.get<AuthRepo>(),
-              userDataRepo: getIt.get<UserDataRepo>(),
-            ),
+            create: (context) => LoginCubit(authRepo: getIt.get<AuthRepo>()),
             child: const LoginView(),
           ),
         );
@@ -109,10 +106,7 @@ class AppRouter {
       case Routes.registerView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => RegisterCubit(
-              authRepo: getIt.get<AuthRepo>(),
-              userDataRepo: getIt.get<UserDataRepo>(),
-            ),
+            create: (context) => RegisterCubit(authRepo: getIt.get<AuthRepo>()),
             child: const RegisterView(),
           ),
         );

@@ -11,36 +11,24 @@ class UserDataRepo {
   UserDataRepo({required UserDataService userDataService})
     : _userDataService = userDataService;
 
-  Future<Either<Failure, bool>> isUserExists() async {
-    try {
-      final bool response = await _userDataService.isUserExists();
-      return right(response);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<bool> isUserExists() async {
+    final bool response = await _userDataService.isUserExists();
+    return response;
   }
 
-  Future<Either<Failure, UserDataModel>> updateUserData({
+  Future<UserDataModel> updateUserData({
     required UserDataModel userDataModel,
   }) async {
-    try {
-      final UserDataModel response = await _userDataService.updateUserData(
-        userDataModel: userDataModel,
-      );
-      saveUserDataLocal(userDataModel: userDataModel);
-      return right(response);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    final UserDataModel response = await _userDataService.updateUserData(
+      userDataModel: userDataModel,
+    );
+    await saveUserDataLocal(userDataModel: userDataModel);
+    return response;
   }
 
-  Future<Either<Failure, UserDataModel?>> getUserData() async {
-    try {
-      final UserDataModel? response = await _userDataService.getUserData();
-      return right(response);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<UserDataModel?> getUserData() async {
+    final UserDataModel? response = await _userDataService.getUserData();
+    return response;
   }
 
   Future<Either<Failure, void>> updateUserFields({
