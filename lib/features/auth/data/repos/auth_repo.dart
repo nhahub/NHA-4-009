@@ -6,16 +6,17 @@ import '../../../../core/networking/api_error_handler.dart';
 import '../services/supabase_auth_service.dart';
 
 class AuthRepo {
-  final SupabaseAuthService supabaseAuthService;
+  final SupabaseAuthService _supabaseAuthService;
 
-  AuthRepo({required this.supabaseAuthService});
+  AuthRepo({required SupabaseAuthService supabaseAuthService})
+    : _supabaseAuthService = supabaseAuthService;
 
   Future<Either<Failure, AuthResponse>> loginWithEmail({
     required String email,
     required String password,
   }) async {
     try {
-      final AuthResponse response = await supabaseAuthService.loginWithEmail(
+      final AuthResponse response = await _supabaseAuthService.loginWithEmail(
         email: email,
         password: password,
       );
@@ -27,7 +28,7 @@ class AuthRepo {
 
   Future<Either<Failure, AuthResponse?>> loginWithGoogle() async {
     try {
-      final AuthResponse? response = await supabaseAuthService
+      final AuthResponse? response = await _supabaseAuthService
           .loginWithGoogle();
       return right(response);
     } catch (e) {
@@ -41,7 +42,7 @@ class AuthRepo {
     required String password,
   }) async {
     try {
-      final AuthResponse response = await supabaseAuthService.register(
+      final AuthResponse response = await _supabaseAuthService.register(
         email: email,
         password: password,
       );
@@ -53,7 +54,7 @@ class AuthRepo {
 
   Future<Either<Failure, void>> forgotPassword({required String email}) async {
     try {
-      await supabaseAuthService.forgotPassword(email: email);
+      await _supabaseAuthService.forgotPassword(email: email);
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

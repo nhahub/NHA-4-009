@@ -9,13 +9,14 @@ import '../../../data/repos/therapist_repo.dart';
 part 'therapist_state.dart';
 
 class TherapistCubit extends Cubit<TherapistState> {
-  final TherapistRepo therapistRepo;
+  final TherapistRepo _therapistRepo;
 
-  TherapistCubit({required this.therapistRepo})
-    : super(GetTherapistsLoadingState());
+  TherapistCubit({required TherapistRepo therapistRepo})
+    : _therapistRepo = therapistRepo,
+      super(GetTherapistsLoadingState());
 
   void getTherapists() async {
-    final Either<Failure, List<TherapistModel>> result = await therapistRepo
+    final Either<Failure, List<TherapistModel>> result = await _therapistRepo
         .getTherapists();
 
     result.fold(

@@ -14,15 +14,19 @@ import '../../../data/repos/chat_repo.dart';
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
-  final ChatRepo chatRepo;
+  final ChatRepo _chatRepo;
   StreamSubscription<Either<Failure, List<MessageModel>>>? _sub;
 
-  ChatCubit({required this.chatRepo}) : super(ChatInitialState());
+  ChatCubit({required ChatRepo chatRepo})
+    : _chatRepo = chatRepo,
+      super(ChatInitialState());
   String? _roomId;
 
   void loadMessages({required String therapistId}) async {
     emit(ChatLoadingState());
-    final roomResult = await chatRepo.getOrCreateRoom(therapistId: therapistId);
+    final roomResult = await _chatRepo.getOrCreateRoom(
+      therapistId: therapistId,
+    );
 
     if (roomResult.isLeft()) {
       emit(
@@ -38,7 +42,7 @@ class ChatCubit extends Cubit<ChatState> {
     _roomId = roomResult.getOrElse(() => "");
 
     // Get messages
-    final Either<Failure, List<MessageModel>> result = await chatRepo
+    final Either<Failure, List<MessageModel>> result = await _chatRepo
         .getMessages(roomId: _roomId!);
 
     result.fold(
@@ -47,7 +51,7 @@ class ChatCubit extends Cubit<ChatState> {
     );
 
     // Listen to messages
-    _sub = chatRepo.listenToMessages(roomId: _roomId!).listen((either) {
+    _sub = _chatRepo.listenToMessages(roomId: _roomId!).listen((either) {
       either.fold(
         (failure) => emit(ChatFailureState(errorMsg: failure.message)),
         (messages) => emit(ChatLoadedState(messages: messages)),
@@ -68,7 +72,7 @@ class ChatCubit extends Cubit<ChatState> {
       message: text,
       createdAt: DateTime.now(),
     );
-    
+
     if (state is ChatLoadedState) {
       final currentMessages = List<MessageModel>.from(
         (state as ChatLoadedState).messages,
@@ -76,7 +80,7 @@ class ChatCubit extends Cubit<ChatState> {
       currentMessages.add(msg);
       emit(ChatLoadedState(messages: currentMessages));
     }
-    final Either<Failure, void> result = await chatRepo.sendMessage(msg: msg);
+    final Either<Failure, void> result = await _chatRepo.sendMessage(msg: msg);
 
     result.fold(
       (failure) => emit(ChatFailureState(errorMsg: failure.message)),

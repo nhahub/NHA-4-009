@@ -7,16 +7,18 @@ import '../services/mood_local_service.dart';
 import '../services/recommendation_local_service.dart';
 
 class RecommendationRepo {
-  final RecommendationLocalService recommendationLocalService;
+  final RecommendationLocalService _recommendationLocalService;
 
-  RecommendationRepo({required this.recommendationLocalService});
+  RecommendationRepo({
+    required RecommendationLocalService recommendationLocalService,
+  }) : _recommendationLocalService = recommendationLocalService;
 
   Future<Either<Failure, RecommendationModel>> getRecommendationData() async {
     try {
       final moodName = MoodLocalService.getSelectedDailyMood();
 
       final RecommendationModel recommendationData =
-          await recommendationLocalService.getRecommendationData(
+          await _recommendationLocalService.getRecommendationData(
             moodName: moodName?.toLowerCase() ?? "calm",
           );
 

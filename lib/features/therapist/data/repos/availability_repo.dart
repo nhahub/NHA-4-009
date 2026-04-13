@@ -6,15 +6,16 @@ import '../models/time_slot_model.dart';
 import '../services/availability_service.dart';
 
 class AvailabilityRepo {
-  final AvailabilityService availabilityService;
+  final AvailabilityService _availabilityService;
 
-  AvailabilityRepo({required this.availabilityService});
+  AvailabilityRepo({required AvailabilityService availabilityService})
+    : _availabilityService = availabilityService;
 
   Future<Either<Failure, Map<int, List<TimeSlotModel>>>> getTimeSlots({
     required String therapistId,
   }) async {
     try {
-      final slotsByDay = await availabilityService.getTimeSlots(
+      final slotsByDay = await _availabilityService.getTimeSlots(
         therapistId: therapistId,
       );
       return right(slotsByDay);

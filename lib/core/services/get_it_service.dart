@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -53,7 +54,7 @@ import '../../features/therapist/data/services/therapist_service.dart';
 import 'supabase_crud_service.dart';
 import 'supabase_storage_service.dart';
 
-final getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
   // Supabase
@@ -107,10 +108,7 @@ Future<void> setupGetIt() async {
 
   // Questionnaire Service
   getIt.registerLazySingleton<QuestionnaireService>(
-    () => QuestionnaireService(
-      supabaseService: getIt(),
-      supabaseAuthService: getIt(),
-    ),
+    () => QuestionnaireService(supabaseService: getIt()),
   );
 
   getIt.registerLazySingleton<QuestionnaireRepo>(
@@ -129,7 +127,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<WaterRepo>(() => WaterRepo());
 
   // Supabase Auth Service
-  getIt.registerLazySingleton<SupabaseAuthService>(() => SupabaseAuthService());
+  getIt.registerLazySingleton<SupabaseAuthService>(
+    () => SupabaseAuthService(supabase: getIt()),
+  );
 
   // Auth Repo
   getIt.registerLazySingleton<AuthRepo>(
@@ -293,6 +293,9 @@ Future<void> setupGetIt() async {
     ),
   );
 
+  // Audio Player
+  getIt.registerLazySingleton<AudioPlayer>(() => AudioPlayer());
+
   // Audio Player Service
-  getIt.registerFactory(() => AudioPlayerService());
+  getIt.registerFactory(() => AudioPlayerService(player: getIt()));
 }

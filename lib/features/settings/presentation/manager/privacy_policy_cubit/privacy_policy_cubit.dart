@@ -9,14 +9,15 @@ import '../../../data/repos/privacy_policy_repo.dart';
 part 'privacy_policy_state.dart';
 
 class PrivacyPolicyCubit extends Cubit<PrivacyPolicyState> {
-  final PrivacyPolicyRepo privacyPolicyRepo;
+  final PrivacyPolicyRepo _privacyPolicyRepo;
 
-  PrivacyPolicyCubit({required this.privacyPolicyRepo})
-    : super(PrivacyPolicyLoadingState());
+  PrivacyPolicyCubit({required PrivacyPolicyRepo privacyPolicyRepo})
+    : _privacyPolicyRepo = privacyPolicyRepo,
+      super(PrivacyPolicyLoadingState());
 
   Future<void> getPrivacyPolicy() async {
-    final Either<Failure, List<LegalDataModel>> result = await privacyPolicyRepo
-        .getPrivacyPolicy();
+    final Either<Failure, List<LegalDataModel>> result =
+        await _privacyPolicyRepo.getPrivacyPolicy();
 
     result.fold(
       (failure) => emit(PrivacyPolicyFailureState(message: failure.message)),

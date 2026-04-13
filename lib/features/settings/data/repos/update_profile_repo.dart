@@ -10,15 +10,17 @@ import '../../../../core/services/supabase_storage_service.dart';
 import '../../../../core/errors/failure.dart';
 
 class UpdateProfileRepo {
-  final UserDataService userDataService;
-  final SupabaseStorageService supabaseStorageService;
-  final SupabaseCRUDService supabaseCRUDService;
+  final UserDataService _userDataService;
+  final SupabaseStorageService _supabaseStorageService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
   UpdateProfileRepo({
-    required this.userDataService,
-    required this.supabaseStorageService,
-    required this.supabaseCRUDService,
-  });
+    required UserDataService userDataService,
+    required SupabaseStorageService supabaseStorageService,
+    required SupabaseCRUDService supabaseCRUDService,
+  }) : _supabaseCRUDService = supabaseCRUDService,
+       _supabaseStorageService = supabaseStorageService,
+       _userDataService = userDataService;
 
   Future<Either<Failure, UserDataModel?>> updateProfile({
     String? name,
@@ -32,7 +34,7 @@ class UpdateProfileRepo {
         imageUrl = await _uploadProfileImageToStorage(imageFile: file);
       }
 
-      await userDataService.updateUserFields(
+      await _userDataService.updateUserFields(
         name: name,
         phone: phone,
         picture: imageUrl == getUser()?.picture ? null : imageUrl,
@@ -51,16 +53,16 @@ class UpdateProfileRepo {
   }
 
   Future<String> _uploadProfileImageToStorage({required File imageFile}) async {
-    final String userId = supabaseCRUDService.getCurrentUserId()!;
+    final String userId = _supabaseCRUDService.getCurrentUserId()!;
     final String filePath = "$kProfileImagesPath/$userId.jpg";
 
-    await supabaseStorageService.uploadFile(
+    await _supabaseStorageService.uploadFile(
       file: imageFile,
       bucketName: kUsersImagesBucket,
       filePath: filePath,
     );
 
-    final String publicUrl = supabaseStorageService.getFileUrl(
+    final String publicUrl = _supabaseStorageService.getFileUrl(
       filePath: filePath,
       bucketName: kUsersImagesBucket,
     );

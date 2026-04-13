@@ -8,30 +8,34 @@ import '../services/subscription_local_service.dart';
 import '../services/subscription_remote_service.dart';
 
 class SubscriptionRepo {
-  final SubscriptionLocalService local;
-  final SubscriptionRemoteService remote;
+  final SubscriptionLocalService _local;
+  final SubscriptionRemoteService _remote;
 
-  SubscriptionRepo({required this.local, required this.remote});
+  SubscriptionRepo({
+    required SubscriptionLocalService local,
+    required SubscriptionRemoteService remote,
+  }) : _remote = remote,
+       _local = local;
 
   Future<Either<Failure, bool>> checkSubscription() async {
     try {
-      final localStatus = local.getSubscription()?.status;
-      final localEndDate = local.getSubscription()?.endDate;
+      final localStatus = _local.getSubscription()?.status;
+      final localEndDate = _local.getSubscription()?.endDate;
 
       if (localStatus != null && localEndDate != null) {
         final isActive = _isLocalActive(localStatus, localEndDate);
 
         if (!isActive) {
-          await remote.deleteUserSubscription();
+          await _remote.deleteUserSubscription();
         }
 
         return right(isActive);
       }
 
-      final SubscriptionModel? remoteSub = await remote.getUserSubscription();
+      final SubscriptionModel? remoteSub = await _remote.getUserSubscription();
 
       if (remoteSub != null) {
-        await local.cacheSubscription(subscriptionModel: remoteSub);
+        await _local.cacheSubscription(subscriptionModel: remoteSub);
 
         return right(_isLocalActive(remoteSub.status, remoteSub.endDate));
       }
@@ -46,11 +50,11 @@ class SubscriptionRepo {
     required String type,
   }) async {
     try {
-      final SubscriptionModel sub = await remote.createUserSubscription(
+      final SubscriptionModel sub = await _remote.createUserSubscription(
         type: type,
       );
 
-      await local.cacheSubscription(subscriptionModel: sub);
+      await _local.cacheSubscription(subscriptionModel: sub);
 
       return right(null);
     } catch (e) {
@@ -61,7 +65,7 @@ class SubscriptionRepo {
 
   bool _isLocalActive(String status, DateTime endDate) {
     if (DateTime.now().isAfter(endDate)) {
-      local.markInactive();
+      _local.markInactive();
       return false;
     }
 

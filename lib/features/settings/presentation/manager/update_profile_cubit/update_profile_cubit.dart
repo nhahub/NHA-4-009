@@ -11,10 +11,11 @@ import 'package:path_provider/path_provider.dart';
 part 'update_profile_state.dart';
 
 class UpdateProfileCubit extends Cubit<UpdateProfileState> {
-  final UpdateProfileRepo updateProfileRepo;
+  final UpdateProfileRepo _updateProfileRepo;
 
-  UpdateProfileCubit({required this.updateProfileRepo})
-    : super(UpdateProfileState(userDataModel: getUser()));
+  UpdateProfileCubit({required UpdateProfileRepo updateProfileRepo})
+    : _updateProfileRepo = updateProfileRepo,
+      super(UpdateProfileState(userDataModel: getUser()));
 
   void updatePhoneNumber(String? phone) {
     emit(
@@ -31,7 +32,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   Future<void> updateProfile({String? name, String? phone, File? file}) async {
     emit(state.copyWith(status: UpdateProfileStatus.loading));
 
-    final Either<Failure, UserDataModel?> result = await updateProfileRepo
+    final Either<Failure, UserDataModel?> result = await _updateProfileRepo
         .updateProfile(name: name, phone: phone, file: file);
 
     result.fold(

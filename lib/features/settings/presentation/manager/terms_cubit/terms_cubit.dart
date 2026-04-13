@@ -9,12 +9,14 @@ import '../../../data/repos/terms_repo.dart';
 part 'terms_state.dart';
 
 class TermsCubit extends Cubit<TermsState> {
-  final TermsRepo termsRepo;
+  final TermsRepo _termsRepo;
 
-  TermsCubit({required this.termsRepo}) : super(TermsLoadingState());
+  TermsCubit({required TermsRepo termsRepo})
+    : _termsRepo = termsRepo,
+      super(TermsLoadingState());
 
   Future<void> getTerms() async {
-    final Either<Failure, List<LegalDataModel>> result = await termsRepo
+    final Either<Failure, List<LegalDataModel>> result = await _termsRepo
         .getTerms();
     result.fold(
       (failure) => emit(TermsFailuerState(message: failure.message)),

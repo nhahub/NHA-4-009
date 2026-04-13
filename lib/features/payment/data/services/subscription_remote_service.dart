@@ -4,9 +4,10 @@ import '../../../../core/services/supabase_crud_service.dart';
 import '../models/subscription_model.dart';
 
 class SubscriptionRemoteService {
-  final SupabaseCRUDService supabaseCRUDService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
-  SubscriptionRemoteService({required this.supabaseCRUDService});
+  SubscriptionRemoteService({required SupabaseCRUDService supabaseCRUDService})
+    : _supabaseCRUDService = supabaseCRUDService;
 
   Future<SubscriptionModel> createUserSubscription({
     required String type, // monthly / yearly
@@ -24,7 +25,7 @@ class SubscriptionRemoteService {
       status: 'active',
     );
 
-    final Map<String, dynamic> data = await supabaseCRUDService
+    final Map<String, dynamic> data = await _supabaseCRUDService
         .upsertDataAndReturnRow(
           table: kSubscriptionsTable,
           data: subscription.toJson(),
@@ -39,7 +40,7 @@ class SubscriptionRemoteService {
   }
 
   Future<SubscriptionModel?> getUserSubscription() async {
-    final Map<String, dynamic>? data = await supabaseCRUDService.getSingleRow(
+    final Map<String, dynamic>? data = await _supabaseCRUDService.getSingleRow(
       table: kSubscriptionsTable,
       whereColumn: "user_id",
       whereValue: getUser()!.userId,
@@ -52,7 +53,7 @@ class SubscriptionRemoteService {
   }
 
   Future<void> deleteUserSubscription() async {
-    await supabaseCRUDService.deleteData(
+    await _supabaseCRUDService.deleteData(
       table: kSubscriptionsTable,
       idColumn: "user_id",
       idValue: getUser()!.userId,

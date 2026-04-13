@@ -6,15 +6,16 @@ import '../../../data/repos/subscription_repo.dart';
 part 'subscription_state.dart';
 
 class SubscriptionCubit extends Cubit<SubscriptionState> {
-  final SubscriptionRepo subscriptionRepo;
+  final SubscriptionRepo _subscriptionRepo;
 
-  SubscriptionCubit({required this.subscriptionRepo})
-    : super(SubscriptionInitialState());
+  SubscriptionCubit({required SubscriptionRepo subscriptionRepo})
+    : _subscriptionRepo = subscriptionRepo,
+      super(SubscriptionInitialState());
 
   Future<void> checkSubscription() async {
     emit(SubscriptionLoadingState());
 
-    final result = await subscriptionRepo.checkSubscription();
+    final result = await _subscriptionRepo.checkSubscription();
 
     result.fold(
       (failure) {
@@ -29,7 +30,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   Future<void> createSubscription(String type) async {
     emit(SubscriptionLoadingState());
 
-    final result = await subscriptionRepo.createSubscription(type: type);
+    final result = await _subscriptionRepo.createSubscription(type: type);
 
     result.fold(
       (failure) {

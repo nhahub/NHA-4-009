@@ -8,15 +8,16 @@ import '../../../data/repos/auth_repo.dart';
 part 'forgot_password_state.dart';
 
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
-  final AuthRepo authRepo;
+  final AuthRepo _authRepo;
 
-  ForgotPasswordCubit({required this.authRepo})
-    : super(ForgotPasswordInitialState());
+  ForgotPasswordCubit({required AuthRepo authRepo})
+    : _authRepo = authRepo,
+      super(ForgotPasswordInitialState());
   // Forgot Password
   Future<void> forgotPassword(String email) async {
     emit(ForgotPasswordLoadingState());
 
-    final Either<Failure, void> response = await authRepo.forgotPassword(
+    final Either<Failure, void> response = await _authRepo.forgotPassword(
       email: email,
     );
     return response.fold(

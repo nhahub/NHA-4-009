@@ -1,18 +1,18 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseCRUDService {
-  final SupabaseClient client;
+  final SupabaseClient _client;
 
-  SupabaseCRUDService({required this.client});
+  SupabaseCRUDService({required SupabaseClient client}) : _client = client;
 
-  String? getCurrentUserId() => client.auth.currentUser?.id;
+  String? getCurrentUserId() => _client.auth.currentUser?.id;
 
   /// Add data
   Future<void> addData({
     required String table,
     required Map<String, dynamic> data,
   }) async {
-    await client.from(table).insert(data);
+    await _client.from(table).insert(data);
   }
 
   // Add data and return field
@@ -21,7 +21,7 @@ class SupabaseCRUDService {
     required String field,
     required Map<String, dynamic> data,
   }) async {
-    final response = await client
+    final response = await _client
         .from(table)
         .insert(data)
         .select(field)
@@ -33,7 +33,11 @@ class SupabaseCRUDService {
     required String table,
     required Map<String, dynamic> data,
   }) async {
-    final response = await client.from(table).insert(data).select('*').single();
+    final response = await _client
+        .from(table)
+        .insert(data)
+        .select('*')
+        .single();
 
     return Map<String, dynamic>.from(response);
   }
@@ -44,7 +48,7 @@ class SupabaseCRUDService {
     required Map<String, dynamic> data,
     String? onConflict,
   }) async {
-    await client.from(table).upsert(data, onConflict: onConflict);
+    await _client.from(table).upsert(data, onConflict: onConflict);
   }
 
   /// Upsert single data (insert or update on conflict) and return the row
@@ -53,7 +57,7 @@ class SupabaseCRUDService {
     required Map<String, dynamic> data,
     String? onConflict,
   }) async {
-    final response = await client
+    final response = await _client
         .from(table)
         .upsert(data, onConflict: onConflict)
         .select()
@@ -69,7 +73,7 @@ class SupabaseCRUDService {
     int? limit,
     Map<String, dynamic>? filters,
   }) async {
-    dynamic query = client.from(table).select();
+    dynamic query = _client.from(table).select();
 
     if (filters != null) {
       filters.forEach((key, value) {
@@ -95,7 +99,7 @@ class SupabaseCRUDService {
     required String whereColumn,
     required dynamic whereValue,
   }) async {
-    final res = await client
+    final res = await _client
         .from(table)
         .select()
         .eq(whereColumn, whereValue)
@@ -113,7 +117,7 @@ class SupabaseCRUDService {
     required String idColumn,
     required dynamic idValue,
   }) async {
-    await client.from(table).update(data).eq(idColumn, idValue);
+    await _client.from(table).update(data).eq(idColumn, idValue);
   }
 
   /// Delete data
@@ -122,7 +126,7 @@ class SupabaseCRUDService {
     required String idColumn,
     required dynamic idValue,
   }) async {
-    await client.from(table).delete().eq(idColumn, idValue);
+    await _client.from(table).delete().eq(idColumn, idValue);
   }
 
   /// Check if row exists
@@ -131,7 +135,7 @@ class SupabaseCRUDService {
     required String column,
     required dynamic value,
   }) async {
-    final response = await client
+    final response = await _client
         .from(table)
         .select(column)
         .eq(column, value)
@@ -149,7 +153,7 @@ class SupabaseCRUDService {
     bool ascending = true,
   }) {
     final query =
-        client.from(table).stream(primaryKey: primaryKey)
+        _client.from(table).stream(primaryKey: primaryKey)
             as Stream<List<Map<String, dynamic>>>;
 
     Stream<List<Map<String, dynamic>>> stream = query;

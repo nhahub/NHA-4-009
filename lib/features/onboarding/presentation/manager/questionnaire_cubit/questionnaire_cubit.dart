@@ -12,12 +12,13 @@ part 'questionnaire_state.dart';
 
 class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   final QuestionnaireRepo _questionnaireRepo;
-  final UserDataRepo userDataRepo;
+  final UserDataRepo _userDataRepo;
 
   QuestionnaireCubit({
     required QuestionnaireRepo questionnaireRepo,
-    required this.userDataRepo,
-  }) : _questionnaireRepo = questionnaireRepo,
+    required UserDataRepo userDataRepo,
+  }) : _userDataRepo = userDataRepo,
+       _questionnaireRepo = questionnaireRepo,
        super(QuestionnaireInitialState());
 
   List<QuestionModel> getQuestions() {
@@ -51,7 +52,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     result.fold(
       (failure) => emit(QuestionnaireFailureState(message: failure.message)),
       (_) async {
-        await userDataRepo.updateUserFields(isOldUser: true);
+        await _userDataRepo.updateUserFields(isOldUser: true);
         return emit(QuestionnaireUploadedState());
       },
     );

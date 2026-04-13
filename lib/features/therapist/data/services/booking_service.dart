@@ -4,19 +4,20 @@ import '../../../../core/services/supabase_crud_service.dart';
 import '../models/booking_model.dart';
 
 class BookingService {
-  final SupabaseCRUDService supabaseCRUDService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
-  BookingService({required this.supabaseCRUDService});
+  BookingService({required SupabaseCRUDService supabaseCRUDService})
+    : _supabaseCRUDService = supabaseCRUDService;
 
   Future<void> bookingSession({
     required BookingModel bookingModel,
     required String slotId,
   }) async {
-    await supabaseCRUDService.addData(
+    await _supabaseCRUDService.addData(
       table: kBookingsTable,
       data: bookingModel.toJson(),
     );
-    await supabaseCRUDService.updateData(
+    await _supabaseCRUDService.updateData(
       table: kTimeSlotsTable,
       idColumn: "id",
       idValue: slotId,
@@ -27,7 +28,7 @@ class BookingService {
   Future<List<BookingModel>> getBookingSessions() async {
     final String currentUserId = getUser()!.userId;
 
-    final List<Map<String, dynamic>> data = await supabaseCRUDService.getData(
+    final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
       table: kBookingsTable,
       orderBy: 'created_at',
       filters: {"user_id": currentUserId},
@@ -40,12 +41,12 @@ class BookingService {
     required String bookingId,
     required String slotId,
   }) async {
-    await supabaseCRUDService.deleteData(
+    await _supabaseCRUDService.deleteData(
       table: kBookingsTable,
       idColumn: 'id',
       idValue: bookingId,
     );
-    await supabaseCRUDService.updateData(
+    await _supabaseCRUDService.updateData(
       table: kTimeSlotsTable,
       idColumn: "id",
       idValue: slotId,

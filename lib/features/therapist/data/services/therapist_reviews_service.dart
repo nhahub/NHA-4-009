@@ -2,14 +2,15 @@ import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
 class TherapistReviewsService {
-  final SupabaseCRUDService supabaseCRUDService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
-  TherapistReviewsService({required this.supabaseCRUDService});
+  TherapistReviewsService({required SupabaseCRUDService supabaseCRUDService})
+    : _supabaseCRUDService = supabaseCRUDService;
 
   Future<List<Map<String, dynamic>>> getReviews({
     required String therapistId,
   }) async {
-    final data = await supabaseCRUDService.getData(
+    final data = await _supabaseCRUDService.getData(
       table: kTherapistReviewsTable,
       filters: {'therapist_id': therapistId},
       orderBy: 'created_at',
@@ -19,7 +20,7 @@ class TherapistReviewsService {
   }
 
   Future<void> addReview({required Map<String, dynamic> data}) {
-    return supabaseCRUDService.addData(
+    return _supabaseCRUDService.addData(
       table: kTherapistReviewsTable,
       data: data,
     );
@@ -29,7 +30,7 @@ class TherapistReviewsService {
     required String ratingId,
     required Map<String, dynamic> updatedData,
   }) {
-    return supabaseCRUDService.updateData(
+    return _supabaseCRUDService.updateData(
       table: kTherapistReviewsTable,
       data: updatedData,
       idColumn: 'id',
@@ -38,7 +39,7 @@ class TherapistReviewsService {
   }
 
   Future<void> deleteReview({required String ratingId}) {
-    return supabaseCRUDService.deleteData(
+    return _supabaseCRUDService.deleteData(
       table: kTherapistReviewsTable,
       idColumn: 'id',
       idValue: ratingId,

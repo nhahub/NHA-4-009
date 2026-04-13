@@ -10,9 +10,9 @@ import '../models/stripe/stripe_customer_model/stripe_customer_model.dart';
 import 'api_service.dart';
 
 class StripeService {
-  final ApiService apiService;
+  final ApiService _apiService;
 
-  StripeService({required this.apiService});
+  StripeService({required ApiService apiService}) : _apiService = apiService;
 
   static Future<void> init() async {
     Stripe.publishableKey = ApiKeys.stripePublishableKey;
@@ -21,7 +21,7 @@ class StripeService {
   Future<PaymentIntentModel> createPaymentIntent({
     required PaymentIntentInputModel paymentIntentInputModel,
   }) {
-    return apiService.createPaymentIntent(
+    return _apiService.createPaymentIntent(
       authorizationHeader: "Bearer ${ApiKeys.stripeSecretKey}",
       contentType: "application/x-www-form-urlencoded",
       amount: paymentIntentInputModel.amount,
@@ -33,7 +33,7 @@ class StripeService {
   Future<StripeCustomerModel> createCustomer({
     required CreateCustomerInputModel createCustomerInputModel,
   }) {
-    return apiService.createCustomer(
+    return _apiService.createCustomer(
       authorizationHeader: "Bearer ${ApiKeys.stripeSecretKey}",
       contentType: "application/x-www-form-urlencoded",
       name: createCustomerInputModel.name,
@@ -44,7 +44,7 @@ class StripeService {
   Future<CreateEphemeralKeyModel> createEphemeralKey({
     required String customerId,
   }) {
-    return apiService.createEphemeralKey(
+    return _apiService.createEphemeralKey(
       authorizationHeader: "Bearer ${ApiKeys.stripeSecretKey}",
       contentType: "application/x-www-form-urlencoded",
       stripeVersion: "2026-01-28.clover",

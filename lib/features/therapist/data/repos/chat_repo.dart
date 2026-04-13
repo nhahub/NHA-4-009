@@ -7,15 +7,15 @@ import '../models/message_model.dart';
 import '../services/chat_service.dart';
 
 class ChatRepo {
-  final ChatService chatService;
+  final ChatService _chatService;
 
-  ChatRepo({required this.chatService});
+  ChatRepo({required ChatService chatService}) : _chatService = chatService;
 
   Future<Either<Failure, String>> getOrCreateRoom({
     required String therapistId,
   }) async {
     try {
-      final roomId = await chatService.getOrCreateRoom(
+      final roomId = await _chatService.getOrCreateRoom(
         userId: getUser()!.userId,
         therapistId: therapistId,
       );
@@ -29,7 +29,7 @@ class ChatRepo {
     required String roomId,
   }) async {
     try {
-      final List<Map<String, dynamic>> data = await chatService.getMessages(
+      final List<Map<String, dynamic>> data = await _chatService.getMessages(
         roomId: roomId,
       );
       final List<MessageModel> messages = data
@@ -43,7 +43,7 @@ class ChatRepo {
 
   Future<Either<Failure, void>> sendMessage({required MessageModel msg}) async {
     try {
-      await chatService.sendMessage(data: msg.toJson());
+      await _chatService.sendMessage(data: msg.toJson());
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
@@ -53,7 +53,7 @@ class ChatRepo {
   Stream<Either<Failure, List<MessageModel>>> listenToMessages({
     required String roomId,
   }) {
-    return chatService
+    return _chatService
         .listenToMessages(roomId)
         .map((data) {
           try {

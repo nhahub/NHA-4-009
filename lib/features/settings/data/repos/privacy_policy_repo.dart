@@ -6,13 +6,15 @@ import '../models/legal_data_model.dart';
 import '../services/privacy_policy_local_service.dart';
 
 class PrivacyPolicyRepo {
-  final PrivacyPolicyLocalService privacyPolicyLocalService;
+  final PrivacyPolicyLocalService _privacyPolicyLocalService;
 
-  PrivacyPolicyRepo({required this.privacyPolicyLocalService});
+  PrivacyPolicyRepo({
+    required PrivacyPolicyLocalService privacyPolicyLocalService,
+  }) : _privacyPolicyLocalService = privacyPolicyLocalService;
 
   Future<Either<Failure, List<LegalDataModel>>> getPrivacyPolicy() async {
     try {
-      final data = await privacyPolicyLocalService.getPrivacyPolicy();
+      final data = await _privacyPolicyLocalService.getPrivacyPolicy();
       return right(data);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

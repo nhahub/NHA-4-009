@@ -9,11 +9,13 @@ import '../../../data/repos/quote_repo.dart';
 part 'quote_state.dart';
 
 class QuoteCubit extends Cubit<QuoteState> {
-  final QuoteRepo quoteRepo;
-  QuoteCubit({required this.quoteRepo}) : super(QuoteLoadingState());
+  final QuoteRepo _quoteRepo;
+  QuoteCubit({required QuoteRepo quoteRepo})
+    : _quoteRepo = quoteRepo,
+      super(QuoteLoadingState());
 
   void getQuoteOfTheDay() async {
-    final Either<Failure, QuoteModel> response = await quoteRepo
+    final Either<Failure, QuoteModel> response = await _quoteRepo
         .getQuoteOfTheDay();
     response.fold(
       (failure) {

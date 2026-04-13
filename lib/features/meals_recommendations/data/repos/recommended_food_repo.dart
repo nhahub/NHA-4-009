@@ -10,9 +10,10 @@ import '../models/recommended_food_item_model.dart';
 import '../models/recommended_food_lists_model.dart';
 
 class RecommendedFoodRepo {
-  final RecommendedFoodLocalService localService;
+  final RecommendedFoodLocalService _localService;
 
-  RecommendedFoodRepo({required this.localService});
+  RecommendedFoodRepo({required RecommendedFoodLocalService localService})
+    : _localService = localService;
 
   Future<Either<Failure, List<RecommendedFoodItemModel>>> getRecommendedFood({
     required FoodType foodType,
@@ -20,7 +21,7 @@ class RecommendedFoodRepo {
     try {
       final String selectedDailyMood =
           MoodLocalService.getSelectedDailyMood() ?? "Calm";
-      final data = await localService.getRecommendedFoodData(
+      final data = await _localService.getRecommendedFoodData(
         moodType: moodTypeFromString(selectedDailyMood),
       );
       return right(data.getListByFoodType(foodType: foodType));

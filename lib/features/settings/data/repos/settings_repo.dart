@@ -6,13 +6,14 @@ import '../../../../core/networking/api_error_handler.dart';
 import '../../../auth/data/services/supabase_auth_service.dart';
 
 class SettingsRepo {
-  final SupabaseAuthService supabaseAuthService;
+  final SupabaseAuthService _supabaseAuthService;
 
-  SettingsRepo({required this.supabaseAuthService});
+  SettingsRepo({required SupabaseAuthService supabaseAuthService})
+    : _supabaseAuthService = supabaseAuthService;
 
   Future<Either<Failure, void>> logout() async {
     try {
-      await supabaseAuthService.logout();
+      await _supabaseAuthService.logout();
       await removeUserDataLocal();
       return right(null);
     } catch (e) {
@@ -24,8 +25,8 @@ class SettingsRepo {
     required String newPassword,
   }) async {
     try {
-      await supabaseAuthService.updateUserProfile(password: newPassword);
-      await supabaseAuthService.logout();
+      await _supabaseAuthService.updateUserProfile(password: newPassword);
+      await _supabaseAuthService.logout();
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

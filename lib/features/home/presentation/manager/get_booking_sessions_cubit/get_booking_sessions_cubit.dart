@@ -9,13 +9,14 @@ import '../../../../therapist/data/repos/booking_repo.dart';
 part 'get_booking_sessions_state.dart';
 
 class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
-  final BookingRepo bookingRepo;
-  GetBookingSessionsCubit({required this.bookingRepo})
-    : super(GetBookingSessionsInitialState());
+  final BookingRepo _bookingRepo;
+  GetBookingSessionsCubit({required BookingRepo bookingRepo})
+    : _bookingRepo = bookingRepo,
+      super(GetBookingSessionsInitialState());
 
   void getBookingSessions() async {
     emit(GetBookingSessionsLoadingState());
-    final Either<Failure, List<BookingModel>> bookings = await bookingRepo
+    final Either<Failure, List<BookingModel>> bookings = await _bookingRepo
         .getBookingSessions();
 
     bookings.fold(
@@ -33,7 +34,7 @@ class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
     required String slotId,
   }) async {
     emit(CancelBookingSessionsLoadingState());
-    final Either<Failure, void> response = await bookingRepo.cancelSession(
+    final Either<Failure, void> response = await _bookingRepo.cancelSession(
       bookingId: bookingId,
       slotId: slotId,
     );

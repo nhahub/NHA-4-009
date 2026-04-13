@@ -8,18 +8,23 @@ import '../../../data/services/audio_player_service.dart';
 part 'audio_player_state.dart';
 
 class AudioPlayerCubit extends Cubit<AudioPlayerState> {
-  final AudioPlayerService audioPlayerService;
-  final AudioModel audioModel;
-  AudioPlayerCubit({required this.audioPlayerService, required this.audioModel})
-    : super(AudioPlayerLoadingState());
+  final AudioPlayerService _audioPlayerService;
+  final AudioModel _audioModel;
+
+  AudioPlayerCubit({
+    required AudioPlayerService audioPlayerService,
+    required AudioModel audioModel,
+  }) : _audioModel = audioModel,
+       _audioPlayerService = audioPlayerService,
+       super(AudioPlayerLoadingState());
 
   Future<void> initAudio({required String audioUrl}) async {
     try {
-      await audioPlayerService.init(audioUrl);
+      await _audioPlayerService.init(audioUrl);
       emit(
         AudioPlayerInitState(
-          audioService: audioPlayerService,
-          audioModel: audioModel,
+          audioService: _audioPlayerService,
+          audioModel: _audioModel,
         ),
       );
     } on AudioLoadException catch (e) {
@@ -33,7 +38,7 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
 
   @override
   Future<void> close() {
-    audioPlayerService.dispose();
+    _audioPlayerService.dispose();
     return super.close();
   }
 }

@@ -9,9 +9,10 @@ import '../models/booking_model.dart';
 import '../services/booking_service.dart';
 
 class BookingRepo {
-  final BookingService bookingService;
+  final BookingService _bookingService;
 
-  BookingRepo({required this.bookingService});
+  BookingRepo({required BookingService bookingService})
+    : _bookingService = bookingService;
 
   Future<Either<Failure, void>> bookingSession({
     required BookingTherapist therapist,
@@ -21,7 +22,7 @@ class BookingRepo {
   }) async {
     try {
       const uuid = Uuid();
-      await bookingService.bookingSession(
+      await _bookingService.bookingSession(
         bookingModel: BookingModel(
           id: uuid.v4(),
           userId: getUser()!.userId,
@@ -49,7 +50,7 @@ class BookingRepo {
 
   Future<Either<Failure, List<BookingModel>>> getBookingSessions() async {
     try {
-      final List<BookingModel> bookings = await bookingService
+      final List<BookingModel> bookings = await _bookingService
           .getBookingSessions();
 
       return right(bookings);
@@ -63,7 +64,7 @@ class BookingRepo {
     required String slotId,
   }) async {
     try {
-      await bookingService.cancelSession(bookingId: bookingId, slotId: slotId);
+      await _bookingService.cancelSession(bookingId: bookingId, slotId: slotId);
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

@@ -4,7 +4,9 @@ import 'package:just_audio/just_audio.dart';
 import '../../../../core/errors/audio_error.dart';
 
 class AudioPlayerService {
-  final AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _player;
+
+  AudioPlayerService({required AudioPlayer player}) : _player = player;
 
   AudioPlayer get player => _player;
 

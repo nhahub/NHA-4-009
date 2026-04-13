@@ -6,15 +6,17 @@ import '../models/therapist_review_model.dart';
 import '../services/therapist_reviews_service.dart';
 
 class TherapistReviewsRepo {
-  final TherapistReviewsService therapistReviewsService;
+  final TherapistReviewsService _therapistReviewsService;
 
-  TherapistReviewsRepo({required this.therapistReviewsService});
+  TherapistReviewsRepo({
+    required TherapistReviewsService therapistReviewsService,
+  }) : _therapistReviewsService = therapistReviewsService;
 
   Future<Either<Failure, List<TherapistReviewModel>>> getReviews({
     required String therapistId,
   }) async {
     try {
-      final data = await therapistReviewsService.getReviews(
+      final data = await _therapistReviewsService.getReviews(
         therapistId: therapistId,
       );
 
@@ -32,7 +34,7 @@ class TherapistReviewsRepo {
     required TherapistReviewModel rating,
   }) async {
     try {
-      await therapistReviewsService.addReview(data: rating.toJson());
+      await _therapistReviewsService.addReview(data: rating.toJson());
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
@@ -43,7 +45,7 @@ class TherapistReviewsRepo {
     required TherapistReviewModel therapistReviewModel,
   }) async {
     try {
-      await therapistReviewsService.updateReview(
+      await _therapistReviewsService.updateReview(
         ratingId: therapistReviewModel.id,
         updatedData: therapistReviewModel.toJson(),
       );
@@ -55,7 +57,7 @@ class TherapistReviewsRepo {
 
   Future<Either<Failure, void>> deleteReview({required String ratingId}) async {
     try {
-      await therapistReviewsService.deleteReview(ratingId: ratingId);
+      await _therapistReviewsService.deleteReview(ratingId: ratingId);
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

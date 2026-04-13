@@ -12,10 +12,14 @@ import '../../../data/repos/user_data_repo.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  final UserDataRepo userDataRepo;
-  final AuthRepo authRepo;
-  RegisterCubit({required this.authRepo, required this.userDataRepo})
-    : super(RegisterInitialState());
+  final UserDataRepo _userDataRepo;
+  final AuthRepo _authRepo;
+  RegisterCubit({
+    required AuthRepo authRepo,
+    required UserDataRepo userDataRepo,
+  }) : _authRepo = authRepo,
+       _userDataRepo = userDataRepo,
+       super(RegisterInitialState());
 
   Future<void> register({
     required String email,
@@ -24,7 +28,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   }) async {
     emit(RegisterLoadingState());
 
-    final Either<Failure, AuthResponse> response = await authRepo.register(
+    final Either<Failure, AuthResponse> response = await _authRepo.register(
       email: email,
       password: password,
       name: name,
@@ -45,7 +49,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   Future<void> _saveUserData({required UserDataModel userDataModel}) async {
-    final Either<Failure, UserDataModel> result = await userDataRepo
+    final Either<Failure, UserDataModel> result = await _userDataRepo
         .updateUserData(userDataModel: userDataModel);
 
     return result.fold(

@@ -9,13 +9,15 @@ import '../../../data/repos/recommendation_repo.dart';
 part 'recommendation_state.dart';
 
 class RecommendationCubit extends Cubit<RecommendationState> {
-  final RecommendationRepo recommendationRepo;
-  RecommendationCubit({required this.recommendationRepo})
-    : super(RecommendationLoadingState());
+  final RecommendationRepo _recommendationRepo;
+
+  RecommendationCubit({required RecommendationRepo recommendationRepo})
+    : _recommendationRepo = recommendationRepo,
+      super(RecommendationLoadingState());
 
   void getRecommendationData() async {
     final Either<Failure, RecommendationModel> response =
-        await recommendationRepo.getRecommendationData();
+        await _recommendationRepo.getRecommendationData();
 
     response.fold(
       (failure) {

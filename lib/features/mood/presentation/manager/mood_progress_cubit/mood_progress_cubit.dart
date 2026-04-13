@@ -9,15 +9,16 @@ import '../../../data/repos/mood_progress_repo.dart';
 part 'mood_progress_state.dart';
 
 class MoodProgressCubit extends Cubit<MoodProgressState> {
-  final MoodProgressRepo moodProgressRepo;
+  final MoodProgressRepo _moodProgressRepo;
 
-  MoodProgressCubit({required this.moodProgressRepo})
-    : super(const MoodProgressState());
+  MoodProgressCubit({required MoodProgressRepo moodProgressRepo})
+    : _moodProgressRepo = moodProgressRepo,
+      super(const MoodProgressState());
 
   // Week
   Future<void> getCurrentWeekMood() async {
     emit(state.copyWith(isLoading: true, failureMessage: null));
-    final Either<Failure, List<MoodChart>> response = await moodProgressRepo
+    final Either<Failure, List<MoodChart>> response = await _moodProgressRepo
         .getCurrentWeekMood();
 
     response.fold(
@@ -34,7 +35,7 @@ class MoodProgressCubit extends Cubit<MoodProgressState> {
   Future<void> getCurrentMonthMood() async {
     emit(state.copyWith(isLoading: true, failureMessage: null));
 
-    final Either<Failure, List<MoodChart>> response = await moodProgressRepo
+    final Either<Failure, List<MoodChart>> response = await _moodProgressRepo
         .getCurrentMonthMood();
 
     response.fold(
@@ -51,7 +52,7 @@ class MoodProgressCubit extends Cubit<MoodProgressState> {
   Future<void> getCurrentYearMood() async {
     emit(state.copyWith(isLoading: true, failureMessage: null));
 
-    final Either<Failure, List<MoodChart>> response = await moodProgressRepo
+    final Either<Failure, List<MoodChart>> response = await _moodProgressRepo
         .getCurrentYearMood();
 
     response.fold(

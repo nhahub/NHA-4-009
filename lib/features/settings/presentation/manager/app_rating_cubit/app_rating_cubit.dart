@@ -10,10 +10,11 @@ part 'app_rating_state.dart';
 
 class AppRatingCubit extends Cubit<AppRatingState> {
   int rating = 0;
-  final AppRatingRepo appRatingRepo;
+  final AppRatingRepo _appRatingRepo;
 
-  AppRatingCubit({required this.appRatingRepo})
-    : super(AppRatingInitialState());
+  AppRatingCubit({required AppRatingRepo appRatingRepo})
+    : _appRatingRepo = appRatingRepo,
+      super(AppRatingInitialState());
 
   void changeRating({required int newRating}) {
     rating = newRating;
@@ -23,7 +24,7 @@ class AppRatingCubit extends Cubit<AppRatingState> {
   Future<void> submitRating({required String feedback}) async {
     emit(AppRatingLoadingState());
 
-    final result = await appRatingRepo.submitRating(
+    final result = await _appRatingRepo.submitRating(
       appRatingModel: AppRatingModel(
         id: const Uuid().v4(),
         userId: getUser()!.userId,
@@ -50,7 +51,7 @@ class AppRatingCubit extends Cubit<AppRatingState> {
 
   Future<void> getUserRating() async {
     emit(GetAppRatingLoadingState());
-    final result = await appRatingRepo.getUserRating();
+    final result = await _appRatingRepo.getUserRating();
     result.fold(
       (failure) => emit(AppRatingFailureState(message: failure.message)),
       (appRatingModel) =>

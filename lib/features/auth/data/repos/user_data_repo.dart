@@ -7,12 +7,13 @@ import '../../../../core/networking/api_error_handler.dart';
 import '../services/user_data_service.dart';
 
 class UserDataRepo {
-  UserDataService userDataService;
-  UserDataRepo({required this.userDataService});
+  final UserDataService _userDataService;
+  UserDataRepo({required UserDataService userDataService})
+    : _userDataService = userDataService;
 
   Future<Either<Failure, bool>> isUserExists() async {
     try {
-      final bool response = await userDataService.isUserExists();
+      final bool response = await _userDataService.isUserExists();
       return right(response);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
@@ -23,7 +24,7 @@ class UserDataRepo {
     required UserDataModel userDataModel,
   }) async {
     try {
-      final UserDataModel response = await userDataService.updateUserData(
+      final UserDataModel response = await _userDataService.updateUserData(
         userDataModel: userDataModel,
       );
       saveUserDataLocal(userDataModel: userDataModel);
@@ -35,7 +36,7 @@ class UserDataRepo {
 
   Future<Either<Failure, UserDataModel?>> getUserData() async {
     try {
-      final UserDataModel? response = await userDataService.getUserData();
+      final UserDataModel? response = await _userDataService.getUserData();
       return right(response);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
@@ -49,7 +50,7 @@ class UserDataRepo {
     bool? isOldUser,
   }) async {
     try {
-      await userDataService.updateUserFields(
+      await _userDataService.updateUserFields(
         name: name,
         phone: phone,
         picture: picture,

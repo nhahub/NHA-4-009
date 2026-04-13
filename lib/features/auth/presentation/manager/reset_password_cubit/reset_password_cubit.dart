@@ -6,14 +6,15 @@ import '../../../../settings/data/repos/settings_repo.dart';
 import 'reset_password_state.dart';
 
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
-  final SettingsRepo settingsRepo;
+  final SettingsRepo _settingsRepo;
 
-  ResetPasswordCubit({required this.settingsRepo})
-    : super(ResetPasswordInitialState());
+  ResetPasswordCubit({required SettingsRepo settingsRepo})
+    : _settingsRepo = settingsRepo,
+      super(ResetPasswordInitialState());
 
   Future<void> resetPassword({required String newPassword}) async {
     emit(ResetPasswordLoadingState());
-    final Either<Failure, void> response = await settingsRepo.resetPassword(
+    final Either<Failure, void> response = await _settingsRepo.resetPassword(
       newPassword: newPassword,
     );
     return response.fold(

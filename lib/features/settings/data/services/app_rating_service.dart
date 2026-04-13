@@ -4,12 +4,13 @@ import '../../../../core/services/supabase_crud_service.dart';
 import '../models/app_rating_model.dart';
 
 class AppRatingService {
-  final SupabaseCRUDService supabaseCRUDService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
-  AppRatingService({required this.supabaseCRUDService});
+  AppRatingService({required SupabaseCRUDService supabaseCRUDService})
+    : _supabaseCRUDService = supabaseCRUDService;
 
   Future<void> submitRating({required AppRatingModel appRatingModel}) async {
-    await supabaseCRUDService.upsertData(
+    await _supabaseCRUDService.upsertData(
       table: kAppRatingsTable,
       onConflict: 'user_id',
       data: appRatingModel.toJson(),
@@ -17,7 +18,7 @@ class AppRatingService {
   }
 
   Future<AppRatingModel?> getUserRating() async {
-    final res = await supabaseCRUDService.getSingleRow(
+    final res = await _supabaseCRUDService.getSingleRow(
       table: kAppRatingsTable,
       whereColumn: 'user_id',
       whereValue: getUser()!.userId,

@@ -3,14 +3,15 @@ import '../../../../core/services/supabase_crud_service.dart';
 import '../models/time_slot_model.dart';
 
 class AvailabilityService {
-  final SupabaseCRUDService supabaseCRUDService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
-  AvailabilityService({required this.supabaseCRUDService});
+  AvailabilityService({required SupabaseCRUDService supabaseCRUDService})
+    : _supabaseCRUDService = supabaseCRUDService;
 
   Future<Map<int, List<TimeSlotModel>>> getTimeSlots({
     required String therapistId,
   }) async {
-    final rows = await supabaseCRUDService.getData(
+    final rows = await _supabaseCRUDService.getData(
       table: kTimeSlotsTable,
       filters: {'therapist_id': therapistId},
       orderBy: 'start_time',

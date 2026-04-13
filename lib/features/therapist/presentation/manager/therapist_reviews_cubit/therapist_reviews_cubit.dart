@@ -9,14 +9,15 @@ import '../../../domain/functions/review_utils.dart';
 part 'therapist_reviews_state.dart';
 
 class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
-  final TherapistReviewsRepo therapistRatingRepo;
+  final TherapistReviewsRepo _therapistRatingRepo;
 
-  TherapistReviewsCubit({required this.therapistRatingRepo})
-    : super(AddTherapistReviewLoadingState());
+  TherapistReviewsCubit({required TherapistReviewsRepo therapistRatingRepo})
+    : _therapistRatingRepo = therapistRatingRepo,
+      super(AddTherapistReviewLoadingState());
 
   Future<void> getReviews({required String therapistId}) async {
     emit(GetTherapistReviewsLoadingState());
-    final result = await therapistRatingRepo.getReviews(
+    final result = await _therapistRatingRepo.getReviews(
       therapistId: therapistId,
     );
 
@@ -54,7 +55,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
       displayAnonymously: displayAnonymously,
     );
 
-    final result = await therapistRatingRepo.addReview(rating: newReview);
+    final result = await _therapistRatingRepo.addReview(rating: newReview);
     result.fold(
       (failure) =>
           emit(AddTherapistReviewFailureState(errorMessage: failure.message)),
@@ -84,7 +85,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
       createdAt: DateTime.now(),
     );
 
-    final result = await therapistRatingRepo.updateReview(
+    final result = await _therapistRatingRepo.updateReview(
       therapistReviewModel: updatedReview,
     );
     result.fold(
@@ -105,7 +106,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     if (state is! GetTherapistReviewsSuccessState) return;
 
     emit(DeleteTherapistReviewLoadingState());
-    final result = await therapistRatingRepo.deleteReview(ratingId: ratingId);
+    final result = await _therapistRatingRepo.deleteReview(ratingId: ratingId);
 
     result.fold(
       (failure) => emit(

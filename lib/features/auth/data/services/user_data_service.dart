@@ -3,14 +3,15 @@ import '../../../../core/models/user_data_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
 class UserDataService {
-  final SupabaseCRUDService supabaseCRUDService;
+  final SupabaseCRUDService _supabaseCRUDService;
 
-  UserDataService({required this.supabaseCRUDService});
+  UserDataService({required SupabaseCRUDService supabaseCRUDService})
+    : _supabaseCRUDService = supabaseCRUDService;
 
   Future<UserDataModel> updateUserData({
     required UserDataModel userDataModel,
   }) async {
-    final Map<String, dynamic> userData = await supabaseCRUDService
+    final Map<String, dynamic> userData = await _supabaseCRUDService
         .upsertDataAndReturnRow(
           table: kUserDataTable,
           data: userDataModel.toJson(),
@@ -25,7 +26,7 @@ class UserDataService {
     String? picture,
     bool? isOldUser,
   }) async {
-    await supabaseCRUDService.updateData(
+    await _supabaseCRUDService.updateData(
       table: kUserDataTable,
       data: {
         if (name != null) 'name': name,
@@ -34,26 +35,26 @@ class UserDataService {
         if (isOldUser != null) 'is_old_user': isOldUser,
       },
       idColumn: 'id',
-      idValue: supabaseCRUDService.getCurrentUserId(),
+      idValue: _supabaseCRUDService.getCurrentUserId(),
     );
   }
 
   Future<UserDataModel?> getUserData() async {
-    final Map<String, dynamic>? userData = await supabaseCRUDService
+    final Map<String, dynamic>? userData = await _supabaseCRUDService
         .getSingleRow(
           table: kUserDataTable,
           whereColumn: "id",
-          whereValue: supabaseCRUDService.getCurrentUserId(),
+          whereValue: _supabaseCRUDService.getCurrentUserId(),
         );
 
     return UserDataModel?.fromJson(userData!);
   }
 
   Future<bool> isUserExists() async {
-    final bool response = await supabaseCRUDService.isRowExists(
+    final bool response = await _supabaseCRUDService.isRowExists(
       table: kUserDataTable,
       column: "id",
-      value: supabaseCRUDService.getCurrentUserId(),
+      value: _supabaseCRUDService.getCurrentUserId(),
     );
     return response;
   }

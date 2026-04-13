@@ -7,20 +7,20 @@ import '../services/app_rating_local_service.dart';
 import '../services/app_rating_service.dart';
 
 class AppRatingRepo {
-  final AppRatingService appRatingService;
+  final AppRatingService _appRatingService;
   final AppRatingLocalService appRatingLocalService;
 
   AppRatingRepo({
-    required this.appRatingService,
+    required AppRatingService appRatingService,
     required this.appRatingLocalService,
-  });
+  }) : _appRatingService = appRatingService;
 
   /// Submit or update rating
   Future<Either<Failure, void>> submitRating({
     required AppRatingModel appRatingModel,
   }) async {
     try {
-      await appRatingService.submitRating(appRatingModel: appRatingModel);
+      await _appRatingService.submitRating(appRatingModel: appRatingModel);
 
       await appRatingLocalService.cacheUserRating(appRatingModel);
 
@@ -44,7 +44,7 @@ class AppRatingRepo {
       }
 
       // API call
-      final result = await appRatingService.getUserRating();
+      final result = await _appRatingService.getUserRating();
 
       // cache result
       if (result != null) {

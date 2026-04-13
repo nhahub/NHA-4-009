@@ -15,9 +15,9 @@ import '../../helpers/paypal_transaction_builder.dart';
 import 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
-  final BookingRepo bookingRepo;
-  final PaymentRepo paymentRepo;
-  final SubscriptionRepo subscriptionRepo;
+  final BookingRepo _bookingRepo;
+  final PaymentRepo _paymentRepo;
+  final SubscriptionRepo _subscriptionRepo;
 
   final double price;
   final String? type;
@@ -30,15 +30,18 @@ class PaymentCubit extends Cubit<PaymentState> {
   int selectedSavedCardIndex = -1;
 
   PaymentCubit({
-    required this.paymentRepo,
-    required this.subscriptionRepo,
-    required this.bookingRepo,
+    required PaymentRepo paymentRepo,
+    required SubscriptionRepo subscriptionRepo,
+    required BookingRepo bookingRepo,
     required this.price,
     this.type,
     this.sessionType,
     this.slot,
     this.therapist,
-  }) : super(PaymentInitialState());
+  }) : _paymentRepo = paymentRepo,
+       _subscriptionRepo = subscriptionRepo,
+       _bookingRepo = bookingRepo,
+       super(PaymentInitialState());
 
   Future<void> payWithPaymob({
     required BuildContext context,
@@ -46,7 +49,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   }) async {
     emit(PaymentLoadingState());
 
-    final result = await paymentRepo.payWithPaymob(
+    final result = await _paymentRepo.payWithPaymob(
       context: context,
       amount: price,
       billingData: billingData,
@@ -62,7 +65,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   Future<void> payWithStripe() async {
     emit(PaymentLoadingState());
 
-    Either<Failure, void> response = await paymentRepo.payWithStripe(
+    Either<Failure, void> response = await _paymentRepo.payWithStripe(
       paymentIntentInputModel: PaymentIntentInputModel(
         amount: (price * 100).round().toString(),
         currency: 'USD',
@@ -93,9 +96,9 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   Future<void> handlePostPayment() async {
     if (type != null) {
-      await subscriptionRepo.createSubscription(type: type!);
+      await _subscriptionRepo.createSubscription(type: type!);
     } else {
-      await bookingRepo.bookingSession(
+      await _bookingRepo.bookingSession(
         therapist: therapist!,
         slot: slot!,
         sessionType: sessionType!,
@@ -134,7 +137,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     selectedMethodIndex = 3;
     selectedSavedCardIndex = savedCards.length - 1;
 
-    await paymentRepo.saveCards(savedCards);
+    await _paymentRepo.saveCards(savedCards);
 
     emit(
       PaymentUpdatedState(
@@ -151,7 +154,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     emit(PaymentLoadingState());
 
     try {
-      savedCards = await paymentRepo.getSavedCards();
+      savedCards = await _paymentRepo.getSavedCards();
       if (savedCards.isNotEmpty && selectedSavedCardIndex == -1) {
         selectedMethodIndex = 3;
         selectedSavedCardIndex = -1;

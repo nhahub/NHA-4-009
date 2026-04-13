@@ -6,12 +6,13 @@ import '../models/audio_model.dart';
 import '../services/audio_service.dart';
 
 class AudioRepo {
-  final AudioService audioService;
-  AudioRepo({required this.audioService});
+  final AudioService _audioService;
+  AudioRepo({required AudioService audioService})
+    : _audioService = audioService;
 
   Future<Either<Failure, List<AudioModel>>> getAudioTracks() async {
     try {
-      final List<AudioModel> tracks = await audioService.getAudioTracks();
+      final List<AudioModel> tracks = await _audioService.getAudioTracks();
       return right(tracks);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

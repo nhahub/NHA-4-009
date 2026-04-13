@@ -8,14 +8,16 @@ import '../../../../settings/data/repos/settings_repo.dart';
 part 'logout_state.dart';
 
 class LogoutCubit extends Cubit<LogoutState> {
-  final SettingsRepo settingsRepo;
+  final SettingsRepo _settingsRepo;
 
-  LogoutCubit({required this.settingsRepo}) : super(LogoutInitialState());
+  LogoutCubit({required SettingsRepo settingsRepo})
+    : _settingsRepo = settingsRepo,
+      super(LogoutInitialState());
 
   // Logout
   Future<void> logout() async {
     emit(LogoutLoadingState());
-    final Either<Failure, void> response = await settingsRepo.logout();
+    final Either<Failure, void> response = await _settingsRepo.logout();
     return response.fold(
       (failure) => emit(LogoutFailureState(message: failure.message)),
       (_) => emit(LogoutSuccessState()),

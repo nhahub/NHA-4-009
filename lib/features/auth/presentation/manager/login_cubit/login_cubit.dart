@@ -12,11 +12,13 @@ import '../../../data/repos/user_data_repo.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final UserDataRepo userDataRepo;
-  final AuthRepo authRepo;
+  final UserDataRepo _userDataRepo;
+  final AuthRepo _authRepo;
 
-  LoginCubit({required this.authRepo, required this.userDataRepo})
-    : super(LoginInitialState());
+  LoginCubit({required AuthRepo authRepo, required UserDataRepo userDataRepo})
+    : _authRepo = authRepo,
+      _userDataRepo = userDataRepo,
+      super(LoginInitialState());
 
   Future<void> loginWithEmail({
     required String email,
@@ -24,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
   }) async {
     emit(LoginLoadingState());
 
-    final response = await authRepo.loginWithEmail(
+    final response = await _authRepo.loginWithEmail(
       email: email,
       password: password,
     );
@@ -46,7 +48,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> loginWithGoogle() async {
     emit(LoginLoadingState());
 
-    final response = await authRepo.loginWithGoogle();
+    final response = await _authRepo.loginWithGoogle();
 
     await response.fold(_handleFailure, (authResponse) async {
       if (authResponse == null) {
@@ -59,11 +61,11 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> _handleGoogleLogin(AuthResponse authResponse) async {
-    final existsResponse = await userDataRepo.isUserExists();
+    final existsResponse = await _userDataRepo.isUserExists();
 
     await existsResponse.fold(_handleFailure, (isExists) async {
       final result = isExists
-          ? await userDataRepo.getUserData()
+          ? await _userDataRepo.getUserData()
           : await _createGoogleUser(authResponse);
 
       await result.fold(_handleFailure, (userData) async {
@@ -80,7 +82,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<Either<Failure, UserDataModel?>> _createGoogleUser(
     AuthResponse authResponse,
   ) {
-    return userDataRepo.updateUserData(
+    return _userDataRepo.updateUserData(
       userDataModel: UserDataModel(
         userId: authResponse.user!.id,
         name: authResponse.user!.userMetadata?['full_name'] ?? '',
@@ -95,7 +97,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<bool> _ensureUserLoaded() async {
     if (getUser() != null) return true;
 
-    final result = await userDataRepo.getUserData();
+    final result = await _userDataRepo.getUserData();
 
     return await result.fold(
       (failure) async {

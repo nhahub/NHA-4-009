@@ -10,14 +10,15 @@ import '../../../domain/enums/food_type.dart';
 part 'recommended_food_state.dart';
 
 class RecommendedFoodCubit extends Cubit<RecommendedFoodState> {
-  final RecommendedFoodRepo recommendedFoodRepo;
+  final RecommendedFoodRepo _recommendedFoodRepo;
 
-  RecommendedFoodCubit({required this.recommendedFoodRepo})
-    : super(GetRecommendedFoodLoadingState());
+  RecommendedFoodCubit({required RecommendedFoodRepo recommendedFoodRepo})
+    : _recommendedFoodRepo = recommendedFoodRepo,
+      super(GetRecommendedFoodLoadingState());
 
   Future<void> getRecommendedFood({required FoodType foodType}) async {
     final Either<Failure, List<RecommendedFoodItemModel>> response =
-        await recommendedFoodRepo.getRecommendedFood(foodType: foodType);
+        await _recommendedFoodRepo.getRecommendedFood(foodType: foodType);
 
     return response.fold(
       (failure) =>

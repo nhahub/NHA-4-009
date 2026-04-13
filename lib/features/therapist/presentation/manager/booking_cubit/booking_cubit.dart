@@ -10,16 +10,20 @@ import '../../../data/repos/availability_repo.dart';
 part 'booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {
-  final TherapistModel therapist;
-  final AvailabilityRepo availabilityRepo;
+  final TherapistModel _therapist;
+  final AvailabilityRepo _availabilityRepo;
 
-  BookingCubit({required this.therapist, required this.availabilityRepo})
-    : super(BookingState.initial(therapist: therapist));
+  BookingCubit({
+    required TherapistModel therapist,
+    required AvailabilityRepo availabilityRepo,
+  }) : _availabilityRepo = availabilityRepo,
+       _therapist = therapist,
+       super(BookingState.initial(therapist: therapist));
 
   Future<void> getAvailableSlots() async {
-    emit(BookingLoadingState(therapist: therapist));
+    emit(BookingLoadingState(therapist: _therapist));
     final Either<Failure, Map<int, List<TimeSlotModel>>> result =
-        await availabilityRepo.getTimeSlots(therapistId: therapist.id);
+        await _availabilityRepo.getTimeSlots(therapistId: _therapist.id);
 
     result.fold(
       (failure) {
@@ -40,10 +44,10 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   void selectType({required String type}) {
-    final price = type == 'chat' ? therapist.chatPrice : therapist.livePrice;
+    final price = type == 'chat' ? _therapist.chatPrice : _therapist.livePrice;
     final priceAfterDiscount = type == 'chat'
-        ? therapist.chatPriceAfterDiscount
-        : therapist.livePriceAfterDiscount;
+        ? _therapist.chatPriceAfterDiscount
+        : _therapist.livePriceAfterDiscount;
 
     emit(
       state.copyWith(

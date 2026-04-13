@@ -3,12 +3,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/functions/user_data_local.dart';
 
 class MoodProgressService {
-  final SupabaseClient supabase;
+  final SupabaseClient _supabase;
 
-  MoodProgressService({required this.supabase});
+  MoodProgressService({required SupabaseClient supabase})
+    : _supabase = supabase;
 
   Future<List<dynamic>> _fetchMoods(String rpcName) async {
-    final response = await supabase.rpc(
+    final response = await _supabase.rpc(
       rpcName,
       params: {'p_user_id': getUser()!.userId},
     );

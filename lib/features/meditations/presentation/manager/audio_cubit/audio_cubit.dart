@@ -9,12 +9,14 @@ import '../../../data/repos/audio_repo.dart';
 part 'audio_state.dart';
 
 class AudioCubit extends Cubit<AudioState> {
-  final AudioRepo audioRepo;
+  final AudioRepo _audioRepo;
 
-  AudioCubit({required this.audioRepo}) : super(AudioLoadingState());
+  AudioCubit({required AudioRepo audioRepo})
+    : _audioRepo = audioRepo,
+      super(AudioLoadingState());
 
   Future<void> getAudioTracks() async {
-    final Either<Failure, List<AudioModel>> result = await audioRepo
+    final Either<Failure, List<AudioModel>> result = await _audioRepo
         .getAudioTracks();
     result.fold(
       (failure) {

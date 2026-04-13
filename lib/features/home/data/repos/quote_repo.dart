@@ -8,13 +8,14 @@ import '../models/quote/quote_model.dart';
 import '../services/quotes_local_service.dart';
 
 class QuoteRepo {
-  final QuotesLocalService quotesLocalService;
+  final QuotesLocalService _quotesLocalService;
 
-  QuoteRepo({required this.quotesLocalService});
+  QuoteRepo({required QuotesLocalService quotesLocalService})
+    : _quotesLocalService = quotesLocalService;
 
   Future<Either<Failure, QuoteModel>> getQuoteOfTheDay() async {
     try {
-      final List<QuoteModel> quotes = await quotesLocalService.getQuotes();
+      final List<QuoteModel> quotes = await _quotesLocalService.getQuotes();
 
       final cachedQuote = _getCachedQuote(quotes);
       if (cachedQuote != null) return right(cachedQuote);
