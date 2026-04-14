@@ -1,12 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
 import '../../../data/models/therapist_model.dart';
 import '../../../data/models/time_slot_model.dart';
 import '../../../data/repos/availability_repo.dart';
-
 part 'booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {
@@ -22,17 +18,13 @@ class BookingCubit extends Cubit<BookingState> {
 
   Future<void> getAvailableSlots() async {
     emit(BookingLoadingState(therapist: _therapist));
-    final Either<Failure, Map<int, List<TimeSlotModel>>> result =
-        await _availabilityRepo.getTimeSlots(therapistId: _therapist.id);
-
-    result.fold(
-      (failure) {
-        emit(state.copyWith(availableSlots: {}));
-      },
-      (slotsByDay) {
-        emit(state.copyWith(availableSlots: slotsByDay));
-      },
-    );
+    try {
+      final Map<int, List<TimeSlotModel>> availableSlots =
+          await _availabilityRepo.getTimeSlots(therapistId: _therapist.id);
+      emit(state.copyWith(availableSlots: availableSlots));
+    } catch (e) {
+      emit(state.copyWith(availableSlots: {}));
+    }
   }
 
   void selectDay({required int day}) {

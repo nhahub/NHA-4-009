@@ -1,8 +1,4 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
 import '../../../../core/functions/user_data_local.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../models/message_model.dart';
 import '../services/chat_service.dart';
 
@@ -11,65 +7,31 @@ class ChatRepo {
 
   ChatRepo({required ChatService chatService}) : _chatService = chatService;
 
-  Future<Either<Failure, String>> getOrCreateRoom({
-    required String therapistId,
-  }) async {
-    try {
-      final roomId = await _chatService.getOrCreateRoom(
-        userId: getUser()!.userId,
-        therapistId: therapistId,
-      );
-      return right(roomId);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<String> getOrCreateRoom({required String therapistId}) async {
+    final String roomId = await _chatService.getOrCreateRoom(
+      userId: getUser()!.userId,
+      therapistId: therapistId,
+    );
+    return roomId;
   }
 
-  Future<Either<Failure, List<MessageModel>>> getMessages({
-    required String roomId,
-  }) async {
-    try {
-      final List<Map<String, dynamic>> data = await _chatService.getMessages(
-        roomId: roomId,
-      );
-      final List<MessageModel> messages = data
-          .map((e) => MessageModel.fromJson(e))
-          .toList();
-      return right(messages);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<List<MessageModel>> getMessages({required String roomId}) async {
+    final List<Map<String, dynamic>> data = await _chatService.getMessages(
+      roomId: roomId,
+    );
+    final List<MessageModel> messages = data
+        .map((e) => MessageModel.fromJson(e))
+        .toList();
+    return messages;
   }
 
-  Future<Either<Failure, void>> sendMessage({required MessageModel msg}) async {
-    try {
-      await _chatService.sendMessage(data: msg.toJson());
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<void> sendMessage({required MessageModel msg}) async {
+    await _chatService.sendMessage(data: msg.toJson());
   }
 
-  Stream<Either<Failure, List<MessageModel>>> listenToMessages({
-    required String roomId,
-  }) {
-    return _chatService
-        .listenToMessages(roomId)
-        .map((data) {
-          try {
-            final messages = data.map((e) => MessageModel.fromJson(e)).toList();
-
-            return right<Failure, List<MessageModel>>(messages);
-          } catch (e) {
-            return left<Failure, List<MessageModel>>(
-              ApiErrorHandler.handle(error: e),
-            );
-          }
-        })
-        .handleError((error) {
-          return left<Failure, List<MessageModel>>(
-            ApiErrorHandler.handle(error: error),
-          );
-        });
+  Stream<List<MessageModel>> listenToMessages({required String roomId}) {
+    return _chatService.listenToMessages(roomId).map((data) {
+      return data.map<MessageModel>((e) => MessageModel.fromJson(e)).toList();
+    });
   }
 }

@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/recommendation_model.dart';
 import '../../../data/repos/recommendation_repo.dart';
-
 part 'recommendation_state.dart';
 
 class RecommendationCubit extends Cubit<RecommendationState> {
@@ -16,20 +13,20 @@ class RecommendationCubit extends Cubit<RecommendationState> {
       super(RecommendationLoadingState());
 
   void getRecommendationData() async {
-    final Either<Failure, RecommendationModel> response =
-        await _recommendationRepo.getRecommendationData();
-
-    response.fold(
-      (failure) {
-        emit(RecommendationFailureState(errorMessage: failure.message));
-      },
-      (recommendationModel) {
-        emit(
-          RecommendationSuccessLoadedState(
-            recommendationModel: recommendationModel,
-          ),
-        );
-      },
-    );
+    try {
+      final RecommendationModel recommendationModel = await _recommendationRepo
+          .getRecommendationData();
+      emit(
+        RecommendationSuccessLoadedState(
+          recommendationModel: recommendationModel,
+        ),
+      );
+    } catch (e) {
+      emit(
+        RecommendationFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

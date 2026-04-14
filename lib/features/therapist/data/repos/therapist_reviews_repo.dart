@@ -1,7 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../models/therapist_review_model.dart';
 import '../services/therapist_reviews_service.dart';
 
@@ -12,55 +8,33 @@ class TherapistReviewsRepo {
     required TherapistReviewsService therapistReviewsService,
   }) : _therapistReviewsService = therapistReviewsService;
 
-  Future<Either<Failure, List<TherapistReviewModel>>> getReviews({
+  Future<List<TherapistReviewModel>> getReviews({
     required String therapistId,
   }) async {
-    try {
-      final data = await _therapistReviewsService.getReviews(
-        therapistId: therapistId,
-      );
+    final List<Map<String, dynamic>> data = await _therapistReviewsService
+        .getReviews(therapistId: therapistId);
 
-      final ratings = data
-          .map((e) => TherapistReviewModel.fromJson(e))
-          .toList();
+    final List<TherapistReviewModel> ratings = data
+        .map((e) => TherapistReviewModel.fromJson(e))
+        .toList();
 
-      return right(ratings);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    return ratings;
   }
 
-  Future<Either<Failure, void>> addReview({
-    required TherapistReviewModel rating,
-  }) async {
-    try {
-      await _therapistReviewsService.addReview(data: rating.toJson());
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<void> addReview({required TherapistReviewModel rating}) async {
+    await _therapistReviewsService.addReview(data: rating.toJson());
   }
 
-  Future<Either<Failure, void>> updateReview({
+  Future<void> updateReview({
     required TherapistReviewModel therapistReviewModel,
   }) async {
-    try {
-      await _therapistReviewsService.updateReview(
-        ratingId: therapistReviewModel.id,
-        updatedData: therapistReviewModel.toJson(),
-      );
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    await _therapistReviewsService.updateReview(
+      ratingId: therapistReviewModel.id,
+      updatedData: therapistReviewModel.toJson(),
+    );
   }
 
-  Future<Either<Failure, void>> deleteReview({required String ratingId}) async {
-    try {
-      await _therapistReviewsService.deleteReview(ratingId: ratingId);
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<void> deleteReview({required String ratingId}) async {
+    await _therapistReviewsService.deleteReview(ratingId: ratingId);
   }
 }

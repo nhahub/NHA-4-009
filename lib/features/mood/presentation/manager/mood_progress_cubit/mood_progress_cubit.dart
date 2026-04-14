@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/mood_chart.dart';
 import '../../../data/repos/mood_progress_repo.dart';
-
 part 'mood_progress_state.dart';
 
 class MoodProgressCubit extends Cubit<MoodProgressState> {
@@ -18,50 +15,54 @@ class MoodProgressCubit extends Cubit<MoodProgressState> {
   // Week
   Future<void> getCurrentWeekMood() async {
     emit(state.copyWith(isLoading: true, failureMessage: null));
-    final Either<Failure, List<MoodChart>> response = await _moodProgressRepo
-        .getCurrentWeekMood();
-
-    response.fold(
-      (failure) {
-        emit(state.copyWith(isLoading: false, failureMessage: failure.message));
-      },
-      (data) {
-        emit(state.copyWith(isLoading: false, weekMood: data));
-      },
-    );
+    try {
+      final List<MoodChart> weekMood = await _moodProgressRepo
+          .getCurrentWeekMood();
+      emit(state.copyWith(isLoading: false, weekMood: weekMood));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          failureMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   // Month
   Future<void> getCurrentMonthMood() async {
     emit(state.copyWith(isLoading: true, failureMessage: null));
 
-    final Either<Failure, List<MoodChart>> response = await _moodProgressRepo
-        .getCurrentMonthMood();
+    try {
+      final List<MoodChart> monthMood = await _moodProgressRepo
+          .getCurrentMonthMood();
 
-    response.fold(
-      (failure) {
-        state.copyWith(isLoading: false, failureMessage: failure.message);
-      },
-      (data) {
-        emit(state.copyWith(isLoading: false, monthMood: data));
-      },
-    );
+      emit(state.copyWith(isLoading: false, monthMood: monthMood));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          failureMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   // Year
   Future<void> getCurrentYearMood() async {
     emit(state.copyWith(isLoading: true, failureMessage: null));
 
-    final Either<Failure, List<MoodChart>> response = await _moodProgressRepo
-        .getCurrentYearMood();
-
-    response.fold(
-      (failure) {
-        emit(state.copyWith(isLoading: false, failureMessage: failure.message));
-      },
-      (data) {
-        emit(state.copyWith(isLoading: false, yearMood: data));
-      },
-    );
+    try {
+      final List<MoodChart> yearMood = await _moodProgressRepo
+          .getCurrentYearMood();
+      emit(state.copyWith(isLoading: false, yearMood: yearMood));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isLoading: false,
+          failureMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

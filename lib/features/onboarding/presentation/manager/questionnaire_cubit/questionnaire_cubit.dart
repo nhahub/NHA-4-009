@@ -1,13 +1,10 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../../auth/data/repos/user_data_repo.dart';
 import '../../../data/models/question_model.dart';
 import '../../../data/models/questionnaire_answers_model.dart';
 import '../../../data/repos/questionnaire_repo.dart';
-
 part 'questionnaire_state.dart';
 
 class QuestionnaireCubit extends Cubit<QuestionnaireState> {
@@ -46,15 +43,18 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     required QuestionnaireAnswersModel questionnaireAnswersModel,
   }) async {
     emit(QuestionnaireLoadingState());
-    final Either<Failure, void> result = await _questionnaireRepo
-        .saveQuestionnaireAnswers(questionnaireAnswersModel);
-
-    result.fold(
-      (failure) => emit(QuestionnaireFailureState(message: failure.message)),
-      (_) async {
-        await _userDataRepo.updateUserFields(isOldUser: true);
-        return emit(QuestionnaireUploadedState());
-      },
-    );
+    try {
+      await _questionnaireRepo.saveQuestionnaireAnswers(
+        questionnaireAnswersModel,
+      );
+      await _userDataRepo.updateUserFields(isOldUser: true);
+      emit(QuestionnaireUploadedState());
+    } catch (e) {
+      emit(
+        QuestionnaireFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

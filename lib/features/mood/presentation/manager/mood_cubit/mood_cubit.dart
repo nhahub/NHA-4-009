@@ -1,8 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/feeling_today_model.dart';
 import '../../../data/repos/mood_repo.dart';
 import '../../../data/services/mood_local_service.dart';
@@ -31,22 +29,19 @@ class MoodCubit extends Cubit<MoodState> {
 
     emit(MoodSavingState());
 
-    Either<Failure, void> result = await _moodRepo.saveCurrentMood(
-      currentMood: feelingTodayData[_selectedIndex!].feeling,
-    );
-    result.fold(
-      (failure) {
-        emit(MoodFailedState(message: failure.message));
-      },
-      (success) {
-        if (isDailyMood) {
-          MoodLocalService.setSelectedDailyMood(
-            dailyMood: feelingTodayData[_selectedIndex!].feeling,
-          );
-        }
-        emit(MoodSavedState());
-      },
-    );
+    try {
+      await _moodRepo.saveCurrentMood(
+        currentMood: feelingTodayData[_selectedIndex!].feeling,
+      );
+      if (isDailyMood) {
+        MoodLocalService.setSelectedDailyMood(
+          dailyMood: feelingTodayData[_selectedIndex!].feeling,
+        );
+      }
+      emit(MoodSavedState());
+    } catch (e) {
+      emit(MoodFailedState(message: ApiErrorHandler.handle(error: e).message));
+    }
   }
 
   void resetSelectedIndex() {

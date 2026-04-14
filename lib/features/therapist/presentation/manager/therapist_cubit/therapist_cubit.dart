@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/therapist_model.dart';
 import '../../../data/repos/therapist_repo.dart';
-
 part 'therapist_state.dart';
 
 class TherapistCubit extends Cubit<TherapistState> {
@@ -16,12 +13,16 @@ class TherapistCubit extends Cubit<TherapistState> {
       super(GetTherapistsLoadingState());
 
   void getTherapists() async {
-    final Either<Failure, List<TherapistModel>> result = await _therapistRepo
-        .getTherapists();
-
-    result.fold(
-      (failure) => emit(GetTherapistFailureState(errorMsg: failure.message)),
-      (therapists) => emit(GetTherapistsLoadedState(therapists: therapists)),
-    );
+    try {
+      final List<TherapistModel> therapists = await _therapistRepo
+          .getTherapists();
+      emit(GetTherapistsLoadedState(therapists: therapists));
+    } catch (e) {
+      emit(
+        GetTherapistFailureState(
+          errorMsg: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

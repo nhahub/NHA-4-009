@@ -1,8 +1,4 @@
-import 'package:dartz/dartz.dart';
-
 import '../../../../core/constants/constants.dart';
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/cache_helper.dart';
 import '../models/quote/quote_model.dart';
 import '../services/quotes_local_service.dart';
@@ -13,21 +9,17 @@ class QuoteRepo {
   QuoteRepo({required QuotesLocalService quotesLocalService})
     : _quotesLocalService = quotesLocalService;
 
-  Future<Either<Failure, QuoteModel>> getQuoteOfTheDay() async {
-    try {
-      final List<QuoteModel> quotes = await _quotesLocalService.getQuotes();
+  Future<QuoteModel> getQuoteOfTheDay() async {
+    final List<QuoteModel> quotes = await _quotesLocalService.getQuotes();
 
-      final cachedQuote = _getCachedQuote(quotes);
-      if (cachedQuote != null) return right(cachedQuote);
+    final cachedQuote = _getCachedQuote(quotes);
+    if (cachedQuote != null) return cachedQuote;
 
-      final quote = _generateTodayQuote(quotes);
+    final quote = _generateTodayQuote(quotes);
 
-      await _cacheQuote(quote);
+    await _cacheQuote(quote);
 
-      return right(quote);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    return quote;
   }
 
   QuoteModel? _getCachedQuote(List<QuoteModel> quotes) {

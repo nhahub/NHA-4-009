@@ -1,14 +1,7 @@
 import 'dart:async';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paymob/billing_data.dart';
 import 'package:flutter_paymob/paymob_response.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
-import '../../../../core/networking/api_error_model.dart';
 import '../../domain/repos/payment_repo.dart';
 import '../models/card_model.dart';
 import '../models/stripe/create_customer_input_model.dart';
@@ -30,34 +23,22 @@ class PaymentRepoImp extends PaymentRepo {
   });
 
   @override
-  Future<Either<Failure, void>> payWithStripe({
+  Future<void> payWithStripe({
     required PaymentIntentInputModel paymentIntentInputModel,
   }) async {
-    try {
-      await stripeService.makePayment(
-        paymentIntentInputModel: paymentIntentInputModel,
-      );
-      return right(null);
-    } on StripeException catch (e) {
-      final String msg = e.error.message ?? "Payment failed. Please try again.";
-      return left(ApiErrorModel(message: msg));
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    await stripeService.makePayment(
+      paymentIntentInputModel: paymentIntentInputModel,
+    );
   }
 
   @override
-  Future<Either<Failure, StripeCustomerModel>> createCustomer({
+  Future<StripeCustomerModel> createCustomer({
     required CreateCustomerInputModel createCustomerInputModel,
   }) async {
-    try {
-      final StripeCustomerModel response = await stripeService.createCustomer(
-        createCustomerInputModel: createCustomerInputModel,
-      );
-      return right(response);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    final StripeCustomerModel response = await stripeService.createCustomer(
+      createCustomerInputModel: createCustomerInputModel,
+    );
+    return response;
   }
 
   @override
@@ -71,36 +52,27 @@ class PaymentRepoImp extends PaymentRepo {
   }
 
   @override
-  Future<Either<Failure, PaymentPaymobResponse>> payWithPaymob({
+  Future<PaymentPaymobResponse> payWithPaymob({
     required BuildContext context,
     required double amount,
     required BillingData billingData,
   }) async {
-    final completer = Completer<Either<Failure, PaymentPaymobResponse>>();
+    final completer = Completer<PaymentPaymobResponse>();
 
-    try {
-      await paymobService.payWithCard(
-        context: context,
-        amount: amount,
-        billingData: billingData,
-        onPayment: (result) {
-          if (result.success == true) {
-            completer.complete(right(result));
-          } else if (result.success == false) {
-            completer.complete(
-              left(
-                ApiErrorHandler.handle(
-                  error: Exception(result.message ?? "Payment Failed"),
-                ),
-              ),
-            );
-          }
-        },
-      );
-
-      return completer.future;
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    await paymobService.payWithCard(
+      context: context,
+      amount: amount,
+      billingData: billingData,
+      onPayment: (result) {
+        if (result.success == true) {
+          completer.complete(result);
+        } else if (result.success == false) {
+          completer.complete(
+            throw Exception(result.message ?? "Payment Failed"),
+          );
+        }
+      },
+    );
+    return completer.future;
   }
 }

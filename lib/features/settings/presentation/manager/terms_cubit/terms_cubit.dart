@@ -1,8 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/legal_data_model.dart';
 import '../../../data/repos/terms_repo.dart';
 
@@ -16,11 +14,13 @@ class TermsCubit extends Cubit<TermsState> {
       super(TermsLoadingState());
 
   Future<void> getTerms() async {
-    final Either<Failure, List<LegalDataModel>> result = await _termsRepo
-        .getTerms();
-    result.fold(
-      (failure) => emit(TermsFailuerState(message: failure.message)),
-      (data) => emit(TermsLoadedState(data: data)),
-    );
+    try {
+      final List<LegalDataModel> data = await _termsRepo.getTerms();
+      emit(TermsLoadedState(data: data));
+    } catch (e) {
+      emit(
+        TermsFailuerState(message: ApiErrorHandler.handle(error: e).message),
+      );
+    }
   }
 }

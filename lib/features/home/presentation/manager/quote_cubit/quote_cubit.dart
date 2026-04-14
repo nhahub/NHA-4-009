@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/quote/quote_model.dart';
 import '../../../data/repos/quote_repo.dart';
-
 part 'quote_state.dart';
 
 class QuoteCubit extends Cubit<QuoteState> {
@@ -15,15 +12,15 @@ class QuoteCubit extends Cubit<QuoteState> {
       super(QuoteLoadingState());
 
   void getQuoteOfTheDay() async {
-    final Either<Failure, QuoteModel> response = await _quoteRepo
-        .getQuoteOfTheDay();
-    response.fold(
-      (failure) {
-        emit(QuoteFailureState(errorMessage: failure.message));
-      },
-      (quoteModel) {
-        emit(QuoteSuccessLoadedState(quoteModel: quoteModel));
-      },
-    );
+    try {
+      final QuoteModel quoteModel = await _quoteRepo.getQuoteOfTheDay();
+      emit(QuoteSuccessLoadedState(quoteModel: quoteModel));
+    } catch (e) {
+      emit(
+        QuoteFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

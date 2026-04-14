@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 
 import '../../../data/models/therapist_review_model.dart';
 import '../../../data/repos/therapist_reviews_repo.dart';
@@ -17,25 +18,26 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
   Future<void> getReviews({required String therapistId}) async {
     emit(GetTherapistReviewsLoadingState());
-    final result = await _therapistRatingRepo.getReviews(
-      therapistId: therapistId,
-    );
 
-    result.fold(
-      (failure) =>
-          emit(GetTherapistReviewsFailureState(errorMessage: failure.message)),
-      (reviews) {
-        emit(
-          GetTherapistReviewsSuccessState(
-            therapistReviewModel: reviews,
-            average: calculateAverageRating(reviews),
-            totalCount: reviews.length,
-            userRating: 0,
-            hasUserRated: hasUserRated(reviews),
-          ),
-        );
-      },
-    );
+    try {
+      final List<TherapistReviewModel> reviews = await _therapistRatingRepo
+          .getReviews(therapistId: therapistId);
+      emit(
+        GetTherapistReviewsSuccessState(
+          therapistReviewModel: reviews,
+          average: calculateAverageRating(reviews),
+          totalCount: reviews.length,
+          userRating: 0,
+          hasUserRated: hasUserRated(reviews),
+        ),
+      );
+    } catch (e) {
+      emit(
+        GetTherapistReviewsFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<void> addReview({
@@ -48,22 +50,24 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     emit(AddTherapistReviewLoadingState());
 
-    final TherapistReviewModel newReview = createTherapistReview(
-      therapistId: therapistId,
-      reviewText: review,
-      rating: currentState.userRating.toInt(),
-      displayAnonymously: displayAnonymously,
-    );
+    try {
+      final TherapistReviewModel newReview = createTherapistReview(
+        therapistId: therapistId,
+        reviewText: review,
+        rating: currentState.userRating.toInt(),
+        displayAnonymously: displayAnonymously,
+      );
 
-    final result = await _therapistRatingRepo.addReview(rating: newReview);
-    result.fold(
-      (failure) =>
-          emit(AddTherapistReviewFailureState(errorMessage: failure.message)),
-      (_) {
-        emit(AddTherapistReviewSuccessState());
-        getReviews(therapistId: therapistId);
-      },
-    );
+      await _therapistRatingRepo.addReview(rating: newReview);
+      await getReviews(therapistId: therapistId);
+      emit(AddTherapistReviewSuccessState());
+    } catch (e) {
+      emit(
+        AddTherapistReviewFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<void> updateReview({
@@ -76,27 +80,29 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     emit(UpdateTherapistReviewLoadingState());
 
-    final TherapistReviewModel updatedReview = createTherapistReview(
-      id: reviewModel.id,
-      therapistId: reviewModel.therapistId,
-      reviewText: review,
-      rating: currentState.userRating.toInt(),
-      displayAnonymously: displayAnonymously,
-      createdAt: DateTime.now(),
-    );
+    try {
+      final TherapistReviewModel updatedReview = createTherapistReview(
+        id: reviewModel.id,
+        therapistId: reviewModel.therapistId,
+        reviewText: review,
+        rating: currentState.userRating.toInt(),
+        displayAnonymously: displayAnonymously,
+        createdAt: DateTime.now(),
+      );
 
-    final result = await _therapistRatingRepo.updateReview(
-      therapistReviewModel: updatedReview,
-    );
-    result.fold(
-      (failure) => emit(
-        UpdateTherapistReviewFailureState(errorMessage: failure.message),
-      ),
-      (_) {
-        emit(UpdateTherapistReviewSuccessState());
-        getReviews(therapistId: reviewModel.therapistId);
-      },
-    );
+      await _therapistRatingRepo.updateReview(
+        therapistReviewModel: updatedReview,
+      );
+
+      await getReviews(therapistId: reviewModel.therapistId);
+      emit(UpdateTherapistReviewSuccessState());
+    } catch (e) {
+      emit(
+        UpdateTherapistReviewFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<void> deleteReview({
@@ -106,17 +112,17 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     if (state is! GetTherapistReviewsSuccessState) return;
 
     emit(DeleteTherapistReviewLoadingState());
-    final result = await _therapistRatingRepo.deleteReview(ratingId: ratingId);
-
-    result.fold(
-      (failure) => emit(
-        DeleteTherapistReviewFailureState(errorMessage: failure.message),
-      ),
-      (_) {
-        emit(DeleteTherapistReviewSuccessState());
-        getReviews(therapistId: therapistId);
-      },
-    );
+    try {
+      await _therapistRatingRepo.deleteReview(ratingId: ratingId);
+      await getReviews(therapistId: therapistId);
+      emit(DeleteTherapistReviewSuccessState());
+    } catch (e) {
+      emit(
+        DeleteTherapistReviewFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   void updateUserRating({required num rating}) {

@@ -1,7 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../Services/questionnaire_service.dart';
 import '../models/question_model.dart';
 import '../models/questionnaire_answers_model.dart';
@@ -17,14 +13,7 @@ class QuestionnaireRepo {
     return onboardingQuestionnaire.questions;
   }
 
-  Future<Either<Failure, void>> saveQuestionnaireAnswers(
-    QuestionnaireAnswersModel model,
-  ) async {
-    try {
-      await _questionnaireService.saveQuestionnaireAnswers(model);
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<void> saveQuestionnaireAnswers(QuestionnaireAnswersModel model) async {
+    await _questionnaireService.saveQuestionnaireAnswers(model);
   }
 }

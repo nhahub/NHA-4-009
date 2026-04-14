@@ -1,7 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../models/audio_model.dart';
 import '../services/audio_service.dart';
 
@@ -10,12 +6,8 @@ class AudioRepo {
   AudioRepo({required AudioService audioService})
     : _audioService = audioService;
 
-  Future<Either<Failure, List<AudioModel>>> getAudioTracks() async {
-    try {
-      final List<AudioModel> tracks = await _audioService.getAudioTracks();
-      return right(tracks);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<List<AudioModel>> getAudioTracks() async {
+    final List<AudioModel> tracks = await _audioService.getAudioTracks();
+    return tracks;
   }
 }

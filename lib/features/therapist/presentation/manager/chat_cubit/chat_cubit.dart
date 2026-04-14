@@ -1,70 +1,66 @@
 import 'dart:async';
-
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
-
-import '../../../../../core/errors/failure.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/message_model.dart';
 import '../../../data/repos/chat_repo.dart';
-
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   final ChatRepo _chatRepo;
-  StreamSubscription<Either<Failure, List<MessageModel>>>? _sub;
+  StreamSubscription<List<MessageModel>>? _sub;
 
   ChatCubit({required ChatRepo chatRepo})
     : _chatRepo = chatRepo,
       super(ChatInitialState());
+
   String? _roomId;
 
-  void loadMessages({required String therapistId}) async {
+  Future<void> loadMessages({required String therapistId}) async {
     emit(ChatLoadingState());
-    final roomResult = await _chatRepo.getOrCreateRoom(
-      therapistId: therapistId,
-    );
 
-    if (roomResult.isLeft()) {
+    try {
+      final roomId = await _chatRepo.getOrCreateRoom(therapistId: therapistId);
+
+      _roomId = roomId;
+
+      final messages = await _chatRepo.getMessages(roomId: roomId);
+
+      emit(ChatLoadedState(messages: messages));
+
+      _sub?.cancel();
+      _sub = _chatRepo
+          .listenToMessages(roomId: roomId)
+          .listen(
+            (messages) {
+              emit(ChatLoadedState(messages: messages));
+            },
+            onError: (error) {
+              emit(
+                ChatFailureState(
+                  errorMsg: ApiErrorHandler.handle(error: error).message,
+                ),
+              );
+            },
+          );
+    } catch (e) {
       emit(
-        ChatFailureState(
-          errorMsg: roomResult
-              .swap()
-              .getOrElse(() => ApiErrorHandler.handle(error: roomResult))
-              .message,
-        ),
+        ChatFailureState(errorMsg: ApiErrorHandler.handle(error: e).message),
       );
-      return;
     }
-    _roomId = roomResult.getOrElse(() => "");
-
-    // Get messages
-    final Either<Failure, List<MessageModel>> result = await _chatRepo
-        .getMessages(roomId: _roomId!);
-
-    result.fold(
-      (failure) => emit(ChatFailureState(errorMsg: failure.message)),
-      (messages) => emit(ChatLoadedState(messages: messages)),
-    );
-
-    // Listen to messages
-    _sub = _chatRepo.listenToMessages(roomId: _roomId!).listen((either) {
-      either.fold(
-        (failure) => emit(ChatFailureState(errorMsg: failure.message)),
-        (messages) => emit(ChatLoadedState(messages: messages)),
-      );
-    });
   }
 
   Future<void> sendMessage({
     required String senderType,
     required String text,
   }) async {
+    if (_roomId == null) return;
+
     const uuid = Uuid();
-    final MessageModel msg = MessageModel(
+
+    final msg = MessageModel(
       id: uuid.v4(),
       roomId: _roomId!,
       senderId: getUser()!.userId,
@@ -77,15 +73,19 @@ class ChatCubit extends Cubit<ChatState> {
       final currentMessages = List<MessageModel>.from(
         (state as ChatLoadedState).messages,
       );
+
       currentMessages.add(msg);
+
       emit(ChatLoadedState(messages: currentMessages));
     }
-    final Either<Failure, void> result = await _chatRepo.sendMessage(msg: msg);
 
-    result.fold(
-      (failure) => emit(ChatFailureState(errorMsg: failure.message)),
-      (_) => null,
-    );
+    try {
+      await _chatRepo.sendMessage(msg: msg);
+    } catch (e) {
+      emit(
+        ChatFailureState(errorMsg: ApiErrorHandler.handle(error: e).message),
+      );
+    }
   }
 
   @override

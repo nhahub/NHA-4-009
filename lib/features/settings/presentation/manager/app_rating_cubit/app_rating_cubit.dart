@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
@@ -24,38 +25,47 @@ class AppRatingCubit extends Cubit<AppRatingState> {
   Future<void> submitRating({required String feedback}) async {
     emit(AppRatingLoadingState());
 
-    final result = await _appRatingRepo.submitRating(
-      appRatingModel: AppRatingModel(
-        id: const Uuid().v4(),
-        userId: getUser()!.userId,
-        rating: rating,
-        feedback: feedback,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-    );
-    result.fold(
-      (failure) => emit(AppRatingFailureState(message: failure.message)),
-      (_) => emit(AppRatingSubmittedState()),
-    );
+    try {
+      await _appRatingRepo.submitRating(
+        appRatingModel: AppRatingModel(
+          id: const Uuid().v4(),
+          userId: getUser()!.userId,
+          rating: rating,
+          feedback: feedback,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+      );
+      emit(AppRatingSubmittedState());
+    } catch (e) {
+      emit(
+        AppRatingFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
-  void validateAndSubmit({required String feedback}) {
+  void validateAndSubmit({required String feedback}) async {
     if (rating == 0) {
       emit(const AppRatingValidationErrorState(showRatingError: true));
       return;
     }
-
-    submitRating(feedback: feedback);
+    await submitRating(feedback: feedback);
   }
 
   Future<void> getUserRating() async {
     emit(GetAppRatingLoadingState());
-    final result = await _appRatingRepo.getUserRating();
-    result.fold(
-      (failure) => emit(AppRatingFailureState(message: failure.message)),
-      (appRatingModel) =>
-          emit(GetAppRatingSuccessState(appRatingModel: appRatingModel)),
-    );
+    try {
+      final AppRatingModel? appRatingModel = await _appRatingRepo
+          .getUserRating();
+      emit(GetAppRatingSuccessState(appRatingModel: appRatingModel));
+    } catch (e) {
+      emit(
+        AppRatingFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
-
 part 'get_booking_sessions_state.dart';
 
 class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
@@ -14,19 +11,19 @@ class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
     : _bookingRepo = bookingRepo,
       super(GetBookingSessionsInitialState());
 
-  void getBookingSessions() async {
+  Future<void> getBookingSessions() async {
     emit(GetBookingSessionsLoadingState());
-    final Either<Failure, List<BookingModel>> bookings = await _bookingRepo
-        .getBookingSessions();
-
-    bookings.fold(
-      (failure) {
-        emit(GetBookingSessionsFailureState(errorMessage: failure.message));
-      },
-      (bookings) {
-        emit(GetBookingSessionsSuccessState(bookings: bookings));
-      },
-    );
+    try {
+      final List<BookingModel> bookings = await _bookingRepo
+          .getBookingSessions();
+      emit(GetBookingSessionsSuccessState(bookings: bookings));
+    } catch (e) {
+      emit(
+        GetBookingSessionsFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<void> cancelSession({
@@ -34,18 +31,16 @@ class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
     required String slotId,
   }) async {
     emit(CancelBookingSessionsLoadingState());
-    final Either<Failure, void> response = await _bookingRepo.cancelSession(
-      bookingId: bookingId,
-      slotId: slotId,
-    );
-    response.fold(
-      (failure) {
-        emit(CancelBookingSessionsFailureState(errorMessage: failure.message));
-      },
-      (bookings) {
-        getBookingSessions();
-        emit(CancelBookingSessionsSuccessState());
-      },
-    );
+    try {
+      await _bookingRepo.cancelSession(bookingId: bookingId, slotId: slotId);
+      await getBookingSessions();
+      emit(CancelBookingSessionsSuccessState());
+    } catch (e) {
+      emit(
+        CancelBookingSessionsFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

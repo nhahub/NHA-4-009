@@ -1,7 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../models/time_slot_model.dart';
 import '../services/availability_service.dart';
 
@@ -11,16 +7,11 @@ class AvailabilityRepo {
   AvailabilityRepo({required AvailabilityService availabilityService})
     : _availabilityService = availabilityService;
 
-  Future<Either<Failure, Map<int, List<TimeSlotModel>>>> getTimeSlots({
+  Future<Map<int, List<TimeSlotModel>>> getTimeSlots({
     required String therapistId,
   }) async {
-    try {
-      final slotsByDay = await _availabilityService.getTimeSlots(
-        therapistId: therapistId,
-      );
-      return right(slotsByDay);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    final Map<int, List<TimeSlotModel>> slotsByDay = await _availabilityService
+        .getTimeSlots(therapistId: therapistId);
+    return slotsByDay;
   }
 }

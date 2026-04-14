@@ -1,10 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../../settings/data/repos/settings_repo.dart';
-
 part 'logout_state.dart';
 
 class LogoutCubit extends Cubit<LogoutState> {
@@ -17,10 +14,13 @@ class LogoutCubit extends Cubit<LogoutState> {
   // Logout
   Future<void> logout() async {
     emit(LogoutLoadingState());
-    final Either<Failure, void> response = await _settingsRepo.logout();
-    return response.fold(
-      (failure) => emit(LogoutFailureState(message: failure.message)),
-      (_) => emit(LogoutSuccessState()),
-    );
+    try {
+      await _settingsRepo.logout();
+      emit(LogoutSuccessState());
+    } catch (e) {
+      emit(
+        LogoutFailureState(message: ApiErrorHandler.handle(error: e).message),
+      );
+    }
   }
 }

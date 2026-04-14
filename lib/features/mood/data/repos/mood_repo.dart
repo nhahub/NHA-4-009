@@ -1,8 +1,4 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
 import '../../../../core/functions/user_data_local.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../models/mood_model.dart';
 import '../services/mood_remote_service.dart';
 
@@ -12,20 +8,13 @@ class MoodRepo {
   MoodRepo({required MoodRemoteService moodRemoteService})
     : _moodRemoteService = moodRemoteService;
 
-  Future<Either<Failure, void>> saveCurrentMood({
-    required String currentMood,
-  }) async {
-    try {
-      await _moodRemoteService.saveCurrentMood(
-        moodModel: MoodModel(
-          userId: getUser()!.userId,
-          currentMood: currentMood,
-          createdAt: DateTime.now(),
-        ),
-      );
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+  Future<void> saveCurrentMood({required String currentMood}) async {
+    await _moodRemoteService.saveCurrentMood(
+      moodModel: MoodModel(
+        userId: getUser()!.userId,
+        currentMood: currentMood,
+        createdAt: DateTime.now(),
+      ),
+    );
   }
 }

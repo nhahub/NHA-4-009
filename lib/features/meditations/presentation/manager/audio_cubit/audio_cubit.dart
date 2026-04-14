@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../data/models/audio_model.dart';
 import '../../../data/repos/audio_repo.dart';
-
 part 'audio_state.dart';
 
 class AudioCubit extends Cubit<AudioState> {
@@ -16,15 +13,13 @@ class AudioCubit extends Cubit<AudioState> {
       super(AudioLoadingState());
 
   Future<void> getAudioTracks() async {
-    final Either<Failure, List<AudioModel>> result = await _audioRepo
-        .getAudioTracks();
-    result.fold(
-      (failure) {
-        emit(AudioFailureState(message: failure.message));
-      },
-      (tracks) {
-        emit(AudioLoadedSuccessState(tracks: tracks));
-      },
-    );
+    try {
+      final List<AudioModel> tracks = await _audioRepo.getAudioTracks();
+      emit(AudioLoadedSuccessState(tracks: tracks));
+    } catch (e) {
+      emit(
+        AudioFailureState(message: ApiErrorHandler.handle(error: e).message),
+      );
+    }
   }
 }

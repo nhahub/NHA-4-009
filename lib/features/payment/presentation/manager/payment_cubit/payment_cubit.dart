@@ -1,9 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
-
-import '../../../../../core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
 import '../../../data/models/card_model.dart';
@@ -49,36 +47,41 @@ class PaymentCubit extends Cubit<PaymentState> {
   }) async {
     emit(PaymentLoadingState());
 
-    final result = await _paymentRepo.payWithPaymob(
-      context: context,
-      amount: price,
-      billingData: billingData,
-    );
-    result.fold(
-      (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
-      (success) async {
-        await handlePostPayment();
-      },
-    );
+    try {
+      await _paymentRepo.payWithPaymob(
+        context: context,
+        amount: price,
+        billingData: billingData,
+      );
+      await handlePostPayment();
+    } catch (e) {
+      emit(
+        PaymentFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<void> payWithStripe() async {
     emit(PaymentLoadingState());
 
-    Either<Failure, void> response = await _paymentRepo.payWithStripe(
-      paymentIntentInputModel: PaymentIntentInputModel(
-        amount: (price * 100).round().toString(),
-        currency: 'USD',
-        customerId: "cus_UAAmigSz69OFAr",
-      ),
-    );
-
-    return response.fold(
-      (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
-      (success) async {
-        await handlePostPayment();
-      },
-    );
+    try {
+      await _paymentRepo.payWithStripe(
+        paymentIntentInputModel: PaymentIntentInputModel(
+          amount: (price * 100).round().toString(),
+          currency: 'USD',
+          customerId: "cus_UAAmigSz69OFAr",
+        ),
+      );
+      await handlePostPayment();
+    } catch (e) {
+      emit(
+        PaymentFailureState(
+          errorMessage: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<PaymentTransactionModel> payWithPaypal() async {

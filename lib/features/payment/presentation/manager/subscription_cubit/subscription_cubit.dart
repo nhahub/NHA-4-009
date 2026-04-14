@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 
 import '../../../data/repos/subscription_repo.dart';
 
@@ -15,30 +16,30 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   Future<void> checkSubscription() async {
     emit(SubscriptionLoadingState());
 
-    final result = await _subscriptionRepo.checkSubscription();
-
-    result.fold(
-      (failure) {
-        emit(SubscriptionFailureState(message: failure.message));
-      },
-      (isPremium) {
-        emit(SubscriptionSuccessState(isPremium: isPremium));
-      },
-    );
+    try {
+      final bool isPremium = await _subscriptionRepo.checkSubscription();
+      emit(SubscriptionSuccessState(isPremium: isPremium));
+    } catch (e) {
+      emit(
+        SubscriptionFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 
   Future<void> createSubscription(String type) async {
     emit(SubscriptionLoadingState());
 
-    final result = await _subscriptionRepo.createSubscription(type: type);
-
-    result.fold(
-      (failure) {
-        emit(SubscriptionFailureState(message: failure.message));
-      },
-      (_) {
-        emit(const SubscriptionSuccessState(isPremium: true));
-      },
-    );
+    try {
+      await _subscriptionRepo.createSubscription(type: type);
+      emit(const SubscriptionSuccessState(isPremium: true));
+    } catch (e) {
+      emit(
+        SubscriptionFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
   }
 }

@@ -1,7 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 import '../../../mood/data/services/mood_local_service.dart';
 import '../../domain/enums/food_type.dart';
 import '../../domain/enums/mood_type.dart';
@@ -15,18 +11,14 @@ class RecommendedFoodRepo {
   RecommendedFoodRepo({required RecommendedFoodLocalService localService})
     : _localService = localService;
 
-  Future<Either<Failure, List<RecommendedFoodItemModel>>> getRecommendedFood({
+  Future<List<RecommendedFoodItemModel>> getRecommendedFood({
     required FoodType foodType,
   }) async {
-    try {
-      final String selectedDailyMood =
-          MoodLocalService.getSelectedDailyMood() ?? "Calm";
-      final data = await _localService.getRecommendedFoodData(
-        moodType: moodTypeFromString(selectedDailyMood),
-      );
-      return right(data.getListByFoodType(foodType: foodType));
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
+    final String selectedDailyMood =
+        MoodLocalService.getSelectedDailyMood() ?? "Calm";
+    final data = await _localService.getRecommendedFoodData(
+      moodType: moodTypeFromString(selectedDailyMood),
+    );
+    return data.getListByFoodType(foodType: foodType);
   }
 }
