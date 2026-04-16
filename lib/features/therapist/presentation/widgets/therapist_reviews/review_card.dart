@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/widgets/user_avatar.dart';
 import '../../../data/models/therapist_review_model.dart';
 import 'review_header.dart';
-import 'review_widget.dart';
+import '../../../../../core/widgets/expandable_text.dart';
 
 class ReviewCard extends StatelessWidget {
   final TherapistReviewModel therapistRatingModel;

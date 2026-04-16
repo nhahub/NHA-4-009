@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../chatbot/presentation/views/chatbot_view.dart';
+import '../../../chatbot/presentation/views/start_chat_view.dart';
 
 class ChatbotProvidersWrapper extends StatelessWidget {
   final bool isPremium;
@@ -9,6 +8,6 @@ class ChatbotProvidersWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChatbotView(isPremium: isPremium);
+    return StartChatView(isPremium: isPremium,);
   }
 }

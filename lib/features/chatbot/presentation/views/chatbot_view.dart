@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/enums/fade_position.dart';
-import '../../../../core/widgets/fade_scrollable.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 class ChatbotView extends StatefulWidget {
-  final bool isPremium;
-
-  const ChatbotView({super.key, required this.isPremium});
+  const ChatbotView({super.key});
 
   @override
   State<ChatbotView> createState() => _ChatbotViewState();
@@ -50,35 +46,24 @@ class _ChatbotViewState extends State<ChatbotView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F5),
-      // extendBodyBehindAppBar: true,
-      // appBar: CustomAppbar(
-      //   title: "Chatbot",
-      //   isPremium: widget.isPremium,
-      //   icon: AppAssets.searchIcon,
-      //   onTap: () {},
-      // ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
+        leading: GestureDetector(
+          onTap: () => context.pop(),
+          child: const Icon(Icons.arrow_back, color: Colors.black),
+        ),
         title: const Text(
           "Chat with Moodly",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        actions: const [
-          ChatSettingsWidget(),
-        ],
+        actions: const [ChatSettingsWidget()],
       ),
 
-      body: FadeScrollable(
-        fadePosition: FadePosition.bottom,
+      body: SafeArea(
+        top: false,
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 6,
-            right: 6,
-            top: 20,
-            bottom: 105,
-          ),
+          padding: const EdgeInsets.only(left: 6, right: 6, top: 20),
           child: Column(
             children: [
               Expanded(
@@ -175,9 +160,7 @@ class _ChatbotViewState extends State<ChatbotView> {
 }
 
 class ChatSettingsWidget extends StatelessWidget {
-  const ChatSettingsWidget({
-    super.key,
-  });
+  const ChatSettingsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
