@@ -1,8 +1,9 @@
-import '../../../../core/models/user_data_model.dart';
-import 'user_data_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../core/functions/user_data_local.dart';
+import '../../../../core/models/user_data_model.dart';
 import '../services/supabase_auth_service.dart';
+import 'user_data_repo.dart';
 
 class AuthRepo {
   final SupabaseAuthService _supabaseAuthService;

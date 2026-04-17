@@ -1,12 +1,15 @@
 import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '../../../../../core/functions/user_data_local.dart';
+import '../../../../../core/models/user_data_model.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/repos/update_profile_repo.dart';
 import '../../helpers/image_picker_helper.dart';
-import '../../../../../core/functions/user_data_local.dart';
-import '../../../../../core/models/user_data_model.dart';
-import 'package:path_provider/path_provider.dart';
+
 part 'update_profile_state.dart';
 
 class UpdateProfileCubit extends Cubit<UpdateProfileState> {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meditations/presentation/widgets/podcast_section/podcast_list_view.dart';
+import 'podcast_list_view.dart';
 import '../../../data/models/audio_model.dart';
 import '../../../data/models/dummy/dummy_audio.dart';
 import '../../manager/audio_cubit/audio_cubit.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/podcast_section/podcast_bloc_builder.dart';
+import 'podcast_bloc_builder.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';

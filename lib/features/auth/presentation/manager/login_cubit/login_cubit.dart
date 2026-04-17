@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/networking/api_error_handler.dart';
+
 import '../../../../../core/models/user_data_model.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/repos/auth_repo.dart';
+
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {

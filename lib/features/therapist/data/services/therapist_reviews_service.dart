@@ -1,7 +1,6 @@
-import '../models/therapist_review_model.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
+import '../models/therapist_review_model.dart';
 
 class TherapistReviewsService {
   final SupabaseCRUDService _supabaseCRUDService;

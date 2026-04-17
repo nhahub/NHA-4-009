@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/networking/api_error_handler.dart';
 
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/repos/subscription_repo.dart';
 
 part 'subscription_state.dart';

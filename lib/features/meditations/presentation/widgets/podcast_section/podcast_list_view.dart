@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/shared/custom_card.dart';
-import 'package:moodly/features/meditations/data/models/audio_model.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/widgets/shared/custom_card.dart';
+import '../../../data/models/audio_model.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 
 class PodcastListView extends StatelessWidget {
@@ -20,7 +22,12 @@ class PodcastListView extends StatelessWidget {
       height: 254,
       itemCount: podcastTracks.length,
       itemBuilder: (context, index) {
-        return CustomCard(mediaEntity: podcastTracks[index], onTap: () {});
+        return CustomCard(
+          mediaEntity: podcastTracks[index],
+          onTap: () {
+            context.push(Routes.audioView, args: podcastTracks[index]);
+          },
+        );
       },
     );
   }

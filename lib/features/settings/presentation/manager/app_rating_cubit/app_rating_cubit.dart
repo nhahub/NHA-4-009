@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/networking/api_error_handler.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/app_rating_model.dart';
 import '../../../data/repos/app_rating_repo.dart';
 

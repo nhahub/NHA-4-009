@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/chatbot/presentation/views/chatbot_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -13,6 +12,7 @@ import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
+import '../../features/chatbot/presentation/views/chatbot_view.dart';
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
