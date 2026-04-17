@@ -294,7 +294,7 @@ Future<void> setupGetIt() async {
   );
 
   // Audio Player
-  getIt.registerLazySingleton<AudioPlayer>(() => AudioPlayer());
+  getIt.registerFactory<AudioPlayer>(() => AudioPlayer());
 
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService(player: getIt()));
