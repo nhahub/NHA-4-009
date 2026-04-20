@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/features/meditations/presentation/widgets/recommended_books_section/recommended_books_bloc_builder.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
-import 'recommended_for_you_list_view.dart';
 
-class RecommendedForYouSection extends StatelessWidget {
-  const RecommendedForYouSection({super.key});
+class RecommendedBooksSection extends StatelessWidget {
+  const RecommendedBooksSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSectionHeader(title: "Recommended for you"),
+        AppSectionHeader(title: "Recommended books"),
         SizedBox(height: kAppSectionSpacing),
-        RecommendedForYouListView(),
+        RecommendedBooksBlocBuilder(),
       ],
     );
   }

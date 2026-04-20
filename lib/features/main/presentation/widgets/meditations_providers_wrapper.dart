@@ -5,6 +5,8 @@ import 'package:moodly/features/meditations/presentation/manager/podcast_cubit/p
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../meditations/data/repos/audio_repo.dart';
+import '../../../meditations/data/repos/recommended_books_repo.dart';
+import '../../../meditations/presentation/manager/recommended_books_cubit/recommended_books_cubit.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
 
 class MeditationsProvidersWrapper extends StatelessWidget {
@@ -23,6 +25,11 @@ class MeditationsProvidersWrapper extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               AsmrCubit(audioRepo: getIt.get<AudioRepo>())..getASMRTracks(),
+        ),
+        BlocProvider(
+          create: (context) => RecommendedBooksCubit(
+            recommendedBooksRepo: getIt.get<RecommendedBooksRepo>(),
+          )..getRecommendedBooks(),
         ),
       ],
       child: MeditationsView(isPremium: isPremium),
