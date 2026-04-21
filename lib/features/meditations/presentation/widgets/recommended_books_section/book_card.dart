@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moodly/core/extensions/context_extensions.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/meditations/data/models/book_model.dart';
+import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/shared/adaptive_image.dart';
 import '../../../../../core/widgets/shared/card_description_container.dart';
 
@@ -25,7 +26,8 @@ class BookCard extends StatelessWidget {
         child: Stack(
           children: [
             AdaptiveImage(
-              imageUrl: book.volumeInfo!.imageLinks!.thumbnail!,
+              imageUrl:
+                  book.volumeInfo?.imageLinks?.thumbnail ?? kImagePlaceHolder,
               width: width,
               height: double.infinity,
               borderRadius: BorderRadius.circular(16),
@@ -36,7 +38,7 @@ class BookCard extends StatelessWidget {
               left: 0,
               right: 0,
               child: CardDescriptionContainer(
-                title: book.volumeInfo!.title!,
+                title: book.volumeInfo?.title ?? "",
                 withDuration: false,
               ),
             ),

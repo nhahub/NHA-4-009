@@ -1,6 +1,7 @@
 import 'package:moodly/core/constants/app_keys.dart';
 import 'package:moodly/features/meditations/data/models/book_model.dart';
 import 'package:moodly/features/meditations/data/services/recommended_books_local_service.dart';
+import '../../../mood/data/services/mood_local_service.dart';
 import '../services/recommended_books_remote_service.dart';
 
 class RecommendedBooksRepo {
@@ -22,10 +23,14 @@ class RecommendedBooksRepo {
       return recommendedCachedBooks;
     }
 
+    final String currentMood =
+        MoodLocalService.getSelectedDailyMood() ?? "calm";
+    final String mood = _getMoodCategory(currentMood: currentMood);
+
     //  No data in cache, fetch from remote
     final BooksResponse booksResponse = await _recommendedBooksRemoteService
         .getRecommendedBooks(
-          subject: "psychology+anxiety",
+          subject: mood,
           maxResults: 6,
           key: ApiKeys.googleBooksApiKey,
         );
@@ -35,5 +40,25 @@ class RecommendedBooksRepo {
     );
 
     return booksResponse.items!;
+  }
+}
+
+String _getMoodCategory({required String currentMood}) {
+  switch (currentMood.toLowerCase()) {
+    case 'angry':
+      return 'psychology+angry';
+
+    case 'anxious':
+      return 'psychology+anxiety';
+
+    case 'happy':
+      return 'psychology+happy';
+
+    case 'calm':
+      return 'psychology+calm';
+
+    case 'neutral':
+    default:
+      return 'psychology+neutral';
   }
 }
