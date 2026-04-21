@@ -11,5 +11,9 @@ abstract class RecommendedBooksRemoteService {
       _RecommendedBooksRemoteService;
 
   @GET(ApiConstants.getRecommendedBooks)
-  Future<List<BookModel>> getRecommendedBooks();
+  Future<BooksResponse> getRecommendedBooks({
+    @Path('subject') required String subject,
+    @Path('maxResults') required int maxResults,
+    @Path('key') required String key,
+  });
 }

@@ -1,29 +1,32 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiKeys {
-  static String get supabaseUrl => dotenv.env['SUPABASE_URL'] ?? '';
-  static String get supabaseAnonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
+  static final String supabaseUrl = dotenv.env['SUPABASE_URL']!;
+  static final String supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY']!;
 
   // Stripe
-  static String get stripeSecretKey => dotenv.env['STRIPE_SECRET_KEY'] ?? '';
+  static final String stripeSecretKey = dotenv.env['STRIPE_SECRET_KEY']!;
 
-  static String get stripePublishableKey =>
-      dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
+  static final String stripePublishableKey =
+      dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
 
   // Paypal
-  static String get paypalClientId => dotenv.env['PAYPAL_CLIENT_ID'] ?? '';
+  static final String paypalClientId = dotenv.env['PAYPAL_CLIENT_ID']!;
 
-  static String get paypalSecretKey => dotenv.env['PAYPAL_SECRET_KEY'] ?? '';
+  static final String paypalSecretKey = dotenv.env['PAYPAL_SECRET_KEY']!;
 
   // Paymob Keys
-  static String get paymobApiKey => dotenv.env['PAYMOB_API_KEY'] ?? '';
-  static String get integrationIdCard =>
-      dotenv.env['PAYMOB_INTEGRATION_ID_CARD'] ?? '';
-  static String get integrationIdWallet =>
-      dotenv.env['PAYMOB_INTEGRATION_ID_WALLET'] ?? '';
-  static String get iFrameIdCard => dotenv.env['PAYMOB_IFRAME_ID_CARD'] ?? '';
+  static final String paymobApiKey = dotenv.env['PAYMOB_API_KEY']!;
+  static final String integrationIdCard =
+      dotenv.env['PAYMOB_INTEGRATION_ID_CARD']!;
+  static final String integrationIdWallet =
+      dotenv.env['PAYMOB_INTEGRATION_ID_WALLET']!;
+  static final String iFrameIdCard = dotenv.env['PAYMOB_IFRAME_ID_CARD']!;
 
   // Zego
-  static String zegoAppSign = dotenv.env['ZEGO_APP_SIGN']!;
-  static String zegoAppId = dotenv.env['ZEGO_APP_ID']!;
+  static final String zegoAppSign = dotenv.env['ZEGO_APP_SIGN']!;
+  static final String zegoAppId = dotenv.env['ZEGO_APP_ID']!;
+
+  // Google Books API Key
+  static final String googleBooksApiKey = dotenv.env['GOOGLE_BOOKS_API_KEY']!;
 }

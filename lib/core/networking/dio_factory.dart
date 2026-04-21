@@ -17,6 +17,13 @@ class DioFactory {
       ),
     );
 
+    dio.options.headers = {
+      "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+      "Accept": "application/json, text/plain, */*",
+      "Connection": "keep-alive",
+    };
+
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
@@ -46,25 +53,3 @@ class DioFactory {
     );
   }
 }
-
-//   Future<bool> _refreshAccessToken() async {
-//     final refreshToken = await CacheHelper.getSecureData(key: kRefreshToken);
-//     if (refreshToken == null) return false;
-//     try {
-//       final Response response = await Dio().post(
-//         ApiConstants.apiBaseUrl + ApiConstants.refreshToken,
-//         data: RefreshTokenRequestBody(refreshToken: refreshToken).toJson(),
-//       );
-//       final newAccessToken = response.data["accessToken"];
-//       final newRefreshToken = response.data["refreshToken"];
-//       await CacheHelper.setSecureData(key: kAccessToken, value: newAccessToken);
-//       await CacheHelper.setSecureData(
-//         key: kRefreshToken,
-//         value: newRefreshToken,
-//       );
-//       return true;
-//     } catch (e) {
-//       return false;
-//     }
-//   }
-// }

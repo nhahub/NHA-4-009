@@ -19,6 +19,9 @@ const String kDailyWaterCups = 'daily_water_cups';
 const String kLastWaterDate = 'last_water_date';
 const int kMaxCups = 8;
 
+const String kRecommendedBooksBox = "recommended_books_box";
+const String kRecommendedBooks = "recommended_books";
+
 // Tables
 const String kQuestionnaireAnswersTable = "questionnaire_answers";
 const String kMoodTable = "moods";

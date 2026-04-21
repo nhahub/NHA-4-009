@@ -32,6 +32,16 @@ Map<String, dynamic> _$BookModelToJson(BookModel instance) => <String, dynamic>{
   'accessInfo': instance.accessInfo?.toJson(),
 };
 
+BooksResponse _$BooksResponseFromJson(Map<String, dynamic> json) =>
+    BooksResponse(
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => BookModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$BooksResponseToJson(BooksResponse instance) =>
+    <String, dynamic>{'items': instance.items?.map((e) => e.toJson()).toList()};
+
 VolumeInfo _$VolumeInfoFromJson(Map<String, dynamic> json) => VolumeInfo(
   title: json['title'] as String?,
   subtitle: json['subtitle'] as String?,

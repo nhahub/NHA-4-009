@@ -12,7 +12,7 @@ part of 'recommended_books_remote_service.dart';
 
 class _RecommendedBooksRemoteService implements RecommendedBooksRemoteService {
   _RecommendedBooksRemoteService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://www.googleapis.com/books';
+    baseUrl ??= 'https://www.googleapis.com';
   }
 
   final Dio _dio;
@@ -22,27 +22,29 @@ class _RecommendedBooksRemoteService implements RecommendedBooksRemoteService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<BookModel>> getRecommendedBooks() async {
+  Future<BooksResponse> getRecommendedBooks({
+    required String subject,
+    required int maxResults,
+    required String key,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<BookModel>>(
+    final _options = _setStreamType<BooksResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/v1/volumes?q=subject:psychology+anxiety&maxResults=6&key=',
+            '/books/v1/volumes?q=subject:${subject}&maxResults=${maxResults}&key=${key}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<BookModel> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BooksResponse _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => BookModel.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = BooksResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

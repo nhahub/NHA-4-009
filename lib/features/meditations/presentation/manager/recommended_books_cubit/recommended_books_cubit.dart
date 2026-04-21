@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/helpers/logger.dart';
 import 'package:moodly/features/meditations/data/models/book_model.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/repos/recommended_books_repo.dart';
@@ -18,6 +19,7 @@ class RecommendedBooksCubit extends Cubit<RecommendedBooksState> {
           .getRecommendedBooks();
       emit(RecommendedBooksLoadedState(recommendedBooks: books));
     } catch (e) {
+      Logger.log(e.toString());
       emit(
         RecommendedBooksFailureState(
           message: ApiErrorHandler.handle(error: e).message,

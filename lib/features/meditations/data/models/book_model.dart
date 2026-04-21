@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'book_model.g.dart';
 
+
 @JsonSerializable(explicitToJson: true)
 class BookModel {
   final String? kind;
@@ -26,7 +27,17 @@ class BookModel {
 
   Map<String, dynamic> toJson() => _$BookModelToJson(this);
 }
+@JsonSerializable(explicitToJson: true)
+class BooksResponse {
+  final List<BookModel>? items;
 
+  BooksResponse({this.items});
+
+  factory BooksResponse.fromJson(Map<String, dynamic> json) =>
+      _$BooksResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BooksResponseToJson(this);
+}
 @JsonSerializable(explicitToJson: true)
 class VolumeInfo {
   final String? title;

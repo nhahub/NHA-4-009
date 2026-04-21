@@ -14,6 +14,7 @@ import '../../features/home/data/repos/water_repo.dart';
 import '../../features/home/data/services/quotes_local_service.dart';
 import '../../features/meals_recommendations/data/local_service/recommended_food_local_service.dart';
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
+import '../../features/meditations/data/models/book_model.dart';
 import '../../features/meditations/data/repos/audio_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
@@ -54,6 +55,7 @@ import '../../features/therapist/data/services/booking_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
+import 'local_cache_service.dart';
 import 'supabase_crud_service.dart';
 import 'supabase_storage_service.dart';
 
@@ -63,8 +65,10 @@ Future<void> setupGetIt() async {
   // Supabase
   getIt.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
 
+  getIt.registerLazySingleton<Dio>(() => Dio());
+
   // ApiService
-  getIt.registerLazySingleton<ApiService>(() => ApiService(Dio()));
+  getIt.registerLazySingleton<ApiService>(() => ApiService(getIt()));
 
   // Supabase Storage Service
   getIt.registerLazySingleton<SupabaseStorageService>(
@@ -287,12 +291,17 @@ Future<void> setupGetIt() async {
     ),
   );
 
-  // Recommended Books Local Service
-  getIt.registerLazySingleton<RecommendedBooksLocalService>(
-    () => RecommendedBooksLocalService(),
+  // Local Cache
+  getIt.registerLazySingleton<LocalCacheService<BookModel>>(
+    () => LocalCacheService<BookModel>(),
   );
 
   // Recommended Books Local Service
+  getIt.registerLazySingleton<RecommendedBooksLocalService>(
+    () => RecommendedBooksLocalService(localCacheService: getIt()),
+  );
+
+  // Recommended Books Remote Service
   getIt.registerLazySingleton<RecommendedBooksRemoteService>(
     () => RecommendedBooksRemoteService(getIt()),
   );

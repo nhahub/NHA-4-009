@@ -1,6 +1,6 @@
+import 'package:moodly/core/constants/app_keys.dart';
 import 'package:moodly/features/meditations/data/models/book_model.dart';
 import 'package:moodly/features/meditations/data/services/recommended_books_local_service.dart';
-
 import '../services/recommended_books_remote_service.dart';
 
 class RecommendedBooksRepo {
@@ -14,15 +14,26 @@ class RecommendedBooksRepo {
        _recommendedBooksLocalService = recommendedBooksLocalService;
 
   Future<List<BookModel>> getRecommendedBooks() async {
-    final List<BookModel> books = _recommendedBooksLocalService
-        .getRecommendedBooks();
+    // Try to get data from cache first
+    final List<BookModel>? recommendedCachedBooks =
+        await _recommendedBooksLocalService.getRecommendedBooks();
 
-    if (books.isNotEmpty) {
-      return books;
+    if (recommendedCachedBooks != null && recommendedCachedBooks.isNotEmpty) {
+      return recommendedCachedBooks;
     }
 
-    final List<BookModel> remoteBooks = await _recommendedBooksRemoteService
-        .getRecommendedBooks();
-    return remoteBooks;
+    //  No data in cache, fetch from remote
+    final BooksResponse booksResponse = await _recommendedBooksRemoteService
+        .getRecommendedBooks(
+          subject: "psychology+anxiety",
+          maxResults: 6,
+          key: ApiKeys.googleBooksApiKey,
+        );
+
+    await _recommendedBooksLocalService.cacheRecommendedBooks(
+      recommendedBooks: booksResponse.items!,
+    );
+
+    return booksResponse.items!;
   }
 }
