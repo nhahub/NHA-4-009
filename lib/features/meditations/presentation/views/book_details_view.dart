@@ -36,7 +36,7 @@ class BookDetailsView extends StatelessWidget {
                   const SizedBox(height: 20),
                   BookTitle(title: book.volumeInfo?.title ?? ""),
                   const SizedBox(height: 5),
-                  BookAuthors(authors: book.volumeInfo!.authors!),
+                  BookAuthors(authors: book.volumeInfo?.authors ?? []),
                   const SizedBox(height: 15),
                   BookInfo(book: book),
                   const SizedBox(height: 20),

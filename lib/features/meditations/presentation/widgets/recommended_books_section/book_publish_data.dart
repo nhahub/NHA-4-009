@@ -10,22 +10,26 @@ class BookPublishData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Wrap(
+      spacing: 20,
+      runSpacing: 8,
       children: [
-        Column(
-          spacing: 4,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PublishItem(
-              data: book.volumeInfo?.publisher ?? "N",
-              label: "Publisher",
-            ),
-            PublishItem(
-              data: book.volumeInfo?.publishedDate.yearOnly ?? "N",
-              label: "Publication Date",
-            ),
-          ],
+        SizedBox(
+          width: double.infinity,
+          child: Column(
+            spacing: 4,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PublishItem(
+                data: book.volumeInfo?.publisher ?? "Unknown",
+                label: "Publisher",
+              ),
+              PublishItem(
+                data: book.volumeInfo?.publishedDate.yearOnly ?? "Unknown",
+                label: "Publication Date",
+              ),
+            ],
+          ),
         ),
         if (book.saleInfo?.saleability == "FOR_SALE")
           BookPrice(
