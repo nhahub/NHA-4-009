@@ -34,7 +34,7 @@ class BookDetailsView extends StatelessWidget {
                         kImagePlaceHolder,
                   ),
                   const SizedBox(height: 20),
-                  BookTitle(title: book.volumeInfo?.title ?? ""),
+                  BookTitle(title: book.volumeInfo?.title ?? "Unknown"),
                   const SizedBox(height: 5),
                   BookAuthors(authors: book.volumeInfo?.authors ?? []),
                   const SizedBox(height: 15),
@@ -43,7 +43,8 @@ class BookDetailsView extends StatelessWidget {
                   BookPublishData(book: book),
                   const SizedBox(height: 15),
                   BookDescription(
-                    description: book.volumeInfo?.description.toString() ?? "",
+                    description:
+                        book.volumeInfo?.description.toString() ?? "Unknown",
                   ),
                   const SizedBox(height: 20),
                   BuyBookButton(book: book),

@@ -20,15 +20,18 @@ class BookInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          InfoItem(data: book.accessInfo?.country ?? "N", label: "Country"),
+          InfoItem(
+            data: book.accessInfo?.country ?? "Unknown",
+            label: "Country",
+          ),
           const ItemDivider(),
           InfoItem(
-            data: book.volumeInfo!.pageCount.toString(),
+            data: book.volumeInfo?.pageCount?.toString() ?? "Unknown",
             label: "Number of pages",
           ),
           const ItemDivider(),
           InfoItem(
-            data: book.volumeInfo!.language?.capitalize() ?? "N",
+            data: book.volumeInfo?.language?.capitalize() ?? "Unknown",
             label: "Language",
           ),
         ],
