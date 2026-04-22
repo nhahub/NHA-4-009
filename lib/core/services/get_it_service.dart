@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:moodly/features/home/data/services/water_local_service.dart';
-import 'package:moodly/features/meditations/data/services/recommended_books_local_service.dart';
-import 'package:moodly/features/meditations/data/services/recommended_books_remote_service.dart';
+import '../../features/home/data/services/water_local_service.dart';
+import '../../features/meditations/data/services/recommended_books_local_service.dart';
+import '../../features/meditations/data/services/recommended_books_remote_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';

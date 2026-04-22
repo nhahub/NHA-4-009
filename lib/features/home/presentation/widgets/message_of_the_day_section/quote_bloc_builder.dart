@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/dummy/dummy_quote.dart';
 import '../../../data/models/quote/quote_model.dart';
 import '../../manager/quote_cubit/quote_cubit.dart';
@@ -24,7 +25,7 @@ class QuoteBlocBuilder extends StatelessWidget {
             return QuoteShape(dailyQuote: quoteModel);
 
           case QuoteFailureState(:final String errorMessage):
-            return Center(child: Text(errorMessage));
+            return CustomErrorWidget(message: errorMessage);
         }
       },
     );

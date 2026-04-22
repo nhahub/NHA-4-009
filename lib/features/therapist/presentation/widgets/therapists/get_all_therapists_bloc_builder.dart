@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/constants.dart';
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/dummy/dummy_therapists.dart';
 import '../../../data/models/therapist_model.dart';
 import '../../manager/therapist_cubit/therapist_cubit.dart';
@@ -34,12 +35,7 @@ class GetAllTherapistsBlocBuilder extends StatelessWidget {
 
             case GetTherapistFailureState(:final String errorMsg):
               return SliverToBoxAdapter(
-                child: Center(
-                  child: Text(
-                    errorMsg,
-                    style: const TextStyle(color: Colors.red),
-                  ),
-                ),
+                child: CustomErrorWidget(message: errorMsg),
               );
           }
         },

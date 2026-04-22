@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/dummy/dummy_therapist_reviews.dart';
 import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import 'no_reviews_widget.dart';
@@ -22,7 +23,7 @@ class TherapistReviewsBodyBuilder extends StatelessWidget {
         );
 
       case TherapistReviewsStatus.failure:
-        return Center(child: Text(state.error!));
+        return CustomErrorWidget(message: state.error!);
 
       case TherapistReviewsStatus.success:
         if (state.reviews.isEmpty) {

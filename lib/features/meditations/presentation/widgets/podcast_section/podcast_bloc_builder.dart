@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'podcast_list_view.dart';
+
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/audio_model.dart';
 import '../../../data/models/dummy/dummy_audio.dart';
 import '../../manager/podcast_cubit/podcast_cubit.dart';
+import 'podcast_list_view.dart';
 
 class PodcastBlocBuilder extends StatelessWidget {
   const PodcastBlocBuilder({super.key});
@@ -23,7 +25,7 @@ class PodcastBlocBuilder extends StatelessWidget {
           ):
             return PodcastListView(podcastTracks: podcastTracks);
           case PodcastFailureState(message: final String msg):
-            return Text(msg);
+            return CustomErrorWidget(message: msg);
         }
       },
     );

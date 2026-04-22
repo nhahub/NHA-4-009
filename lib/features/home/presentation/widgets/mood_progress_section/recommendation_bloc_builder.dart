@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../mood/data/models/dummy/dummy_recommendation.dart';
 import '../../../../mood/data/models/recommendation_model.dart';
 import '../../../../mood/presentation/manager/recommendation_cubit/recommendation_cubit.dart';
@@ -26,7 +27,7 @@ class RecommendationBlocBuilder extends StatelessWidget {
             return RecommendationBody(recommendationModel: recommendationModel);
 
           case RecommendationFailureState(:final String errorMessage):
-            return Center(child: Text(errorMessage));
+            return CustomErrorWidget(message: errorMessage);
         }
       },
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_books_section/book_card.dart';
+import 'book_card.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../data/models/book_model.dart';
 

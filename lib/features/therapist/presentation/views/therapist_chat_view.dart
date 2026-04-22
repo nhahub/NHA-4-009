@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/dummy/dummy_messages.dart';
 import '../../data/models/message_model.dart';
@@ -58,7 +59,7 @@ class _TherapistChatViewState extends State<TherapistChatView> {
                       );
 
                     case ChatFailureState(:final String errorMsg):
-                      return Center(child: Text(errorMsg));
+                      return CustomErrorWidget(message: errorMsg);
 
                     default:
                       return const SizedBox.shrink();

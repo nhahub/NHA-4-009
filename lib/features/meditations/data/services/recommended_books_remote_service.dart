@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:moodly/features/meditations/data/models/book_model.dart';
+import '../models/book_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/networking/api_constants.dart';

@@ -1,6 +1,8 @@
-import 'package:moodly/core/constants/app_keys.dart';
-import 'package:moodly/features/meditations/data/models/book_model.dart';
-import 'package:moodly/features/meditations/data/services/recommended_books_local_service.dart';
+import 'package:moodly/core/helpers/logger.dart';
+
+import '../../../../core/constants/app_keys.dart';
+import '../models/book_model.dart';
+import '../services/recommended_books_local_service.dart';
 import '../../../mood/data/services/mood_local_service.dart';
 import '../services/recommended_books_remote_service.dart';
 
@@ -21,6 +23,8 @@ class RecommendedBooksRepo {
     // Get current mood
     final String currentMood =
         _moodLocalService.getSelectedDailyMood() ?? "calm";
+
+    Logger.log(currentMood);
 
     final String mood = _getMoodCategory(currentMood: currentMood);
 
