@@ -1,6 +1,6 @@
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/meditations/data/models/book_model.dart';
+import '../../../../core/constants/constants.dart';
 import '../../../../core/services/local_cache_service.dart';
+import '../models/book_model.dart';
 
 class RecommendedBooksLocalService {
   final LocalCacheService<BookModel> _localCacheService;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../data/models/dummy/dummy_booked_sessions.dart';
 import '../../manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
@@ -29,12 +30,7 @@ class BookingSessionsBlocBuilder extends StatelessWidget {
             return BookedSessionsListView(bookings: bookings);
 
           case GetBookingSessionsFailureState(:final String errorMessage):
-            return Center(
-              child: Text(
-                errorMessage,
-                style: const TextStyle(color: Colors.red),
-              ),
-            );
+            return CustomErrorWidget(message: errorMessage);
 
           default:
             return const Center(child: Text("Unknown state"));

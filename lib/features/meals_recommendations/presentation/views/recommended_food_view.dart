@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
+import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../../meditations/presentation/widgets/categories_section/categories_section.dart';
@@ -77,12 +77,7 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
                       );
 
                     case GetRecommendedFoodFailureState(:final message):
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: kAppHorizontalPadding,
-                        ),
-                        child: Text(message, textAlign: TextAlign.center),
-                      );
+                      return CustomErrorWidget(message: message);
                   }
                 },
               ),
