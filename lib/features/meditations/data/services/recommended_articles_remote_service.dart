@@ -1,8 +1,23 @@
+import 'package:moodly/core/services/supabase_crud_service.dart';
 import 'package:moodly/features/meditations/data/models/article_model.dart';
-import '../mock_data/recommended_articles_data.dart';
+import '../../../../core/constants/constants.dart';
 
 class RecommendedArticlesRemoteService {
-  Future<List<ArticleModel>> getRecommendedArticles() async {
-    return recommendedArticlesData;
+  final SupabaseCRUDService _supabaseCRUDService;
+
+  RecommendedArticlesRemoteService({
+    required SupabaseCRUDService supabaseCRUDService,
+  }) : _supabaseCRUDService = supabaseCRUDService;
+
+  Future<List<ArticleModel>> getRecommendedArticles({
+    required String mood,
+  }) async {
+    final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
+      table: kArticlesTable,
+      ascending: true,
+      filters: {'category': mood},
+    );
+
+    return data.map((item) => ArticleModel.fromJson(item)).toList();
   }
 }

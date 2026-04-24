@@ -1,3 +1,4 @@
+import 'package:moodly/core/extensions/string_extensions.dart';
 import 'package:moodly/features/meditations/data/services/recommended_articles_remote_service.dart';
 
 import '../../../mood/data/services/mood_local_service.dart';
@@ -43,7 +44,9 @@ class RecommendedArticlesRepo {
 
     //  No data in cache, fetch from remote
     final List<ArticleModel> recommendedArticles =
-        await _recommendedArticlesRemoteService.getRecommendedArticles();
+        await _recommendedArticlesRemoteService.getRecommendedArticles(
+          mood: currentMood.capitalize(),
+        );
 
     // Save data to cache
     await _recommendedArticlesLocalService.cacheRecommendedArticles(

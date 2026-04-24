@@ -338,9 +338,9 @@ Future<void> setupGetIt() async {
 
   // Recommended Articles Remote Service
   getIt.registerLazySingleton<RecommendedArticlesRemoteService>(
-    () => RecommendedArticlesRemoteService(),
+    () => RecommendedArticlesRemoteService(supabaseCRUDService: getIt()),
   );
-  
+
   // Recommended Articles Local Service
   getIt.registerLazySingleton<RecommendedArticlesLocalService>(
     () => RecommendedArticlesLocalService(localCacheService: getIt()),

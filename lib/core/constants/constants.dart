@@ -41,6 +41,7 @@ const String kSoundTherapyTracksTable = "sound_therapy_tracks";
 const String kAppRatingsTable = "app_ratings";
 const String kUserDataTable = "user_data";
 const String kPodcastTable = "podcasts";
+const String kArticlesTable = "articles";
 
 const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";
