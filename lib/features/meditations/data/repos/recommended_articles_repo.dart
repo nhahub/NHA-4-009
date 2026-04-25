@@ -1,4 +1,5 @@
-// import 'package:moodly/core/extensions/string_extensions.dart';
+import 'package:moodly/core/extensions/string_extensions.dart';
+import 'package:moodly/core/helpers/logger.dart';
 import 'package:moodly/features/meditations/data/services/recommended_articles_remote_service.dart';
 
 import '../../../mood/data/services/mood_local_service.dart';
@@ -22,10 +23,13 @@ class RecommendedArticlesRepo {
     // Get current mood
     final String currentMood =
         _moodLocalService.getSelectedDailyMood() ?? "calm";
+    Logger.log(currentMood);
 
     // Get cached mood
     final String? cachedMood = await _recommendedArticlesLocalService
         .getCachedMood();
+
+    Logger.log(cachedMood ?? "null");
 
     // If cached mood is not equal to current mood remove cached data
     if (cachedMood != currentMood) {
@@ -34,19 +38,17 @@ class RecommendedArticlesRepo {
     }
 
     // Try to get data from cache first
-    // final List<ArticleModel>? recommendedCachedArticles =
-    //     await _recommendedArticlesLocalService.getRecommendedArticles();
+    final List<ArticleModel>? recommendedCachedArticles =
+        await _recommendedArticlesLocalService.getRecommendedArticles();
 
-    // if (recommendedCachedArticles != null &&
-    //     recommendedCachedArticles.isNotEmpty) {
-    //   return recommendedCachedArticles;
-    // }
-
+    if (recommendedCachedArticles != null &&
+        recommendedCachedArticles.isNotEmpty) {
+      return recommendedCachedArticles;
+    }
     //  No data in cache, fetch from remote
     final List<ArticleModel> recommendedArticles =
         await _recommendedArticlesRemoteService.getRecommendedArticles(
-          // mood: currentMood.capitalize(),
-          mood: "Anxious",
+          mood: currentMood.capitalize(),
         );
 
     // Save data to cache
