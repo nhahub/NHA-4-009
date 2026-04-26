@@ -129,5 +129,6 @@ class AppAssets {
   static const String routine2 = 'assets/mock_images/routine2.jpg';
   static const String routine3 = 'assets/mock_images/routine3.jpg';
   static const String routine4 = 'assets/mock_images/routine4.jpg';
+  static const String running = 'assets/mock_images/running.svg';
   static const String meal = 'assets/images/meal.png';
 }

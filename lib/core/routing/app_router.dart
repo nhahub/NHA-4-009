@@ -18,7 +18,7 @@ import '../../features/community/presentation/views/add_community_post_view.dart
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
 import '../../features/home/presentation/views/all_booking_sessions_view.dart';
-import '../../features/home/presentation/views/all_meditations_view.dart';
+import '../../features/home/presentation/views/activities_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
@@ -351,10 +351,8 @@ class AppRouter {
           ),
         );
 
-      case Routes.allMeditationsView:
-        return MaterialPageRoute(
-          builder: (context) => const AllMeditationsView(),
-        );
+      case Routes.activitiesView:
+        return MaterialPageRoute(builder: (context) => const ActivitiesView());
 
       case Routes.editProfileView:
         final cubit = settings.arguments as UpdateProfileCubit;

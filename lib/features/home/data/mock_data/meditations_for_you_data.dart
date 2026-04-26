@@ -1,32 +1,20 @@
+import 'package:moodly/features/home/data/models/activity/activity_category_model.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../../meditations/domain/video_entity.dart';
 
-const List<VideoEntity> meditationsForYouData = [
-  VideoEntity(
-    id: "",
-    coverUrl: AppAssets.meditation1,
-    category: 'Sleep',
-    title: 'Calm breathing for peaceful sleep',
-    duration: 12,
-    videoUrl: "",
-    createdAt: '',
+const List<ActivityCategoryModel> activityCategoryModelData = [
+  ActivityCategoryModel(
+    id: "sdgsgfhdh",
+    name: "Cardio",
+    imageUrl: AppAssets.running,
   ),
-  VideoEntity(
-    id: "",
-    coverUrl: AppAssets.meditation2,
-    category: 'Stress',
-    title: 'Get rid of anxious thoughts',
-    duration: 9,
-    videoUrl: "",
-    createdAt: '',
+  ActivityCategoryModel(
+    id: "sdgsgfhdh",
+    name: "Core",
+    imageUrl: AppAssets.running,
   ),
-  VideoEntity(
-    coverUrl: AppAssets.meditation3,
-    category: 'Concentration',
-    title: 'Total focus on learning',
-    duration: 7,
-    videoUrl: "",
-    id: '',
-    createdAt: '',
+  ActivityCategoryModel(
+    id: "sdgsgfhdh",
+    name: "Stretching",
+    imageUrl: AppAssets.running,
   ),
 ];
