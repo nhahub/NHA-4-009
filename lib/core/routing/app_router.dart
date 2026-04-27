@@ -356,11 +356,15 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         final cubit = args['cubit'] as ActivitiesCubit;
         final String categoryId = args['categoryId'] as String;
+        final String categoryName = args['categoryName'] as String;
 
         return MaterialPageRoute(
           builder: (context) => BlocProvider.value(
             value: cubit,
-            child: ActivitiesView(categoryId: categoryId),
+            child: ActivitiesView(
+              categoryId: categoryId,
+              categoryName: categoryName,
+            ),
           ),
         );
 

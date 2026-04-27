@@ -7,7 +7,12 @@ import '../widgets/shared/back_button_appbar.dart';
 
 class ActivitiesView extends StatefulWidget {
   final String categoryId;
-  const ActivitiesView({super.key, required this.categoryId});
+  final String categoryName;
+  const ActivitiesView({
+    super.key,
+    required this.categoryId,
+    required this.categoryName,
+  });
 
   @override
   State<ActivitiesView> createState() => _ActivitiesViewState();
@@ -24,12 +29,9 @@ class _ActivitiesViewState extends State<ActivitiesView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: BackButtonAppbar(title: "Activities"),
-      body: SafeArea(
-        bottom: false,
-        child: ActivitiesBlocBuilder(),
-      ),
+    return Scaffold(
+      appBar: BackButtonAppbar(title: widget.categoryName),
+      body: const SafeArea(bottom: false, child: ActivitiesBlocBuilder()),
     );
   }
 }

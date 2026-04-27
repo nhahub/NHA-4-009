@@ -17,11 +17,16 @@ class ActivityCategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final cubit = context.read<ActivitiesCubit>();
-        final categoryId = activityCategoryModel.id;
+        final ActivitiesCubit cubit = context.read<ActivitiesCubit>();
+        final String categoryId = activityCategoryModel.id;
+        final String categoryName = activityCategoryModel.name;
         context.push(
           Routes.activitiesView,
-          args: {'categoryId': categoryId, 'cubit': cubit},
+          args: {
+            'categoryId': categoryId,
+            'categoryName': categoryName,
+            'cubit': cubit,
+          },
         );
       },
       child: Container(
