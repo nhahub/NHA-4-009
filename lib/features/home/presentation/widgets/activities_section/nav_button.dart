@@ -17,7 +17,7 @@ class NavButton extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isDisabled ? AppColors.lightGrey : AppColors.lightGreen,
+          color: isDisabled ? Colors.grey.shade200 : AppColors.lightGreen,
         ),
         child: Icon(icon, color: isDisabled ? Colors.grey : Colors.white),
       ),

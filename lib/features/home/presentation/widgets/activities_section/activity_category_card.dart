@@ -47,9 +47,11 @@ class ActivityCategoryCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: CachedNetworkImage(
+                height: 170,
                 imageUrl: activityCategoryModel.imageUrl,
                 fadeInDuration: const Duration(milliseconds: 200),
                 placeholder: (context, url) => Container(
+                  height: 170,
                   color: Colors.grey.shade300,
                   child: const Center(
                     child: CircularProgressIndicator(strokeWidth: 2),
@@ -57,6 +59,7 @@ class ActivityCategoryCard extends StatelessWidget {
                 ),
 
                 errorWidget: (context, url, error) => Container(
+                  height: 170,
                   color: Colors.grey,
                   child: const Icon(Icons.broken_image),
                 ),

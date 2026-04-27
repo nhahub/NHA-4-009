@@ -26,13 +26,19 @@ class NavigationButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        NavButton(
-          icon: Icons.arrow_back_ios_new,
-          onTap: prevDisabled ? null : onPrevious,
+        Visibility(
+          visible: !isFirst,
+          child: NavButton(
+            icon: Icons.arrow_back_ios_new,
+            onTap: prevDisabled ? null : onPrevious,
+          ),
         ),
-        NavButton(
-          icon: Icons.arrow_forward_ios,
-          onTap: nextDisabled ? null : onNext,
+        Visibility(
+          visible: !isLast,
+          child: NavButton(
+            icon: Icons.arrow_forward_ios,
+            onTap: nextDisabled ? null : onNext,
+          ),
         ),
       ],
     );

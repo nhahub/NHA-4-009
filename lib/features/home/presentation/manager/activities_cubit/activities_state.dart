@@ -1,36 +1,40 @@
 part of 'activities_cubit.dart';
 
-sealed class ActivitiesState extends Equatable {
-  const ActivitiesState();
+enum ActivitiesStatus { loading, success, failure }
 
-  @override
-  List<Object?> get props => [];
+extension ActivitiesStatusX on ActivitiesStatus {
+  bool get isLoading => this == ActivitiesStatus.loading;
+  bool get isSuccess => this == ActivitiesStatus.success;
+  bool get isFailure => this == ActivitiesStatus.failure;
 }
 
-class ActivitiesLoadingState extends ActivitiesState {}
+class ActivitiesState extends Equatable {
+  final ActivitiesStatus status;
+  final List<ActivityCategoryModel>? categories;
+  final List<ActivityModel>? activities;
+  final String? error;
 
-class ActivitiesLoadedState extends ActivitiesState {
-  final List<ActivityModel> activities;
-
-  const ActivitiesLoadedState({required this.activities});
-
-  @override
-  List<Object?> get props => [activities];
-}
-
-class ActivitiesCategoriesLoadedState extends ActivitiesState {
-  final List<ActivityCategoryModel> categories;
-
-  const ActivitiesCategoriesLoadedState({required this.categories});
+  const ActivitiesState({
+    this.categories,
+    this.activities,
+    this.error,
+    this.status = ActivitiesStatus.loading,
+  });
 
   @override
-  List<Object?> get props => [categories];
-}
+  List<Object?> get props => [categories, activities, error, status];
 
-class ActivitiesFailureState extends ActivitiesState {
-  final String message;
-  const ActivitiesFailureState({required this.message});
-
-  @override
-  List<Object?> get props => [message];
+  ActivitiesState copyWith({
+    List<ActivityCategoryModel>? categories,
+    List<ActivityModel>? activities,
+    String? error,
+    ActivitiesStatus? status,
+  }) {
+    return ActivitiesState(
+      categories: categories ?? this.categories,
+      activities: activities ?? this.activities,
+      error: error ?? this.error,
+      status: status ?? this.status,
+    );
+  }
 }

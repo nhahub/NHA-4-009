@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'activities_categories_list_view.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/dummy/dummy_activities_categories.dart';
-import '../../../data/models/activity/activity_category_model.dart';
 import '../../manager/activities_cubit/activities_cubit.dart';
 
 class ActivityCategoriesBlocBuilder extends StatelessWidget {
@@ -13,24 +12,19 @@ class ActivityCategoriesBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ActivitiesCubit, ActivitiesState>(
       builder: (context, state) {
-        switch (state) {
-          case ActivitiesLoadingState():
+        switch (state.status) {
+          case ActivitiesStatus.loading:
             return ActivitiesCategoriesListView(
               activityCategories:
                   DummyActivitiesCategories.dummyActivitiesCategories,
               isLoading: true,
             );
-          case ActivitiesCategoriesLoadedState(
-            categories: final List<ActivityCategoryModel> activityCategories,
-          ):
+          case ActivitiesStatus.success:
             return ActivitiesCategoriesListView(
-              activityCategories: activityCategories,
+              activityCategories: state.categories!,
             );
-          case ActivitiesFailureState(message: final String message):
-            return CustomErrorWidget(message: message);
-
-          case ActivitiesLoadedState():
-            return const SizedBox.shrink();
+          case ActivitiesStatus.failure:
+            return CustomErrorWidget(message: state.error!);
         }
       },
     );

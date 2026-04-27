@@ -57,7 +57,10 @@ class _ActivitiesPageViewState extends State<ActivitiesPageView> {
                 setState(() => currentIndex = index);
               },
               itemBuilder: (context, index) {
-                return ActivityItem(activity: widget.activities[index]);
+                return ActivityItem(
+                  activity: widget.activities[index],
+                  isLoading: widget.isLoading,
+                );
               },
             ),
           ),
@@ -79,4 +82,3 @@ class _ActivitiesPageViewState extends State<ActivitiesPageView> {
     );
   }
 }
-
