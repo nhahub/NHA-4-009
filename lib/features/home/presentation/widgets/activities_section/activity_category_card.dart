@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/features/home/data/models/activity/activity_category_model.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../data/models/activity/activity_category_model.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../manager/activities_cubit/activities_cubit.dart';

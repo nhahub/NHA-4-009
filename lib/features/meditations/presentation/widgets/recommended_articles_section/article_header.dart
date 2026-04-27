@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/article_model.dart';
+
 import '../../../../../core/extensions/date_format_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/user_avatar.dart';
+import '../../../data/models/article_model.dart';
 
 class ArticleHeader extends StatelessWidget {
   final ArticleModel article;

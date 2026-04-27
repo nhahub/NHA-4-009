@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/media_model.dart';
+import '../../../features/meditations/data/models/media_model.dart';
 import 'adaptive_image.dart';
 import 'card_description_container.dart';
 import 'category_container.dart';

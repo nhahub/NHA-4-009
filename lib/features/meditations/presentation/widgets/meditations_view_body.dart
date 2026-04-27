@@ -9,7 +9,7 @@ import 'categories_section/categories_section.dart';
 import 'podcast_section/podcast_section.dart';
 import 'recommended_articles_section/articles_section.dart';
 import 'recommended_books_section/recommended_books_section.dart';
-import 'your_daily_routine_section/your_daily_routine_section.dart';
+import 'recommended_videos_section/recommended_videos_section.dart';
 
 class MeditationsViewBody extends StatelessWidget {
   const MeditationsViewBody({super.key, required this.isPremium});
@@ -30,10 +30,10 @@ class MeditationsViewBody extends StatelessWidget {
         const PodcastSection().toSliver(),
         space(),
         isPremium
-            ? const YourDailyRoutineSection().toSliver()
+            ? const RecommendedVideosSection().toSliver()
             : const CustomOverlayWidget(
                 height: 320,
-                child: YourDailyRoutineSection(),
+                child: RecommendedVideosSection(),
               ).toSliver(),
         space(),
         if (isPremium) ...[

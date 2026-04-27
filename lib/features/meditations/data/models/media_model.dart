@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 part 'media_model.g.dart';
-
 @JsonSerializable()
 class MediaModel {
     final String id;

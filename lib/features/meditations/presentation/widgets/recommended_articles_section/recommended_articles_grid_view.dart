@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'article_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/article_model.dart';
+import 'article_card.dart';
 
 class RecommendedArticlesGridView extends StatelessWidget {
   final List<ArticleModel> recommendedArticles;

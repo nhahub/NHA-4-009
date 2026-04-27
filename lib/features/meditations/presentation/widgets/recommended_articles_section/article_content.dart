@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/theming/app_styles.dart';
-import 'article_header.dart';
 import '../../../data/models/article_model.dart';
+import 'article_header.dart';
 
 class ArticleContent extends StatelessWidget {
   final ArticleModel article;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../../../../../core/theming/app_colors.dart';
 
 class NavButton extends StatelessWidget {
   final IconData icon;

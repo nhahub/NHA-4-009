@@ -1,8 +1,8 @@
 import '../../../../core/theming/app_assets.dart';
-import '../../domain/video_entity.dart';
+import '../models/video_model.dart';
 
-const List<VideoEntity> yourDailyRoutineData = [
-  VideoEntity(
+const List<VideoModel> yourDailyRoutineData = [
+  VideoModel(
     coverUrl: AppAssets.routine1,
     category: 'Motivation',
     title: 'Gentle start to the morning.',
@@ -11,7 +11,7 @@ const List<VideoEntity> yourDailyRoutineData = [
     id: '',
     createdAt: '',
   ),
-  VideoEntity(
+  VideoModel(
     coverUrl: AppAssets.routine2,
     category: 'Reset',
     title: 'Mental break in the middle of the day.',
@@ -20,7 +20,7 @@ const List<VideoEntity> yourDailyRoutineData = [
     id: '',
     createdAt: '',
   ),
-  VideoEntity(
+  VideoModel(
     coverUrl: AppAssets.routine3,
     category: 'Mindfulness',
     title: '5 minutes for you.',
@@ -29,7 +29,7 @@ const List<VideoEntity> yourDailyRoutineData = [
     id: '',
     createdAt: '',
   ),
-  VideoEntity(
+  VideoModel(
     coverUrl: AppAssets.routine4,
     category: 'Sleep',
     title: 'Calm and stress-free evening.',

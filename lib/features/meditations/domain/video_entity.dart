@@ -1,4 +1,4 @@
-import '../../../core/models/media_model.dart';
+import '../data/models/media_model.dart';
 
 class VideoEntity extends MediaModel {
   final String videoUrl;

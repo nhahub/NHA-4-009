@@ -4,20 +4,25 @@ import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
-import '../../../data/mock_data/your_daily_routine_data.dart';
+import '../../../data/models/video_model.dart';
 
-class YourDailyRoutineListView extends StatelessWidget {
+class RecommendedVideosListView extends StatelessWidget {
+  final List<VideoModel> recommendedVideos;
   final bool isLoading;
-  const YourDailyRoutineListView({super.key, this.isLoading = false});
+  const RecommendedVideosListView({
+    super.key,
+    this.isLoading = false,
+    required this.recommendedVideos,
+  });
   @override
   Widget build(BuildContext context) {
     return HorizontalPaddingList(
       isLoading: isLoading,
       height: 254,
-      itemCount: yourDailyRoutineData.length,
+      itemCount: recommendedVideos.length,
       itemBuilder: (context, index) {
         return CustomCard(
-          mediaEntity: yourDailyRoutineData[index],
+          mediaEntity: recommendedVideos[index],
           onTap: () {
             context.push(Routes.videoView);
           },

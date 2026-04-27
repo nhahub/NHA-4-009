@@ -1,4 +1,4 @@
-import 'package:moodly/features/home/data/models/activity/activity_model.dart';
+import '../activity/activity_model.dart';
 
 class DummyActivities {
   static List<ActivityModel> dummyActivities = List.generate(

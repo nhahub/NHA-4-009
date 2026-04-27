@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../core/models/media_model.dart';
+import 'media_model.dart';
 
 part 'audio_model.g.dart';
 

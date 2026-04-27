@@ -1,5 +1,5 @@
-import 'package:moodly/core/services/supabase_crud_service.dart';
-import 'package:moodly/features/home/data/models/activity/activity_category_model.dart';
+import '../../../../core/services/supabase_crud_service.dart';
+import '../models/activity/activity_category_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../models/activity/activity_model.dart';
