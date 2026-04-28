@@ -25,6 +25,9 @@ const String kRecommendedBooks = "recommended_books";
 const String kRecommendedArticlesBox = "recommended_articles_box";
 const String kRecommendedArticles = "recommended_articles";
 
+const String kRecommendedVideosBox = "recommended_videos_box";
+const String kRecommendedVideos = "recommended_videos";
+
 const String kCachedMood = "cached_mood";
 
 // Tables

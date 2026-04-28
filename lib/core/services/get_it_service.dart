@@ -29,6 +29,7 @@ import '../../features/meditations/data/services/recommended_articles_local_serv
 import '../../features/meditations/data/services/recommended_articles_remote_service.dart';
 import '../../features/meditations/data/services/recommended_books_local_service.dart';
 import '../../features/meditations/data/services/recommended_books_remote_service.dart';
+import '../../features/meditations/data/services/recommended_videos_local_service.dart';
 import '../../features/meditations/data/services/recommended_videos_remote_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
@@ -384,9 +385,18 @@ Future<void> setupGetIt() async {
     () => RecommendedVideosRemoteService(supabaseCRUDService: getIt()),
   );
 
+  // Recommended Videos Local Service
+  getIt.registerLazySingleton<RecommendedVideosLocalService>(
+    () => RecommendedVideosLocalService(localCacheService: getIt()),
+  );
+
   // Recommended Videos Repo
   getIt.registerLazySingleton<RecommendedVideosRepo>(
-    () => RecommendedVideosRepo(recommendedVideosRemoteService: getIt()),
+    () => RecommendedVideosRepo(
+      recommendedVideosRemoteService: getIt(),
+      recommendedVideosLocalService: getIt(),
+      moodLocalService: getIt(),
+    ),
   );
 
   // Update Profile Repo
