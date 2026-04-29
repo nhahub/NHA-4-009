@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/services/get_it_service.dart';
-import '../../data/services/mood_local_service.dart';
+import '../../data/repos/mood_repo.dart';
 import '../widgets/mood_dialog.dart';
 
-void openDailyMoodDialog(BuildContext context) {
-  final MoodLocalService moodLocalService = getIt.get<MoodLocalService>();
-
+void openDailyMoodDialog(BuildContext context) async {
+  final MoodRepo moodRepo = getIt.get<MoodRepo>();
+  final bool hasSelectedDailyMood = await moodRepo.hasSelectedDailyMood();
   WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (!moodLocalService.hasSelectedDailyMood()) {
+    if (!hasSelectedDailyMood) {
       showDialog(
         barrierDismissible: false,
         context: context,

@@ -42,8 +42,7 @@ class SubscriptionRemoteService {
   Future<SubscriptionModel?> getUserSubscription() async {
     final Map<String, dynamic>? data = await _supabaseCRUDService.getSingleRow(
       table: kSubscriptionsTable,
-      whereColumn: "user_id",
-      whereValue: getUser()!.userId,
+      filters: {"user_id": getUser()!.userId},
     );
 
     if (data == null) return null;

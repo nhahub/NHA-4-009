@@ -94,17 +94,27 @@ class SupabaseCRUDService {
     return List<Map<String, dynamic>>.from(res);
   }
 
-  /// Read / Get single row
   Future<Map<String, dynamic>?> getSingleRow({
     required String table,
-    required String whereColumn,
-    required dynamic whereValue,
+    Map<String, dynamic>? filters,
+    String? orderBy,
+    bool ascending = true,
   }) async {
-    final res = await _client
-        .from(table)
-        .select()
-        .eq(whereColumn, whereValue)
-        .maybeSingle();
+    dynamic query = _client.from(table).select();
+
+    // filters (dynamic where)
+    if (filters != null) {
+      filters.forEach((key, value) {
+        query = query.eq(key, value);
+      });
+    }
+
+    // order
+    if (orderBy != null) {
+      query = query.order(orderBy, ascending: ascending);
+    }
+
+    final res = await query.limit(1).maybeSingle();
 
     if (res == null) return null;
 

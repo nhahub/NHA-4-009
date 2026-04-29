@@ -43,8 +43,7 @@ class UserDataService {
     final Map<String, dynamic>? userData = await _supabaseCRUDService
         .getSingleRow(
           table: kUserDataTable,
-          whereColumn: "id",
-          whereValue: _supabaseCRUDService.getCurrentUserId(),
+          filters: {"id": _supabaseCRUDService.getCurrentUserId()},
         );
 
     return UserDataModel?.fromJson(userData!);

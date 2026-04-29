@@ -162,9 +162,12 @@ Future<void> setupGetIt() async {
     () => AuthRepo(supabaseAuthService: getIt(), userDataRepo: getIt()),
   );
 
+  // Mood Local Service
+  getIt.registerLazySingleton<MoodLocalService>(() => MoodLocalService());
+  
   // Mood Repo
   getIt.registerLazySingleton<MoodRepo>(
-    () => MoodRepo(moodRemoteService: getIt()),
+    () => MoodRepo(moodRemoteService: getIt(), moodLocalService: getIt()),
   );
 
   // Mood Remote Service
@@ -349,9 +352,6 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ActivitiesRepo>(
     () => ActivitiesRepo(activitiesRemoteService: getIt()),
   );
-
-  // Mood Local Service
-  getIt.registerLazySingleton<MoodLocalService>(() => MoodLocalService());
 
   // Recommended Books Repo
   getIt.registerLazySingleton<RecommendedBooksRepo>(
