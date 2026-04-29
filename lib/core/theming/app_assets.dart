@@ -109,6 +109,7 @@ class AppAssets {
   static const String dummyImage =
       "http://edenchristianacademy.co.nz/wp-content/uploads/2013/11/dummy-image-square.jpg";
   static const String dummyImageAsset = 'assets/images/dummy_image_square.jpg';
+
   // Mock Images
   static const String avatar1 = 'assets/mock_images/avatar1.jpg';
   static const String avatar2 = 'assets/mock_images/avatar2.jpg';
@@ -117,18 +118,5 @@ class AppAssets {
   static const String commentImg1 = 'assets/mock_images/comment_img1.jpg';
   static const String commentImg2 = 'assets/mock_images/comment_img2.jpg';
   static const String commentImg3 = 'assets/mock_images/comment_img3.jpg';
-  static const String meditation1 = 'assets/mock_images/meditation1.jpg';
-  static const String meditation2 = 'assets/mock_images/meditation2.jpg';
-  static const String meditation3 = 'assets/mock_images/meditation3.jpg';
-  static const String meditation4 = 'assets/mock_images/meditation4.jpg';
-  static const String newArrival1 = 'assets/mock_images/new_arrival1.jpg';
-  static const String newArrival2 = 'assets/mock_images/new_arrival2.jpg';
-  static const String newArrival3 = 'assets/mock_images/new_arrival3.jpg';
-  static const String newArrival4 = 'assets/mock_images/new_arrival4.jpg';
-  static const String routine1 = 'assets/mock_images/routine1.jpg';
-  static const String routine2 = 'assets/mock_images/routine2.jpg';
-  static const String routine3 = 'assets/mock_images/routine3.jpg';
-  static const String routine4 = 'assets/mock_images/routine4.jpg';
-  static const String running = 'assets/mock_images/running.svg';
   static const String meal = 'assets/images/meal.png';
 }
