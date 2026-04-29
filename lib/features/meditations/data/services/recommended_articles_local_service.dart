@@ -14,9 +14,6 @@ class RecommendedArticlesLocalService {
       key: kRecommendedArticles,
       boxName: kRecommendedArticlesBox,
     );
-    if (list == null) {
-      return null;
-    }
     return list;
   }
 

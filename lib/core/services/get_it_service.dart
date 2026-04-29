@@ -18,6 +18,7 @@ import '../../features/meals_recommendations/data/local_service/recommended_food
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
 import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
+import '../../features/meditations/data/models/video_model.dart';
 import '../../features/meditations/data/repos/asmr_repo.dart';
 import '../../features/meditations/data/repos/recommended_articles_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
@@ -29,6 +30,7 @@ import '../../features/meditations/data/services/recommended_articles_local_serv
 import '../../features/meditations/data/services/recommended_articles_remote_service.dart';
 import '../../features/meditations/data/services/recommended_books_local_service.dart';
 import '../../features/meditations/data/services/recommended_books_remote_service.dart';
+import '../../features/meditations/data/services/recommended_videos_local_service.dart';
 import '../../features/meditations/data/services/recommended_videos_remote_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
@@ -160,9 +162,12 @@ Future<void> setupGetIt() async {
     () => AuthRepo(supabaseAuthService: getIt(), userDataRepo: getIt()),
   );
 
+  // Mood Local Service
+  getIt.registerLazySingleton<MoodLocalService>(() => MoodLocalService());
+  
   // Mood Repo
   getIt.registerLazySingleton<MoodRepo>(
-    () => MoodRepo(moodRemoteService: getIt()),
+    () => MoodRepo(moodRemoteService: getIt(), moodLocalService: getIt()),
   );
 
   // Mood Remote Service
@@ -348,9 +353,6 @@ Future<void> setupGetIt() async {
     () => ActivitiesRepo(activitiesRemoteService: getIt()),
   );
 
-  // Mood Local Service
-  getIt.registerLazySingleton<MoodLocalService>(() => MoodLocalService());
-
   // Recommended Books Repo
   getIt.registerLazySingleton<RecommendedBooksRepo>(
     () => RecommendedBooksRepo(
@@ -384,9 +386,23 @@ Future<void> setupGetIt() async {
     () => RecommendedVideosRemoteService(supabaseCRUDService: getIt()),
   );
 
+  // Local Cache Service Video Model
+  getIt.registerLazySingleton<LocalCacheService<VideoModel>>(
+    () => LocalCacheService<VideoModel>(),
+  );
+
+  // Recommended Videos Local Service
+  getIt.registerLazySingleton<RecommendedVideosLocalService>(
+    () => RecommendedVideosLocalService(localCacheService: getIt()),
+  );
+
   // Recommended Videos Repo
   getIt.registerLazySingleton<RecommendedVideosRepo>(
-    () => RecommendedVideosRepo(recommendedVideosRemoteService: getIt()),
+    () => RecommendedVideosRepo(
+      recommendedVideosRemoteService: getIt(),
+      recommendedVideosLocalService: getIt(),
+      moodLocalService: getIt(),
+    ),
   );
 
   // Update Profile Repo

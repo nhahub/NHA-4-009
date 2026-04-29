@@ -20,8 +20,7 @@ class AppRatingService {
   Future<AppRatingModel?> getUserRating() async {
     final res = await _supabaseCRUDService.getSingleRow(
       table: kAppRatingsTable,
-      whereColumn: 'user_id',
-      whereValue: getUser()!.userId,
+      filters: {'user_id': getUser()!.userId},
     );
     if (res == null) return null;
     return AppRatingModel.fromJson(res);

@@ -7,9 +7,9 @@ class MoodLocalService {
     await CacheHelper.set(key: kHasSelectedDailyMood, value: today);
   }
 
-  bool hasSelectedDailyMood() {
+  bool? hasSelectedDailyMood() {
     final savedDate = CacheHelper.getString(key: kHasSelectedDailyMood);
-    if (savedDate == null) return false;
+    if (savedDate == null) return null;
 
     final lastDate = DateTime.parse(savedDate);
     final now = DateTime.now();
