@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/theming/app_styles.dart';
+
+import '../../../../../core/theming/app_colors.dart';
 
 class AudioProgressBar extends StatelessWidget {
   final int elapsedSeconds;
@@ -20,8 +23,7 @@ class AudioProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress =
-        totalSeconds > 0 ? elapsedSeconds / totalSeconds : 0.0;
+    final progress = totalSeconds > 0 ? elapsedSeconds / totalSeconds : 0.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -52,19 +54,11 @@ class AudioProgressBar extends StatelessWidget {
               children: [
                 Text(
                   _format(elapsedSeconds),
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFF888888),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppStyles.medium13.copyWith(color: AppColors.bodyGray),
                 ),
                 Text(
                   _format(totalSeconds),
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFF888888),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppStyles.medium13.copyWith(color: AppColors.bodyGray),
                 ),
               ],
             ),
