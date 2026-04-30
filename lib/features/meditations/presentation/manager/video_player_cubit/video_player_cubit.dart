@@ -17,7 +17,7 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
 
       chewieController = ChewieController(
         videoPlayerController: videoController!,
-        autoPlay: true,
+        autoPlay: false,
         looping: false,
         showControls: false,
       );

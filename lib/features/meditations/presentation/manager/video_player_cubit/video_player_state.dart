@@ -8,6 +8,7 @@ class VideoPlayerState {
   final bool isMuted;
   final double speed;
   final String? error;
+  final bool isFullscreen;
 
   const VideoPlayerState({
     this.isInitialized = false,
@@ -17,6 +18,7 @@ class VideoPlayerState {
     this.isMuted = false,
     this.speed = 1.0,
     this.error,
+    this.isFullscreen = false,
   });
 
   VideoPlayerState copyWith({
@@ -27,6 +29,7 @@ class VideoPlayerState {
     bool? isMuted,
     double? speed,
     String? error,
+    bool? isFullscreen,
   }) {
     return VideoPlayerState(
       isInitialized: isInitialized ?? this.isInitialized,
@@ -36,6 +39,7 @@ class VideoPlayerState {
       isMuted: isMuted ?? this.isMuted,
       speed: speed ?? this.speed,
       error: error ?? this.error,
+      isFullscreen: isFullscreen ?? this.isFullscreen,
     );
   }
 }

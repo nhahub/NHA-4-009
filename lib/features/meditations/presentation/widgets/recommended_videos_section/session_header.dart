@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/video_model.dart';
 
 class SessionHeader extends StatefulWidget {
@@ -22,9 +23,6 @@ class SessionHeader extends StatefulWidget {
 }
 
 class _SessionHeaderState extends State<SessionHeader> {
-  // Controls the overlay icon opacity.
-  // - paused: 1.0 (always visible)
-  // - playing: 0.0 (hidden), or briefly 1.0 on state change then fades
   double _overlayOpacity = 1.0;
 
   @override
@@ -57,8 +55,8 @@ class _SessionHeaderState extends State<SessionHeader> {
       borderRadius: BorderRadius.circular(20),
       child: GestureDetector(
         onTap: widget.onImageTap,
-        child: SizedBox(
-          height: 220,
+        child: AspectRatio(
+          aspectRatio: 16 / 9,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -98,20 +96,15 @@ class _SessionHeaderState extends State<SessionHeader> {
                   children: [
                     Text(
                       widget.videoModel.title,
-                      style: const TextStyle(
+                      style: AppStyles.extraBold18.copyWith(
                         color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.1,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${widget.videoModel.duration.toInt()} min',
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
+                      style: AppStyles.medium14.copyWith(
+                        color: AppColors.lightGrey,
                       ),
                     ),
                   ],

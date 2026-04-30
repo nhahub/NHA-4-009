@@ -20,6 +20,7 @@ class VideoSection extends StatelessWidget {
         final cubit = context.read<VideoPlayerCubit>();
 
         return Column(
+          spacing: 20,
           children: [
             SessionHeader(
               videoModel: videoModel,
@@ -30,7 +31,6 @@ class VideoSection extends StatelessWidget {
                   ? Chewie(controller: cubit.chewieController!)
                   : null,
             ),
-            const SizedBox(height: 18),
             AudioProgressBar(
               elapsedSeconds: state.position,
               totalSeconds: state.isInitialized
@@ -38,19 +38,19 @@ class VideoSection extends StatelessWidget {
                   : videoModel.duration.toInt() * 60,
               onSeek: (value) => cubit.seek(seconds: value),
             ),
-            const SizedBox(height: 20),
             MainControls(
               isPlaying: state.isPlaying,
               onPlayPause: cubit.togglePlayPause,
               onSkipForward: cubit.skipForward,
               onSkipBackward: cubit.skipBackward,
             ),
-            const SizedBox(height: 20),
             SecondaryControls(
               isMuted: state.isMuted,
               onVolumeToggle: cubit.toggleVolume,
               onFullscreenToggle: cubit.toggleFullscreen,
               onSpeedChanged: (value) => cubit.changeSpeed(speed: value),
+              isFullscreen: state.isFullscreen,
+              speed: state.speed,
             ),
           ],
         );
