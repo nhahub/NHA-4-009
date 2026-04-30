@@ -4,20 +4,17 @@ import 'package:video_player/video_player.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/video_model.dart';
-import '../widgets/video/about_session_card.dart';
-import '../widgets/video/audio_progress_bar.dart';
-import '../widgets/video/main_controls.dart';
-import '../widgets/video/secondary_controls.dart';
-import '../widgets/video/session_details_card.dart';
-import '../widgets/video/session_header.dart';
+import '../widgets/recommended_videos_section/about_session_section.dart';
+import '../widgets/recommended_videos_section/session_details_section.dart';
+import '../widgets/recommended_videos_section/audio_progress_bar.dart';
+import '../widgets/recommended_videos_section/main_controls.dart';
+import '../widgets/recommended_videos_section/secondary_controls.dart';
+import '../widgets/recommended_videos_section/session_header.dart';
 
 class VideoView extends StatefulWidget {
   final VideoModel videoModel;
 
-  const VideoView({
-    super.key,
-    required this.videoModel,
-  });
+  const VideoView({super.key, required this.videoModel});
 
   @override
   State<VideoView> createState() => _VideoViewState();
@@ -139,9 +136,7 @@ class _VideoViewState extends State<VideoView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      appBar: const BackButtonAppbar(
-        title: "Meditation",
-      ),
+      appBar: const BackButtonAppbar(title: "Session"),
       body: ValueListenableBuilder<bool>(
         valueListenable: _isPlaying,
         builder: (context, isPlaying, _) {
@@ -160,15 +155,12 @@ class _VideoViewState extends State<VideoView> {
                       videoModel: widget.videoModel,
                       isPlaying: isPlaying,
                       onImageTap: _handleImageTap,
-                      videoPlayerWidget: _isVideoInitialized &&
-                              _chewieController != null
+                      videoPlayerWidget:
+                          _isVideoInitialized && _chewieController != null
                           ? Chewie(controller: _chewieController!)
                           : null,
                     ),
-
                     const SizedBox(height: 18),
-
-                    // 2. Audio Progress Bar
                     AudioProgressBar(
                       elapsedSeconds: elapsed,
                       totalSeconds: _isVideoInitialized
@@ -176,55 +168,26 @@ class _VideoViewState extends State<VideoView> {
                           : widget.videoModel.duration.toInt() * 60,
                       onSeek: _handleSeek,
                     ),
-
                     const SizedBox(height: 20),
-
-                    // 3. Main Controls
                     MainControls(
                       isPlaying: isPlaying,
                       onPlayPause: _togglePlayPause,
                       onSkipForward: _skipForward,
                       onSkipBackward: _skipBackward,
                     ),
-
                     const SizedBox(height: 20),
-
-                    // 4. Secondary Controls
                     SecondaryControls(
                       isMuted: _isMuted,
                       onVolumeToggle: _toggleVolume,
                       onFullscreenToggle: _toggleFullscreen,
                       onSpeedChanged: _changeSpeed,
                     ),
-
                     const SizedBox(height: 28),
-
-                    // 5. About Session
-                    const Text(
-                      'About this session',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF1A1A1A),
-                      ),
+                    AboutSessionSection(
+                      description: widget.videoModel.description,
                     ),
-                    const SizedBox(height: 12),
-                    AboutSessionCard(videoModel: widget.videoModel),
-
                     const SizedBox(height: 24),
-
-                    // 6. Session Details
-                    const Text(
-                      'Session details',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF1A1A1A),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    SessionDetailsCard(videoModel: widget.videoModel),
-
+                    SessionDetailsSection(videoModel: widget.videoModel),
                     const SizedBox(height: 32),
                   ],
                 ),

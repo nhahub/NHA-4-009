@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
-import '../../../data/models/video_model.dart';
+import 'package:moodly/core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class AboutSessionCard extends StatelessWidget {
-  final VideoModel videoModel;
+  final String description;
 
-  const AboutSessionCard({super.key, required this.videoModel});
+  const AboutSessionCard({super.key, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +23,9 @@ class AboutSessionCard extends StatelessWidget {
           ),
         ],
       ),
-      child: _DescriptionText(text: videoModel.description),
-    );
-  }
-}
-
-class _DescriptionText extends StatelessWidget {
-  final String text;
-  const _DescriptionText({required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 14.5,
-        height: 1.65,
-        color: Color(0xFF1E3A40),
+      child: Text(
+        description,
+        style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
       ),
     );
   }
