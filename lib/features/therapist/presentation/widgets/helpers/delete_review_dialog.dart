@@ -28,10 +28,10 @@ Future<void> deleteReviewDialog({
           );
 
           if (success) {
-            therapistCubit.updateReviewsCountAndRating(
+            therapistCubit.updateReviewsCountAndAverage(
               therapistId: therapistId,
-              change: -1,
               average: therapistReviewsCubit.state.average,
+              totalCount: therapistReviewsCubit.state.totalCount!,
             );
           }
         },

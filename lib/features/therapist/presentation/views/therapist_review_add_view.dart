@@ -24,10 +24,10 @@ class TherapistReviewAddView extends StatelessWidget {
         child: BlocListener<TherapistReviewsCubit, TherapistReviewsState>(
           listener: (context, state) {
             if (state.status.isSuccess) {
-              context.read<TherapistCubit>().updateReviewsCountAndRating(
+              context.read<TherapistCubit>().updateReviewsCountAndAverage(
                 therapistId: therapistId,
-                change: 1,
                 average: state.average,
+                totalCount: state.totalCount!,
               );
               confirmDialog(
                 context: context,

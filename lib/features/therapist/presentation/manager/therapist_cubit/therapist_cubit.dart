@@ -31,9 +31,9 @@ class TherapistCubit extends Cubit<TherapistState> {
     }
   }
 
-  void updateReviewsCountAndRating({
+  void updateReviewsCountAndAverage({
     required String therapistId,
-    required int change,
+    required int totalCount,
     required double? average,
   }) {
     final currentTherapists = state.therapists ?? [];
@@ -42,11 +42,9 @@ class TherapistCubit extends Cubit<TherapistState> {
       if (therapist.id == therapistId) {
         final currentSummary = therapist.ratingSummary;
 
-        final int newCount = currentSummary.totalCount + change;
-
         return therapist.copyWith(
           ratingSummary: currentSummary.copyWith(
-            totalCount: newCount < 0 ? 0 : newCount,
+            totalCount: totalCount,
             rating: average,
           ),
         );
