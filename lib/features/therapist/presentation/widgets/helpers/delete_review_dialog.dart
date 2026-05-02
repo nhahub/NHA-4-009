@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -21,7 +23,19 @@ Future<void> deleteReviewDialog({
         buttonColor: AppColors.darkRed,
         onPressed: () async {
           dialogContext.pop();
-          cubit.deleteReview(ratingId: ratingId, therapistId: therapistId);
+          final success = await cubit.deleteReview(
+            ratingId: ratingId,
+            therapistId: therapistId,
+          );
+
+          if (success) {
+            if (!context.mounted) return;
+
+            context.read<TherapistCubit>().updateReviewsCountAndRating(
+              therapistId: therapistId,
+              change: -1,
+            );
+          }
         },
       );
     },

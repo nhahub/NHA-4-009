@@ -12,19 +12,63 @@ class TherapistCubit extends Cubit<TherapistState> {
 
   TherapistCubit({required TherapistRepo therapistRepo})
     : _therapistRepo = therapistRepo,
-      super(GetTherapistsLoadingState());
+      super(const TherapistState(status: TherapistStatus.loading));
 
   void getTherapists() async {
     try {
       final List<TherapistModel> therapists = await _therapistRepo
           .getTherapists();
-      emit(GetTherapistsLoadedState(therapists: therapists));
+      emit(
+        state.copyWith(status: TherapistStatus.success, therapists: therapists),
+      );
     } catch (e) {
       emit(
-        GetTherapistFailureState(
-          errorMsg: ApiErrorHandler.handle(error: e).message,
+        state.copyWith(
+          status: TherapistStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
         ),
       );
     }
+  }
+
+  void updateReviewsCountAndRating({
+    required String therapistId,
+    required int change,
+    num? newRatingValue,
+  }) {
+    final currentTherapists = state.therapists ?? [];
+
+    final updatedTherapists = currentTherapists.map((therapist) {
+      if (therapist.id == therapistId) {
+        final currentSummary = therapist.ratingSummary;
+
+        final int newCount = currentSummary.totalCount + change;
+
+        double newRating = currentSummary.rating;
+
+        if (newRatingValue != null) {
+          newRating =
+              ((currentSummary.rating * currentSummary.totalCount) +
+                  newRatingValue) /
+              (newCount == 0 ? 1 : newCount);
+        }
+
+        return therapist.copyWith(
+          ratingSummary: currentSummary.copyWith(
+            totalCount: newCount < 0 ? 0 : newCount,
+            rating: newRating,
+          ),
+        );
+      }
+
+      return therapist;
+    }).toList();
+
+    emit(
+      state.copyWith(
+        status: TherapistStatus.success,
+        therapists: updatedTherapists,
+      ),
+    );
   }
 }
